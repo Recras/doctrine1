@@ -12,6 +12,19 @@ ini_set('date.timezone', 'GMT+0');
 
 define('DOCTRINE_DIR', $_SERVER['DOCTRINE_DIR']);
 
+// This forces the tests to use the local
+// copy of Doctrine in the event that there is another
+// version installed on the system that is also on the path
+set_include_path(
+    implode(
+        PATH_SEPARATOR,
+        array(
+            DOCTRINE_DIR . '/lib',
+            get_include_path(),
+        )
+    )
+);
+
 require_once(DOCTRINE_DIR . '/lib/Doctrine.php');
 
 spl_autoload_register(array('Doctrine', 'autoload'));

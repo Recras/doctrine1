@@ -43,6 +43,12 @@ class Doctrine_Ticket_1674_TestCase extends Doctrine_UnitTestCase
             ->execute();
 
         $xml = $users->exportTo('xml'); 
+	
+        // Enforce NOEMPTYTAG for backwards compatibility
+        $doc = new DOMDocument();
+        $doc->loadXML($xml);
+        $xml = $doc->saveXML(null, LIBXML_NOEMPTYTAG);
+
         $this->assertEqual($xml, '<?xml version="1.0" encoding="utf-8"?>
 <data><User id="4" type="0" email_id="1"><name>zYne</name><loginname/><password/><created/><updated/><Phonenumber><Phonenumber id="2" entity_id="4"><phonenumber>123 123</phonenumber><Entity/></Phonenumber></Phonenumber></User></data>
 ');

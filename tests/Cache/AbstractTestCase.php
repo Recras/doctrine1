@@ -56,20 +56,26 @@ abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
 
         $this->conn->setAttribute(Doctrine_Core::ATTR_RESULT_CACHE, $cache);
 
-        $queryCountBefore = $this->conn->count();
-
         for ($i = 0; $i < 10; $i++) {
             $u = Doctrine_Query::create()
                 ->from('User u')
                 ->addWhere('u.name = ?', array('Hans'))
                 ->useResultCache($cache, 3600, 'hans_query')
                 ->execute();
+
             $this->assertEqual(1, count($u));
             $this->assertEqual("Hans", $u[0]->name);
+
+            if ($i == 0) {
+                // Store where we're at with query count
+                // as it should not increase after this initial
+                // run of the loop
+                $queryCount = $this->conn->count();
+            }
         }
 
-        // Just 1 query should be run
-        $this->assertEqual($queryCountBefore + 1, $this->conn->count());
+        // Query count should not have changed after first loop run
+        $this->assertEqual($queryCount, $this->conn->count());
         $this->assertTrue($cache->contains('hans_query'));
     }
 
@@ -128,7 +134,7 @@ abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
         $this->assertFalse($cache->contains('bar_suffix'));
         $this->assertTrue($cache->contains('foo'));
     }
-    
+
     public function testDeleteByRegex()
     {
         if ( !$this->_isEnabled()) {
@@ -147,8 +153,8 @@ abstract class Doctrine_Cache_Abstract_TestCase extends Doctrine_UnitTestCase
         $this->assertFalse($cache->contains('bar_match_me'));
         $this->assertTrue($cache->contains('foo'));
     }
-    
-    abstract protected function _clearCache();    
+
+    abstract protected function _clearCache();
     abstract protected function _isEnabled();
     abstract protected function _getCacheDriver();
 }

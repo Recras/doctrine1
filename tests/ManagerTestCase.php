@@ -59,6 +59,7 @@ class Doctrine_Manager_TestCase extends Doctrine_UnitTestCase {
     public function testDsnParser()
     {
         $mysql = 'mysql://user:pass@localhost/dbname';
+        $mysqlWithCharset = 'mysql://user:pass@localhost/dbname?charset=utf8';
         $sqlite = 'sqlite:////full/unix/path/to/file.db';
         $sqlitewin = 'sqlite:///c:/full/windows/path/to/file.db';
         $sqlitewin2 = 'sqlite:///D:\full\windows\path\to\file.db';
@@ -74,6 +75,24 @@ class Doctrine_Manager_TestCase extends Doctrine_UnitTestCase {
                 "pass" => "pass",
                 "path" => "/dbname",
                 "dsn" => "mysql:host=localhost;dbname=dbname",
+                "port" => NULL,
+                "query" => NULL, 
+                "fragment" => NULL,
+                "database" => "dbname");
+            $this->assertEqual($expectedMysqlDsn, $res);
+        } catch (Exception $e) {
+            $this->fail($e->getMessage());
+        }
+
+        try {
+            $res = $manager->parseDsn($mysqlWithCharset);
+            $expectedMysqlDsn = array(
+                "scheme" => "mysql",
+                "host" => "localhost",
+                "user" => "user",
+                "pass" => "pass",
+                "path" => "/dbname",
+                "dsn" => "mysql:host=localhost;dbname=dbname;charset=utf8",
                 "port" => NULL,
                 "query" => NULL, 
                 "fragment" => NULL,

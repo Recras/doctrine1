@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Enum.php 1080 2007-02-10 18:17:08Z romanb $
+ *  $Id$
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -20,41 +20,41 @@
  */
 
 /**
- * Doctrine_Validator_Unsigned
+ * Doctrine_Query_JoinCondition_TestCase
  *
  * @package     Doctrine
- * @subpackage  Validator
+ * @author      Jay Klehr <jay@diablomedia.com>
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
+ * @category    Object Relational Mapping
  * @link        www.doctrine-project.org
  * @since       1.0
- * @version     $Revision: 1080 $
- * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
+ * @version     $Revision$
  */
-class Doctrine_Validator_Unsigned extends Doctrine_Validator_Driver
+class Doctrine_Query_NotExists_TestCase extends Doctrine_UnitTestCase
 {
-    /**
-     * checks if given value is a valid unsigned integer or float
-     *
-     * valid values: null, '', 5, '5', 5.9, '5.9'
-     * invalid values: -5, '-5', 'five', -5.9, '-5.9', '5.5.5'
-     *
-     * @param mixed $value
-     * @return boolean
-     */
-    public function validate($value)
+    public function prepareTables()
     {
-        if (is_null($value) || $value == '') {
-            return true;
-        }
-        if (!is_numeric($value)) {
-            return false;
-        }
+        $this->tables = array('User', 'Group', 'GroupUser');
 
-        if ((double) $value >= 0)
-        {
-            return true;
-        }
+        parent::prepareTables();
+    }
 
-        return false;
+    public function prepareData()
+    {
+    }
+
+    public function testInitData()
+    {
+    }
+
+    public function testQueryDoesNotSeparateNotAndExists()
+    {
+        $q = new Doctrine_Query();
+
+        $q->select('u.id')
+          ->from('User u')
+          ->where('NOT EXISTS (SELECT g.id FROM Group g)');
+
+        $this->assertEqual($q->getSqlQuery(), 'SELECT e.id AS e__id FROM entity e WHERE (NOT EXISTS (SELECT e2.id AS e2__id FROM entity e2 WHERE (e2.type = 1)) AND (e.type = 0))');
     }
 }

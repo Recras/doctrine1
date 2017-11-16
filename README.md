@@ -1,6 +1,7 @@
 # Doctrine 1 fork
 
 This is a maintained Doctrine 1 fork you can use in your projects using Composer.
+[![Build Status](https://travis-ci.org/recras/doctrine1.png)](https://travis-ci.org/recras/doctrine1)
 
 There are two versions: `dev` and `master`.
 `master` is fully backwards-compatible with the latest original

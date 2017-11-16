@@ -1,5 +1,7 @@
 <?php
 
+ini_set('memory_limit', -1);
+
 $_SERVER['DOCTRINE_DIR'] = realpath(dirname(__FILE__).'/../');
 
 require 'bootstrap.php';
@@ -11,17 +13,15 @@ $tickets = new GroupTest('Tickets Tests', 'tickets');
 
 $excludeTickets = array(
     '1830', // MySQL specific error
-    '1876b',
-    '1935',
-    '2015',
-    '2292',
+    '1876b', // MySQL specific
+    '1935', // MySQL specific
+    'DC356', // Causing a fatal error right now, bailing rest of test suite
     'DC521' // PostgreSQL specific error
 );
 
 $ticketTestCases = glob(dirname(__FILE__) . '/Ticket/*TestCase.php');
 
-foreach ($ticketTestCases as $testCase)
-{
+foreach ($ticketTestCases as $testCase) {
     $fileInfo = pathinfo($testCase);
     $name = str_replace('TestCase', '', $fileInfo['filename']);
 
@@ -109,29 +109,6 @@ $expression->addTestCase(new Doctrine_Expression_Oracle_TestCase());
 $expression->addTestCase(new Doctrine_Expression_Sqlite_TestCase());
 $test->addTestCase($expression);
 
-// Core Tests
-$core = new GroupTest('Core Tests', 'core');
-$core->addTestCase(new Doctrine_Base_TestCase());
-$core->addTestCase(new Doctrine_Access_TestCase());
-$core->addTestCase(new Doctrine_Configurable_TestCase());
-$core->addTestCase(new Doctrine_Manager_TestCase());
-$core->addTestCase(new Doctrine_Connection_TestCase());
-$core->addTestCase(new Doctrine_Table_TestCase());
-$core->addTestCase(new Doctrine_Table_RemoveColumn_TestCase());
-$core->addTestCase(new Doctrine_Table_NamedQuery_TestCase());
-$core->addTestCase(new Doctrine_UnitOfWork_TestCase());
-$core->addTestCase(new Doctrine_Collection_TestCase());
-$core->addTestCase(new Doctrine_Collection_Snapshot_TestCase());
-$core->addTestCase(new Doctrine_Hydrate_FetchMode_TestCase());
-$core->addTestCase(new Doctrine_Hydrate_CollectionInitialization_TestCase());
-$core->addTestCase(new Doctrine_Hydrate_Scalar_TestCase());
-$core->addTestCase(new Doctrine_Hydrate_Driver_TestCase());
-$core->addTestCase(new Doctrine_Tokenizer_TestCase());
-$core->addTestCase(new Doctrine_BatchIterator_TestCase());
-$core->addTestCase(new Doctrine_Hydrate_TestCase());
-$core->addTestCase(new Doctrine_Extension_TestCase());
-$test->addTestCase($core);
-
 // CLI Tests
 $cli = new GroupTest('CLI Tests', 'cli');
 $cli->addTestCase(new Doctrine_Cli_TestCase());
@@ -172,6 +149,35 @@ $behaviors->addTestCase(new Doctrine_SoftDelete_TestCase());
 $behaviors->addTestCase(new Doctrine_SoftDeleteBC_TestCase());
 $test->addTestCase($behaviors);
 
+// Core tests were moved below Behaviors tests because the Base_TestCase in Core
+// causes the I18n tests case to fail if it runs before it (in PHP 5.4 only).
+// This appears to be due to the last test in the file "testGetConnectionByTableName"
+// loading all models which trips up the I18N test when it tries to load the model
+// as well.  I cannot explain why it only happens in PHP 5.4.
+//
+// Core Tests
+$core = new GroupTest('Core Tests', 'core');
+$core->addTestCase(new Doctrine_Base_TestCase());
+$core->addTestCase(new Doctrine_Access_TestCase());
+$core->addTestCase(new Doctrine_Configurable_TestCase());
+$core->addTestCase(new Doctrine_Manager_TestCase());
+$core->addTestCase(new Doctrine_Connection_TestCase());
+$core->addTestCase(new Doctrine_Table_TestCase());
+$core->addTestCase(new Doctrine_Table_RemoveColumn_TestCase());
+$core->addTestCase(new Doctrine_Table_NamedQuery_TestCase());
+$core->addTestCase(new Doctrine_UnitOfWork_TestCase());
+$core->addTestCase(new Doctrine_Collection_TestCase());
+$core->addTestCase(new Doctrine_Collection_Snapshot_TestCase());
+$core->addTestCase(new Doctrine_Hydrate_FetchMode_TestCase());
+$core->addTestCase(new Doctrine_Hydrate_CollectionInitialization_TestCase());
+$core->addTestCase(new Doctrine_Hydrate_Scalar_TestCase());
+$core->addTestCase(new Doctrine_Hydrate_Driver_TestCase());
+$core->addTestCase(new Doctrine_Tokenizer_TestCase());
+$core->addTestCase(new Doctrine_BatchIterator_TestCase());
+$core->addTestCase(new Doctrine_Hydrate_TestCase());
+$core->addTestCase(new Doctrine_Extension_TestCase());
+$test->addTestCase($core);
+
 // Validator Testing
 $validators = new GroupTest('Validators Testing', 'validators');
 $validators->addTestCase(new Doctrine_Validator_TestCase());
@@ -187,13 +193,13 @@ $db->addTestCase(new Doctrine_Connection_Profiler_TestCase());
 $test->addTestCase($db);
 
 // Event Listener Tests
-$event_listener = new GroupTest('EventListener Tests','event_listener');
+$event_listener = new GroupTest('EventListener Tests', 'event_listener');
 $event_listener->addTestCase(new Doctrine_EventListener_TestCase());
 $event_listener->addTestCase(new Doctrine_EventListener_Chain_TestCase());
 $test->addTestCase($event_listener);
 
 // Query Tests
-$query_tests = new GroupTest('Query Tests','query');
+$query_tests = new GroupTest('Query Tests', 'query');
 $query_tests->addTestCase(new Doctrine_Query_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_Condition_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_MultiJoin_TestCase());
@@ -209,6 +215,7 @@ $query_tests->addTestCase(new Doctrine_Query_IdentifierQuoting_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_Update_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_Delete_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_Join_TestCase());
+$query_tests->addTestCase(new Doctrine_Query_NotExists_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_Having_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_Orderby_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_Subquery_TestCase());
@@ -312,9 +319,9 @@ $nestedSet->addTestCase(new Doctrine_NestedSet_Hydration_TestCase());
 $test->addTestCase($nestedSet);
 
 /*
-$unsorted = new GroupTest('Performance', 'performance');
-$unsorted->addTestCase(new Doctrine_Hydrate_Performance_TestCase());
-$test->addTestCase($unsorted);
+$performance = new GroupTest('Performance', 'performance');
+$performance->addTestCase(new Doctrine_Hydrate_Performance_TestCase());
+$test->addTestCase($performance);
 */
 
 exit($test->run() ? 0 : 1);

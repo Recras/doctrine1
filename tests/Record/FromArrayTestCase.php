@@ -36,7 +36,7 @@ class Doctrine_Record_FromArray_TestCase extends Doctrine_UnitTestCase
     {
         parent::prepareTables();
     }
-    
+
     public function prepareData()
     {
         # Create an existing group
@@ -53,22 +53,22 @@ class Doctrine_Record_FromArray_TestCase extends Doctrine_UnitTestCase
 
         # add a Phonenumber
         $userArray['Phonenumber'][0]['phonenumber'] = '555 321';
-        
+
         # add an Email address
         $userArray['Email']['address'] = 'johndow@mail.com';
-        
+
         # add group
         $userArray['Group'][0]['name'] = 'New Group'; # This is a n-m relationship
         # add a group which exists
         $userArray['Group'][1]['_identifier'] = $this->previous_group; # This is a n-m relationship where the group was made in prepareData
-          
+
         $user->fromArray($userArray);
-        
+
         $this->assertEqual($user->Phonenumber->count(), 1);
         $this->assertEqual($user->Phonenumber[0]->phonenumber, '555 321');
         $this->assertEqual($user->Group[0]->name, 'New Group');
         $this->assertEqual($user->Group[1]->name, 'Group One');
-        
+
         try {
           $user->save();
         } catch (Exception $e ) {
@@ -78,11 +78,20 @@ class Doctrine_Record_FromArray_TestCase extends Doctrine_UnitTestCase
 
     public function testFromArrayAfterSaveRecord()
     {
+        // This is fetching the user made in the previous test apparently
         $user = Doctrine_Query::create()->from('User u, u.Email, u.Phonenumber, u.Group')->fetchOne();
+        $groups = array();
+
         $this->assertEqual($user->Phonenumber->count(), 1);
         $this->assertEqual($user->Phonenumber[0]->phonenumber, '555 321');
         $this->assertEqual($user->Email->address, 'johndow@mail.com');
-        $this->assertEqual($user->Group[0]->name, 'New Group');
-        $this->assertEqual($user->Group[1]->name, 'Group One');
+        $this->assertEqual($user->Group->count(), 2);
+
+        // Order gets changed on fetch, need to check if both groups exist
+        foreach ($user->Group as $group) {
+            $groups[] = $group->name;
+        }
+        $this->assertTrue(in_array('Group One', $groups));
+        $this->assertTrue(in_array('New Group', $groups));
     }
 }
