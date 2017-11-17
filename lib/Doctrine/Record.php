@@ -1344,10 +1344,23 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
 
             if ($this->hasAccessor($fieldName) || method_exists($this, $accessor)) {
                 $this->hasAccessor($fieldName, $accessor);
-                return $this->$accessor($load, $fieldName);
+                return $this->$accessor($fieldName, $load);
             }
         }
         return $this->_get($fieldName, $load);
+    }
+
+
+    protected function getDataProperty($fieldName, $load)
+    {
+        if ($load && $this->_data[$fieldName] === self::$_null) {
+            $this->load();
+        }
+
+        if ($this->_data[$fieldName] === self::$_null) {
+            return null;
+        }
+        return $this->_data[$fieldName];
     }
 
     protected function _get($fieldName, $load = true)
@@ -1359,20 +1372,9 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
         }
 
         if (array_key_exists($fieldName, $this->_data)) {
-            // check if the value is the Doctrine_Null object located in self::$_null)
-            if ($this->_data[$fieldName] === self::$_null && $load) {
-                $this->load();
-            }
-
-            if ($this->_data[$fieldName] === self::$_null) {
-                $value = null;
-            } else {
-                $value = $this->_data[$fieldName];
-            }
-            
-            return $value;
+            return $this->getDataProperty($fieldName, $load);
         }
-        
+
         try {
             if ( ! isset($this->_references[$fieldName])) {
                 if ($load) {
@@ -1456,44 +1458,48 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
         return $this->_set($fieldName, $value, $load);
     }
 
+    protected function setDataProperty($fieldName, $value, $load)
+    {
+        $type = $this->_table->getTypeOf($fieldName);
+        if ($value instanceof Doctrine_Record) {
+            $id = $value->getIncremented();
+
+            if ($id !== null && $type !== 'object') {
+                $value = $id;
+            }
+        }
+
+        if ($load) {
+            $old = $this->get($fieldName, $load);
+        } else {
+            $old = $this->_data[$fieldName];
+        }
+
+        if ($this->_isValueModified($type, $old, $value)) {
+            if ($value === null) {
+                $value = $this->_table->getDefaultValueOf($fieldName);
+            }
+            $this->_data[$fieldName] = $value;
+            $this->_modified[] = $fieldName;
+            $this->_oldValues[$fieldName] = $old;
+
+            switch ($this->_state) {
+            case Doctrine_Record::STATE_CLEAN:
+            case Doctrine_Record::STATE_PROXY:
+                $this->_state = Doctrine_Record::STATE_DIRTY;
+                break;
+            case Doctrine_Record::STATE_TCLEAN:
+                $this->_state = Doctrine_Record::STATE_TDIRTY;
+                break;
+            }
+        }
+    }
     protected function _set($fieldName, $value, $load = true)
     {
         if (array_key_exists($fieldName, $this->_values)) {
             $this->_values[$fieldName] = $value;
         } else if (array_key_exists($fieldName, $this->_data)) {
-            $type = $this->_table->getTypeOf($fieldName);
-            if ($value instanceof Doctrine_Record) {
-                $id = $value->getIncremented();
-
-                if ($id !== null && $type !== 'object') {
-                    $value = $id;
-                }
-            }
-
-            if ($load) {
-                $old = $this->get($fieldName, $load);
-            } else {
-                $old = $this->_data[$fieldName];
-            }
-            
-            if ($this->_isValueModified($type, $old, $value)) {
-                if ($value === null) {
-                    $value = $this->_table->getDefaultValueOf($fieldName); 
-                }
-                $this->_data[$fieldName] = $value;
-                $this->_modified[] = $fieldName;
-                $this->_oldValues[$fieldName] = $old;
-
-                switch ($this->_state) {
-                    case Doctrine_Record::STATE_CLEAN:
-                    case Doctrine_Record::STATE_PROXY:
-                        $this->_state = Doctrine_Record::STATE_DIRTY;
-                        break;
-                    case Doctrine_Record::STATE_TCLEAN:
-                        $this->_state = Doctrine_Record::STATE_TDIRTY;
-                        break;
-                }
-            }
+            return $this->setDataProperty($fieldName, $value, $load);
         } else {
             try {
                 $this->coreSetRelated($fieldName, $value);

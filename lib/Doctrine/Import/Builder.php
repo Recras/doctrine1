@@ -38,6 +38,20 @@
  */
 class Doctrine_Import_Builder extends Doctrine_Builder
 {
+    const TEMPLATE_GETTER_DATA = <<<PHP
+
+    public function get{camelCasedName}(){typeHint}
+    {
+        return \$this->getDataProperty('{snakeCasedName}', /*\$load =*/ true);
+    }
+PHP;
+    const TEMPLATE_SETTER_DATA = <<<PHP
+
+    public function set{camelCasedName}(\$value){typeHint}
+    {
+        return \$this->setDataProperty('{snakeCasedName}', \$value, /*\$load =*/ true);
+    }
+PHP;
     /**
      * Path where to generated files
      *
@@ -500,6 +514,38 @@ class Doctrine_Import_Builder extends Doctrine_Builder
         if ($code) {
             return '    public function setUp()' . PHP_EOL . '    {' . PHP_EOL . '        ' . $code . PHP_EOL . '    }';
         }
+    }
+
+    public function buildGetters($definition)
+    {
+        $gettersCode = '';
+        $columns = empty($definition['columns']) ? array() : $definition['columns'];
+        foreach ($columns as $columnName => $column) {
+            $replacements = array(
+                '{camelCasedName}' => Doctrine_Inflector::classify($columnName),
+                '{snakeCasedName}' => $columnName,
+                '{typeHint}' => '',
+            );
+            $gettersCode .= str_replace(array_keys($replacements), array_values($replacements), self::TEMPLATE_GETTER_DATA);
+        }
+        return $gettersCode;
+    }
+
+    public function buildSetters($definition)
+    {
+        if (!(isset($definition['columns']) && is_array($definition['columns']))) {
+            return '';
+        }
+        $settersCode = '';
+        foreach ($definition['columns'] as $columnName => $column) {
+            $replacements = array(
+                '{camelCasedName}' => Doctrine_Inflector::classify($columnName),
+                '{snakeCasedName}' => $columnName,
+                '{typeHint}' => '',
+            );
+            $settersCode .= str_replace(array_keys($replacements), array_values($replacements), self::TEMPLATE_SETTER_DATA);
+        }
+        return $settersCode;
     }
 
     /**
@@ -967,17 +1013,28 @@ class Doctrine_Import_Builder extends Doctrine_Builder
         if ( ! (isset($definition['no_definition']) && $definition['no_definition'] === true)) {
             $tableDefinitionCode = $this->buildTableDefinition($definition);
             $setUpCode = $this->buildSetUp($definition);
+            $gettersCode = $this->buildGetters($definition);
+            $settersCode = $this->buildSetters($definition);
         } else {
             $tableDefinitionCode = null;
             $setUpCode = null;
+            $gettersCode = null;
+            $settersCode = null;
         }
 
         if ($tableDefinitionCode && $setUpCode) {
             $setUpCode = PHP_EOL . $setUpCode;
         }
-
         $setUpCode.= $this->buildToString($definition);
-        
+
+        if ($gettersCode && $setUpCode) {
+            $setUpCode .= PHP_EOL . $gettersCode;
+        }
+
+        if ($settersCode && $setUpCode) {
+            $setUpCode .= PHP_EOL . $settersCode;
+        }
+
         $docs = PHP_EOL . $this->buildPhpDocs($definition);
 
         $content = sprintf(self::$_tpl, $docs, $abstract,
