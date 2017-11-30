@@ -600,6 +600,38 @@ class Doctrine_Import_Builder extends Doctrine_Builder
         return $build;
     }
 
+    public function buildConstants(array $definition)
+    {
+        $build = PHP_EOL;
+        foreach ($definition['columns'] as $name => $column) {
+            // An alias cannot passed via column name and column alias definition
+            if (isset($column['name']) && stripos($column['name'], ' as ') && isset($column['alias'])) {
+                throw new Doctrine_Import_Exception(
+                    sprintf('When using a column alias you cannot pass it via column name and column alias definition (column: %s).', $column['name'])
+                );
+            }
+
+            // Update column name if an alias is provided
+            if (isset($column['alias']) && !isset($column['name'])) {
+                $column['name'] = $name . ' as ' . $column['alias'];
+            }
+
+            $columnName = isset($column['name']) ? $column['name']:$name;
+            $e = explode(' as ', $columnName);
+            $fieldName = isset($e[1]) ? $e[1] : $e[0];
+            $build .= str_replace([
+                '{constname}',
+                '{fieldname}',
+            ], [
+                strtoupper(Doctrine_Inflector::tableize($fieldName)),
+                Doctrine_Inflector::tableize($fieldName),
+            ], str_repeat(' ', 4) . 'const {constname} = \'{fieldname}\';' . PHP_EOL);
+
+        };
+
+        return $build;
+    }
+
     /*
      * Build the accessors
      *
@@ -965,9 +997,11 @@ class Doctrine_Import_Builder extends Doctrine_Builder
         $extends = isset($definition['inheritance']['extends']) ? $definition['inheritance']['extends']:$this->_baseClassName;
 
         if ( ! (isset($definition['no_definition']) && $definition['no_definition'] === true)) {
+            $constantsCode = $this->buildConstants($definition);
             $tableDefinitionCode = $this->buildTableDefinition($definition);
             $setUpCode = $this->buildSetUp($definition);
         } else {
+            $constantsCode = '';
             $tableDefinitionCode = null;
             $setUpCode = null;
         }
@@ -983,7 +1017,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
         $content = sprintf(self::$_tpl, $docs, $abstract,
                                        $className,
                                        $extends,
-                                       $tableDefinitionCode,
+                                       $constantsCode . PHP_EOL . $tableDefinitionCode,
                                        $setUpCode);
 
         return $content;
