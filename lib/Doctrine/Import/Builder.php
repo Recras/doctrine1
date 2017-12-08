@@ -720,7 +720,8 @@ class Doctrine_Import_Builder extends Doctrine_Builder
                 $fieldName = trim($fieldName);
 
                 $type = $column['type'];
-                if ($phptype = $this->getPhpType($type)) {
+                $phptype = $this->getPhpType($type);
+                if (!is_null($phptype)) {
                     $type .= '|' . $phptype;
                 }
                 if (!array_key_exists('notnull', $column) || !$column['notnull']) {
