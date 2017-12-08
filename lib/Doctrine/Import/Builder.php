@@ -667,6 +667,17 @@ class Doctrine_Import_Builder extends Doctrine_Builder
         return $ret;
     }
 
+    private function getPhpType($databaseType)
+    {
+        switch ($databaseType) {
+            case 'enum':
+                return 'string';
+            case 'decimal':
+                return 'float';
+        }
+        return null;
+    }
+
     /*
      * Build the phpDoc for a class definition
      *
@@ -708,7 +719,16 @@ class Doctrine_Import_Builder extends Doctrine_Builder
                 $name = trim($name);
                 $fieldName = trim($fieldName);
 
-                $ret[] = '@property ' . $column['type'] . ' $' . $fieldName;
+                $type = $column['type'];
+                $phptype = $this->getPhpType($type);
+                if (!is_null($phptype)) {
+                    $type .= '|' . $phptype;
+                }
+                if (!array_key_exists('notnull', $column) || !$column['notnull']) {
+                    $type .= '|null';
+                }
+
+                $ret[] = '@property ' . $type . ' $' . $fieldName;
             }
 
             if (isset($definition['relations']) && ! empty($definition['relations'])) {
