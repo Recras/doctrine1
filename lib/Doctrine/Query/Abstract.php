@@ -992,7 +992,7 @@ abstract class Doctrine_Query_Abstract
      * executes the query and populates the data set
      *
      * @param array $params
-     * @return Doctrine_Collection            the root collection
+     * @return mixed            the root collection
      */
     public function execute($params = array(), $hydrationMode = null)
     {
