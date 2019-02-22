@@ -235,7 +235,11 @@ abstract class Doctrine_Hydrator_Graph extends Doctrine_Hydrator_Abstract
                                 }
                                 $prev[$parent][$relationAlias][$element[$field]] = $element;
                             } else {
-                                $prev[$parent][$relationAlias][] = $element; 
+                                if ($indexExists) {
+                                    $prev[$parent][$relationAlias][$index] = $element;
+                                } else {
+                                    $prev[$parent][$relationAlias][] = $element;
+                                }
                             }
                             $identifierMap[$path][$id[$parent]][$id[$dqlAlias]] = $this->getLastKey($prev[$parent][$relationAlias]);                            
                         }
