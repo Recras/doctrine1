@@ -737,9 +737,13 @@ class Doctrine_Import_Builder extends Doctrine_Builder
 
             if (isset($definition['relations']) && ! empty($definition['relations'])) {
                 foreach ($definition['relations'] as $relation) {
-                    $type = (isset($relation['type']) && $relation['type'] == Doctrine_Relation::MANY) ? 'Doctrine_Collection' : $this->_classPrefix . $relation['class'];
-                    if (!empty($relation['class'])) {
-                        $type .= '&iterable<' . $relation['class'] .'>';
+                    if (isset($relation['type']) && $relation['type'] == Doctrine_Relation::MANY) {
+                        $type = 'Doctrine_Collection';
+                        if (!empty($relation['class'])) {
+                            $type .= '&iterable<' . $relation['class'] . '>';
+                        }
+                    } else {
+                        $type = $this->_classPrefix . $relation['class'];
                     }
                     $ret[] = '@property ' . $type . ' $' . $relation['alias'];
                 }
