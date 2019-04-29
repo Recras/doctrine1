@@ -671,6 +671,10 @@ class Doctrine_Import_Builder extends Doctrine_Builder
     {
         switch ($databaseType) {
             case 'enum':
+            case 'time':
+            case 'timestamp':
+            case 'datetime':
+            case 'date':
                 return 'string';
             case 'decimal':
                 return 'float';
@@ -722,7 +726,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
                 $type = $column['type'];
                 $phptype = $this->getPhpType($type);
                 if (!is_null($phptype)) {
-                    $type .= '|' . $phptype;
+                    $type = $phptype;
                 }
                 if (!array_key_exists('notnull', $column) || !$column['notnull']) {
                     $type .= '|null';
@@ -734,6 +738,9 @@ class Doctrine_Import_Builder extends Doctrine_Builder
             if (isset($definition['relations']) && ! empty($definition['relations'])) {
                 foreach ($definition['relations'] as $relation) {
                     $type = (isset($relation['type']) && $relation['type'] == Doctrine_Relation::MANY) ? 'Doctrine_Collection' : $this->_classPrefix . $relation['class'];
+                    if (!empty($relation['class'])) {
+                        $type .= '&iterable<' . $relation['class'] .'>';
+                    }
                     $ret[] = '@property ' . $type . ' $' . $relation['alias'];
                 }
             }
