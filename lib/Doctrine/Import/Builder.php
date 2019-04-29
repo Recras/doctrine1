@@ -671,6 +671,10 @@ class Doctrine_Import_Builder extends Doctrine_Builder
     {
         switch ($databaseType) {
             case 'enum':
+            case 'time':
+            case 'timestamp':
+            case 'datetime':
+            case 'date':
                 return 'string';
             case 'decimal':
                 return 'float';
@@ -722,7 +726,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
                 $type = $column['type'];
                 $phptype = $this->getPhpType($type);
                 if (!is_null($phptype)) {
-                    $type .= '|' . $phptype;
+                    $type = $phptype;
                 }
                 if (!array_key_exists('notnull', $column) || !$column['notnull']) {
                     $type .= '|null';
