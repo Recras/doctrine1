@@ -682,6 +682,41 @@ class Doctrine_Import_Builder extends Doctrine_Builder
         return null;
     }
 
+    /**
+     * @return (string $columnName, string $fieldName)
+     */
+    private function findColumnNames(array $column, $keyname)
+    {
+        $name = isset($column['name']) ? $column['name'] : $keyname;
+        // extract column name & field name
+        if (stripos($name, ' as '))
+        {
+            if (strpos($name, ' as')) {
+                $parts = explode(' as ', $name);
+            } else {
+                $parts = explode(' AS ', $name);
+            }
+
+            if (count($parts) > 1) {
+                $fieldName = $parts[1];
+            } else {
+                $fieldName = $parts[0];
+            }
+
+            $name = $parts[0];
+        } else {
+            $fieldName = $name;
+            $name = $name;
+        }
+
+        $name = trim($name);
+        $fieldName = trim($fieldName);
+        return array($name, $fieldName);
+    }
+    private function columnIsNullable(array $column)
+    {
+        return !array_key_exists('notnull', $column) || !$column['notnull'];
+    }
     /*
      * Build the phpDoc for a class definition
      *
@@ -698,37 +733,14 @@ class Doctrine_Import_Builder extends Doctrine_Builder
 
         if ((isset($definition['is_base_class']) && $definition['is_base_class']) || ! $this->generateBaseClasses()) {
             foreach ($definition['columns'] as $name => $column) {
-                $name = isset($column['name']) ? $column['name']:$name;
-                // extract column name & field name
-                if (stripos($name, ' as '))
-                {
-                    if (strpos($name, ' as')) {
-                        $parts = explode(' as ', $name);
-                    } else {
-                        $parts = explode(' AS ', $name);
-                    }
-
-                    if (count($parts) > 1) {
-                        $fieldName = $parts[1];
-                    } else {
-                        $fieldName = $parts[0];
-                    }
-
-                    $name = $parts[0];
-                } else {
-                    $fieldName = $name;
-                    $name = $name;
-                }
-
-                $name = trim($name);
-                $fieldName = trim($fieldName);
+                list($name, $fieldName) = $this->findColumnNames($column, $name);
 
                 $type = $column['type'];
                 $phptype = $this->getPhpType($type);
                 if (!is_null($phptype)) {
                     $type = $phptype;
                 }
-                if (!array_key_exists('notnull', $column) || !$column['notnull']) {
+                if ($this->columnIsNullable($column)) {
                     $type .= '|null';
                 }
 
@@ -744,6 +756,13 @@ class Doctrine_Import_Builder extends Doctrine_Builder
                         }
                     } else {
                         $type = $this->_classPrefix . $relation['class'];
+                        $columns = array_filter($definition['columns'], function($col, $key) use ($relation) {
+                            list($columnName) = $this->findColumnNames($col, $key);
+                            return $columnName == $relation['local'];
+                        }, ARRAY_FILTER_USE_BOTH);
+                        if (!empty($columns) && $this->columnIsNullable(current($columns))) {
+                            $type .= '|null';
+                        }
                     }
                     $ret[] = '@property ' . $type . ' $' . $relation['alias'];
                 }
