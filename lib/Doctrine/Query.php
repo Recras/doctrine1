@@ -284,7 +284,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
             return $collection;
         }
 
-        if (count($collection) === 0) {
+        if (is_null($collection) || count($collection) === 0) {
             return false;
         }
 
