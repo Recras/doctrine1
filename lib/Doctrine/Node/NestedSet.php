@@ -76,7 +76,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
     /**
      * gets record of prev sibling or empty record
      *
-     * @return Doctrine_Record            
+     * @return Doctrine_Record|false
      */
     public function getPrevSibling()
     {
@@ -102,7 +102,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
     /**
      * gets record of next sibling or empty record
      *
-     * @return Doctrine_Record            
+     * @return Doctrine_Record|false
      */
     public function getNextSibling()
     {
@@ -148,7 +148,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
     /**
      * gets record of first child or empty record
      *
-     * @return Doctrine_Record            
+     * @return Doctrine_Record|false
      */
     public function getFirstChild()
     {
@@ -174,7 +174,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
     /**
      * gets record of last child or empty record
      *
-     * @return Doctrine_Record            
+     * @return Doctrine_Record|false
      */
     public function getLastChild()
     {
@@ -241,7 +241,7 @@ class Doctrine_Node_NestedSet extends Doctrine_Node implements Doctrine_Node_Int
     /**
      * gets record of parent or empty record
      *
-     * @return Doctrine_Record            
+     * @return Doctrine_Record|false
      */
     public function getParent()
     {
