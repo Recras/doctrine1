@@ -81,7 +81,6 @@ class Doctrine_Pager
      *                        (which does the Doctrine_Query class creation).
      * @param int $page     Current page
      * @param int $maxPerPage     Maximum itens per page
-     * @return void
      */
     public function __construct($query, $page, $maxPerPage = 0)
     {
@@ -99,7 +98,6 @@ class Doctrine_Pager
      * Initialize Pager object calculating number of results
      *
      * @param $params  Optional parameters to Doctrine_Query::execute
-     * @return void
      */
     protected function _initialize($params = array())
     {
@@ -118,7 +116,6 @@ class Doctrine_Pager
      *
      * Adjusts last page of Doctrine_Pager, offset and limit of Doctrine_Query associated
      *
-     * @return void
      */
     protected function _adjustOffset()
     {
@@ -152,7 +149,6 @@ class Doctrine_Pager
      * Defines if Pager was already executed
      *
      * @param $executed       Pager was executed
-     * @return void
      */
     protected function _setExecuted($executed)
     {
@@ -200,7 +196,6 @@ class Doctrine_Pager
      * Defines the number of total results on initial query
      *
      * @param $nb       Number of results found on initial query fetch
-     * @return void
      */
     protected function _setNumResults($nb)
     {
@@ -243,7 +238,6 @@ class Doctrine_Pager
      * Defines the last page (total of pages)
      *
      * @param $page       last page (total of pages)
-     * @return void
      */
     protected function _setLastPage($page)
     {
@@ -350,7 +344,6 @@ class Doctrine_Pager
      * Defines the current page and automatically adjust offset and limits
      *
      * @param $page       current page
-     * @return void
      */
     public function setPage($page)
     {
@@ -364,7 +357,6 @@ class Doctrine_Pager
      * Defines the current page
      *
      * @param $page       current page
-     * @return void
      */
     protected function _setPage($page)
     {
@@ -390,7 +382,6 @@ class Doctrine_Pager
      * Defines the maximum number of itens per page and automatically adjust offset and limits
      *
      * @param $max       maximum number of itens per page
-     * @return void
      */
     public function setMaxPerPage($max)
     {
@@ -444,7 +435,6 @@ class Doctrine_Pager
      *
      * @param Doctrine_Query     Accepts either a Doctrine_Query object or a string 
      *                           (which does the Doctrine_Query class creation).
-     * @return void
      */
     protected function _setQuery($query)
     {
@@ -477,7 +467,6 @@ class Doctrine_Pager
      *                        (which does the Doctrine_Query class creation).
      * @param array           Optional params to be used by counter Doctrine_Query. 
      *                        If not defined, the params passed to execute method will be used.
-     * @return void
      */
     public function setCountQuery($query, $params = null)
     {
@@ -513,7 +502,6 @@ class Doctrine_Pager
      * @param array       Optional params to be used by counter Doctrine_Query. 
      *                    If not defined, the params passed to execute method will be used.
      * @param boolean     Optional argument that append the query param instead of overriding the existent ones.
-     * @return void
      */
     public function setCountQueryParams($params = array(), $append = false)
     {

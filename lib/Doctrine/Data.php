@@ -86,7 +86,6 @@ class Doctrine_Data
      * Set the current format we are working with
      * 
      * @param string $format 
-     * @return void
      */
     public function setFormat($format)
     {
@@ -98,7 +97,6 @@ class Doctrine_Data
      *
      * Get the current format we are working with
      * 
-     * @return void
      */
     public function getFormat()
     {
@@ -110,7 +108,6 @@ class Doctrine_Data
      *
      * Get array of available formats
      * 
-     * @return void
      */
     public function getFormats()
     {
@@ -122,7 +119,6 @@ class Doctrine_Data
      *
      * Set the array/string of directories or yml file paths
      * 
-     * @return void
      */
     public function setDirectory($directory)
     {
@@ -134,7 +130,6 @@ class Doctrine_Data
      *
      * Get directory for dumping/loading data from and to
      * 
-     * @return void
      */
     public function getDirectory()
     {
@@ -147,7 +142,6 @@ class Doctrine_Data
      * Set the array of specified models to work with
      * 
      * @param string $models 
-     * @return void
      */
     public function setModels($models)
     {
@@ -159,7 +153,6 @@ class Doctrine_Data
      *
      * Get the array of specified models to work with
      *
-     * @return void
      */
     public function getModels()
     {
@@ -191,7 +184,6 @@ class Doctrine_Data
      * @param string $format 
      * @param string $models 
      * @param string $_exportIndividualFiles 
-     * @return void
      */
     public function exportData($directory, $format = 'yml', $models = array(), $_exportIndividualFiles = false)
     {
@@ -211,7 +203,6 @@ class Doctrine_Data
      * @param string $directory 
      * @param string $format 
      * @param string $models 
-     * @return void
      */
     public function importData($directory, $format = 'yml', $models = array(), $append = false)
     {
@@ -227,9 +218,8 @@ class Doctrine_Data
      *
      * Check if a fieldName on a Doctrine_Record is a relation, if it is we return that relationData
      * 
-     * @param string $Doctrine_Record 
+     * @param Doctrine_Record  $Doctrine_Record 
      * @param string $fieldName 
-     * @return void
      */
     public function isRelation(Doctrine_Record $record, $fieldName)
     {
@@ -253,7 +243,6 @@ class Doctrine_Data
      * Purge all data for loaded models or for the passed array of Doctrine_Records
      *
      * @param string $models 
-     * @return void
      */
     public function purge($models = null)
     {

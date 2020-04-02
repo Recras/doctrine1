@@ -35,7 +35,6 @@ class Doctrine_Template_NestedSet extends Doctrine_Template
     /**
      * Set up NestedSet template
      *
-     * @return void
      */
     public function setUp()
     {
@@ -46,7 +45,6 @@ class Doctrine_Template_NestedSet extends Doctrine_Template
     /**
      * Call set table definition for the NestedSet behavior
      *
-     * @return void
      */
     public function setTableDefinition()
     {

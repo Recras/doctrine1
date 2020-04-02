@@ -39,7 +39,6 @@ class Doctrine_Export_Pgsql extends Doctrine_Export
      * createDatabaseSql
      *
      * @param string $name 
-     * @return void
      */
     public function createDatabaseSql($name)
     {

@@ -42,7 +42,6 @@ class Doctrine_Export_Schema
      * @param string $directory  The directory of models to build the schema from
      * @param array $models      The array of model names to build the schema for
      * @param integer $modelLoading The model loading strategy to use to load the models from the passed directory
-     * @return void
      */
     public function buildSchema($directory = null, $models = array(), $modelLoading = null)
     {
@@ -139,7 +138,6 @@ class Doctrine_Export_Schema
      * @param  string $directory 
      * @param string $string of data in the specified format
      * @param integer $modelLoading The model loading strategy to use to load the models from the passed directory
-     * @return void
      */
     public function exportSchema($schema, $format = 'yml', $directory = null, $models = array(), $modelLoading = null)
     {

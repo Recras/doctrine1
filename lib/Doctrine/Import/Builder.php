@@ -190,7 +190,6 @@ class Doctrine_Import_Builder extends Doctrine_Builder
     /**
      * __construct
      *
-     * @return void
      */
     public function __construct()
     {
@@ -272,7 +271,6 @@ class Doctrine_Import_Builder extends Doctrine_Builder
      * setOptions
      *
      * @param string $options
-     * @return void
      */
     public function setOptions($options)
     {
@@ -288,7 +286,6 @@ class Doctrine_Import_Builder extends Doctrine_Builder
      *
      * @param string $key
      * @param string $value
-     * @return void
      */
     public function setOption($key, $value)
     {
@@ -307,7 +304,6 @@ class Doctrine_Import_Builder extends Doctrine_Builder
      *
      * Loads the class template used for generating classes
      *
-     * @return void
      */
     public function loadTemplate()
     {
@@ -521,7 +517,6 @@ class Doctrine_Import_Builder extends Doctrine_Builder
      * buildColumns
      *
      * @param string $array
-     * @return void
      */
     public function buildColumns(array $columns)
     {
@@ -944,7 +939,6 @@ class Doctrine_Import_Builder extends Doctrine_Builder
      * buildAttributes
      *
      * @param string $array
-     * @return void
      */
     public function buildAttributes(array $attributes)
     {
@@ -981,7 +975,6 @@ class Doctrine_Import_Builder extends Doctrine_Builder
      * buildTableOptions
      *
      * @param string $array
-     * @return void
      */
     public function buildOptions(array $options)
     {
@@ -997,7 +990,6 @@ class Doctrine_Import_Builder extends Doctrine_Builder
      * buildIndexes
      *
      * @param string $array
-     * @return void
      */
     public function buildIndexes(array $indexes)
     {
@@ -1083,7 +1075,6 @@ class Doctrine_Import_Builder extends Doctrine_Builder
      * @param array $attributes
      * @param array $templates
      * @param array $actAs
-     * @return void=
      */
     public function buildRecord(array $definition)
     {
@@ -1204,7 +1195,6 @@ class Doctrine_Import_Builder extends Doctrine_Builder
     /**
      * writeTableClassDefinition
      *
-     * @return void
      */
     public function writeTableClassDefinition(array $definition, $path, $options = array())
     {
@@ -1270,7 +1260,6 @@ class Doctrine_Import_Builder extends Doctrine_Builder
      * @param array $attributes
      * @param array $templates
      * @param array $actAs
-     * @return void
      */
     public function writeDefinition(array $definition)
     {

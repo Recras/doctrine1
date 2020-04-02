@@ -395,7 +395,6 @@ class Doctrine_Cli
      *
      * @param string $notification  The notification message
      * @param string $style         Style to format the notification with(INFO, ERROR)
-     * @return void
      */
     public function notify($notification = null, $style = 'HEADER')
     {
@@ -431,7 +430,6 @@ class Doctrine_Cli
      * it's up to Doctrine_Cli::run() to determine how those exceptions are reported.
      *
      * @param  Exception $exception
-     * @return void
      */
     protected function notifyException(Exception $exception)
     {
@@ -442,7 +440,6 @@ class Doctrine_Cli
      * Public function to run the loaded task with the passed arguments
      *
      * @param  array $args
-     * @return void
      * @throws Doctrine_Cli_Exception
      * @todo Should know more about what we're attempting to run so feedback can be improved. Continue refactoring.
      */
@@ -469,7 +466,6 @@ class Doctrine_Cli
      * Run the actual task execution with the passed arguments
      *
      * @param  array $args Array of arguments for this task being executed
-     * @return void
      * @throws Doctrine_Cli_Exception If the requested task has not been registered or if required arguments are missing
      * @todo Continue refactoring for testing
      */

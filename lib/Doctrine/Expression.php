@@ -82,7 +82,6 @@ class Doctrine_Expression
      * </code>
      * 
      * @param string $clause The expression to set
-     * @return void
      */
     public function setExpression($clause)
     {

@@ -42,7 +42,6 @@ class Doctrine_Pager_Range_Jumping extends Doctrine_Pager_Range
      *
      * Initialize Doctrine_Pager_Range_Jumping and does custom assignments
      *
-     * @return void
      */
     protected function _initialize()
     {
@@ -71,7 +70,6 @@ class Doctrine_Pager_Range_Jumping extends Doctrine_Pager_Range
      * Defines the size of the chunk
      *
      * @param $chunkLength       Chunk length
-     * @return void
      */
     protected function _setChunkLength($chunkLength)
     {

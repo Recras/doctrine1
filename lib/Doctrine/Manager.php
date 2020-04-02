@@ -191,7 +191,6 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
     /**
      * Reset the internal static instance
      *
-     * @return void
      */
     public static function resetInstance()
     {
@@ -204,7 +203,6 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
     /**
      * Reset this instance of the manager
      *
-     * @return void
      */
     public function reset()
     {
@@ -573,7 +571,6 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
      * Closes the specified connection
      *
      * @param Doctrine_Connection $connection
-     * @return void
      */
     public function closeConnection(Doctrine_Connection $connection)
     {
@@ -608,7 +605,6 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
      *
      * @param mixed $key                        the connection key
      * @throws InvalidKeyException
-     * @return void
      */
     public function setCurrentConnection($key)
     {
@@ -669,7 +665,6 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
      * Creates databases for all existing connections
      *
      * @param string $specifiedConnections Array of connections you wish to create the database for
-     * @return void
      * @todo package:dbal
      */
     public function createDatabases($specifiedConnections = array())
@@ -691,7 +686,6 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
      * Drops databases for all existing connections
      *
      * @param string $specifiedConnections Array of connections you wish to drop the database for
-     * @return void
      * @todo package:dbal
      */
     public function dropDatabases($specifiedConnections = array())
@@ -758,7 +752,6 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
      * Register validators so that Doctrine is aware of them
      *
      * @param  mixed $validators Name of validator or array of validators
-     * @return void
      */
     public function registerValidators($validators)
     {
@@ -773,7 +766,6 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
     /**
      * Register a new driver for hydration
      *
-     * @return void
      */
     public function registerHydrator($name, $class)
     {
@@ -793,7 +785,6 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
     /**
      * Register a custom connection driver
      *
-     * @return void
      */
     public function registerConnectionDriver($name, $class)
     {
@@ -807,7 +798,7 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
      */
     public function getConnectionDrivers()
     {
-        return $this->_connectionsDrivers;
+        return $this->_connectionDrivers;
     }
 
     /**
@@ -815,7 +806,6 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
      *
      * @param string $name 
      * @param string $path 
-     * @return void
      */
     public function registerExtension($name, $path = null)
     {

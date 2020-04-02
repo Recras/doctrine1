@@ -55,7 +55,6 @@ class Doctrine_Template_Versionable extends Doctrine_Template
      * __construct
      *
      * @param array $options
-     * @return void
      */
     public function __construct(array $options = array())
     {
@@ -66,7 +65,6 @@ class Doctrine_Template_Versionable extends Doctrine_Template
     /**
      * Setup the Versionable behavior for the template
      *
-     * @return void
      */
     public function setUp()
     {
@@ -85,7 +83,6 @@ class Doctrine_Template_Versionable extends Doctrine_Template
     /**
      * Get plugin for Versionable template
      *
-     * @return void
      */
     public function getAuditLog()
     {

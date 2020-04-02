@@ -59,7 +59,6 @@ class Doctrine_Template_Timestampable extends Doctrine_Template
     /**
      * Set table definition for Timestampable behavior
      *
-     * @return void
      */
     public function setTableDefinition()
     {

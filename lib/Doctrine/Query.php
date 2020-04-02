@@ -891,7 +891,6 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * subqueries can only be processed when the query is fully constructed
      * since some subqueries may be correlated
      *
-     * @return void
      * @todo Better description. i.e. What is a 'pending subquery'? What does 'processed' mean?
      *       (parsed? sql is constructed? some information is gathered?)
      */
@@ -923,7 +922,6 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * processPendingAggregates
      * processes pending aggregate values for given component alias
      *
-     * @return void
      * @todo Better description. i.e. What is a 'pending aggregate'? What does 'processed' mean?
      */
     public function processPendingAggregates()
@@ -2219,7 +2217,6 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     /**
      * Magic method called after cloning process.
      *
-     * @return void
      */
     public function __clone()
     {

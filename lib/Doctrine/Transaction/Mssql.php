@@ -47,7 +47,6 @@ class Doctrine_Transaction_Mssql extends Doctrine_Transaction
      * @link http://msdn2.microsoft.com/en-us/library/ms173763.aspx
      * @throws PDOException                         if something fails at the PDO level
      * @throws Doctrine_Transaction_Exception       if using unknown isolation level or unknown wait option
-     * @return void
      */
     public function setIsolation($isolation, $options = array()) {
         switch ($isolation) {

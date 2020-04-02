@@ -16,8 +16,16 @@
     "autoload": {
         "psr-0": { "Doctrine_": "lib/" },
         "classmap": [
-            "lib/Doctrine.php",
-            "lib/Doctrine/Parser/sfYaml/"
+            "lib/Doctrine/Parser/sfYaml/",
+            "lib/"
+        ]
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^0.12.18"
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/"
         ]
     }
 }

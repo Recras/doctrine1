@@ -53,7 +53,6 @@ class Doctrine_Template_SoftDelete extends Doctrine_Template
     /**
      * Set table definition for SoftDelete behavior
      *
-     * @return void
      */
     public function setTableDefinition()
     {

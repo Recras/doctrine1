@@ -37,7 +37,6 @@ abstract class Doctrine_Adapter_Statement
      *
      * @param string $no 
      * @param string $value 
-     * @return void
      */
     public function bindValue($no, $value)
     { }
@@ -75,7 +74,6 @@ abstract class Doctrine_Adapter_Statement
     /**
      * nextRowSet
      *
-     * @return void
      */
     public function nextRowset()
     { }
@@ -83,7 +81,6 @@ abstract class Doctrine_Adapter_Statement
     /**
      * execute()
      *
-     * @return void
      */
     public function execute()
     { }
@@ -91,7 +88,6 @@ abstract class Doctrine_Adapter_Statement
     /**
      * errorCode
      *
-     * @return void
      */
     public function errorCode()
     { }
@@ -99,7 +95,6 @@ abstract class Doctrine_Adapter_Statement
     /**
      * errorInfo
      *
-     * @return void
      */
     public function errorInfo()
     { }
@@ -107,7 +102,6 @@ abstract class Doctrine_Adapter_Statement
     /**
      * rowCount
      *
-     * @return void
      */
     public function rowCount()
     { }
@@ -116,7 +110,6 @@ abstract class Doctrine_Adapter_Statement
      * setFetchMode
      *
      * @param string $mode 
-     * @return void
      */
     public function setFetchMode($mode)
     { }
@@ -124,7 +117,6 @@ abstract class Doctrine_Adapter_Statement
     /**
      * columnCount
      *
-     * @return void
      */
     public function columnCount()
     { }

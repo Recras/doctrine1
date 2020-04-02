@@ -46,7 +46,6 @@ class Doctrine_Template_Listener_SoftDelete extends Doctrine_Record_Listener
      * __construct
      *
      * @param string $options 
-     * @return void
      */
     public function __construct(array $options)
     {
@@ -57,7 +56,6 @@ class Doctrine_Template_Listener_SoftDelete extends Doctrine_Record_Listener
      * Set the hard delete flag so that it is really deleted
      *
      * @param boolean $bool
-     * @return void
      */
     public function hardDelete($bool)
     {
@@ -68,7 +66,6 @@ class Doctrine_Template_Listener_SoftDelete extends Doctrine_Record_Listener
      * Skip the normal delete options so we can override it with our own
      *
      * @param Doctrine_Event $event
-     * @return void
      */
     public function preDelete(Doctrine_Event $event)
     {
@@ -90,7 +87,6 @@ class Doctrine_Template_Listener_SoftDelete extends Doctrine_Record_Listener
      * Implement postDelete() hook and set the deleted flag to true
      *
      * @param Doctrine_Event $event
-     * @return void
      */
     public function postDelete(Doctrine_Event $event)
     {
@@ -104,7 +100,6 @@ class Doctrine_Template_Listener_SoftDelete extends Doctrine_Record_Listener
      * instead of deleting the record
      *
      * @param Doctrine_Event $event
-     * @return void
      */
     public function preDqlDelete(Doctrine_Event $event)
     {
@@ -131,7 +126,6 @@ class Doctrine_Template_Listener_SoftDelete extends Doctrine_Record_Listener
      * is being used in.
      *
      * @param Doctrine_Event $event 
-     * @return void
      */
     public function preDqlSelect(Doctrine_Event $event)
     {

@@ -37,7 +37,6 @@ class Doctrine_Query_Groupby extends Doctrine_Query_Part
      * parses the group by part of the query string
      *
      * @param string $str
-     * @return void
      */
     public function parse($clause, $append = false)
     {

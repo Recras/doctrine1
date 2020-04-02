@@ -89,7 +89,6 @@ class Doctrine_Hydrator_RecordDriver extends Doctrine_Hydrator_Graph
      * as previous element
      *
      * @param boolean|integer $index
-     * @return void
      * @todo Detailed documentation
      */
     public function setLastElement(&$prev, &$coll, $index, $dqlAlias, $oneToOne)

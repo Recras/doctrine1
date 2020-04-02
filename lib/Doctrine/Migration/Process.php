@@ -49,7 +49,6 @@ class Doctrine_Migration_Process
      * Process a created table change
      *
      * @param string $table Table definition
-     * @return void
      */
     public function processCreatedTable(array $table)
     {
@@ -60,7 +59,6 @@ class Doctrine_Migration_Process
      * Process a dropped table change
      *
      * @param array $table Table definition
-     * @return void
      */
     public function processDroppedTable(array $table)
     {
@@ -71,7 +69,6 @@ class Doctrine_Migration_Process
      * Process a renamed table change
      *
      * @param array $table Renamed table definition
-     * @return void
      */
     public function processRenamedTable(array $table)
     {
@@ -82,7 +79,6 @@ class Doctrine_Migration_Process
      * Process a created column change
      *
      * @param array $column Column definition
-     * @return void
      */
     public function processCreatedColumn(array $column)
     {
@@ -93,7 +89,6 @@ class Doctrine_Migration_Process
      * Process a dropped column change
      *
      * @param array $column Column definition
-     * @return void
      */
     public function processDroppedColumn(array $column)
     {
@@ -104,7 +99,6 @@ class Doctrine_Migration_Process
      * Process a renamed column change
      *
      * @param array $column Column definition
-     * @return void
      */
     public function processRenamedColumn(array $column)
     {
@@ -118,7 +112,6 @@ class Doctrine_Migration_Process
      * Process a changed column change
      *
      * @param array $column Changed column definition
-     * @return void
      */
     public function processChangedColumn(array $column)
     {
@@ -133,7 +126,6 @@ class Doctrine_Migration_Process
      * Process a created index change
      *
      * @param array $index Index definition
-     * @return void
      */
     public function processCreatedIndex(array $index)
     {
@@ -144,7 +136,6 @@ class Doctrine_Migration_Process
      * Process a dropped index change
      *
      * @param array $index Index definition
-     * @return void
      */
     public function processDroppedIndex(array $index)
     {
@@ -155,7 +146,6 @@ class Doctrine_Migration_Process
      * Process a created constraint change
      *
      * @param array $constraint Constraint definition
-     * @return void
      */
     public function processCreatedConstraint(array $constraint)
     {
@@ -166,7 +156,6 @@ class Doctrine_Migration_Process
      * Process a dropped constraint change
      *
      * @param array $constraint Constraint definition
-     * @return void
      */
     public function processDroppedConstraint(array $constraint)
     {
@@ -177,7 +166,6 @@ class Doctrine_Migration_Process
      * Process a created foreign key change
      *
      * @param array $foreignKey Foreign key definition
-     * @return void
      */
     public function processCreatedForeignKey(array $foreignKey)
     {
@@ -188,7 +176,6 @@ class Doctrine_Migration_Process
      * Process a dropped foreign key change
      *
      * @param array $foreignKey
-     * @return void
      */
     public function processDroppedForeignKey(array $foreignKey)
     {

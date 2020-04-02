@@ -36,7 +36,6 @@ class Doctrine_Template_I18n extends Doctrine_Template
      * __construct
      *
      * @param string $array 
-     * @return void
      */
     public function __construct(array $options = array())
     {
@@ -47,7 +46,6 @@ class Doctrine_Template_I18n extends Doctrine_Template
     /**
      * Initialize the I18n plugin for the template
      *
-     * @return void
      */
     public function setUp()
     {
@@ -57,7 +55,6 @@ class Doctrine_Template_I18n extends Doctrine_Template
     /**
      * Get the plugin instance for the I18n template
      *
-     * @return void
      */
     public function getI18n()
     {

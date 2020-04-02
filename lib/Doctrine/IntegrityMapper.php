@@ -36,7 +36,6 @@ class Doctrine_IntegrityMapper
      * processDeleteIntegrity 
      * 
      * @param Doctrine_Record $record 
-     * @return void
      */
     public function processDeleteIntegrity(Doctrine_Record $record)
     {
@@ -49,7 +48,6 @@ class Doctrine_IntegrityMapper
      * invokeIntegrityActions 
      * 
      * @param Doctrine_Record $record 
-     * @return void
      */
     public function invokeIntegrityActions(Doctrine_Record $record)
     {
@@ -124,7 +122,6 @@ class Doctrine_IntegrityMapper
      * @param mixed $fields 
      * @param mixed $indexes 
      * @param mixed $components 
-     * @return void
      */
     public function buildIntegrityRelations(Doctrine_Table $table, &$aliases, &$fields, &$indexes, &$components)
     {

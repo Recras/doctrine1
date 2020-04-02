@@ -44,7 +44,6 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
      * (The save() operation is always cascaded in 0.10/1.0).
      *
      * @param Doctrine_Record $record
-     * @return void
      */
     public function saveGraph(Doctrine_Record $record, $replace = false)
     {
@@ -329,7 +328,6 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
      *
      * @param Doctrine_Record  The record for which the delete operation will be cascaded.
      * @throws PDOException    If something went wrong at database level
-     * @return void
      */
      protected function _cascadeDelete(Doctrine_Record $record, array &$deletions)
      {
@@ -433,7 +431,6 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
      *
      * @throws Doctrine_Connection_Exception         if something went wrong at database level
      * @param Doctrine_Record $record
-     * @return void
      */
     public function saveAssociations(Doctrine_Record $record)
     {
@@ -495,7 +492,6 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
      * persists all the pending records from all tables
      *
      * @throws PDOException         if something went wrong at database level
-     * @return void
      */
     public function saveAll()
     {
@@ -629,7 +625,6 @@ class Doctrine_Connection_UnitOfWork extends Doctrine_Connection_Module
      * assigning to it the autoincrement primary key (if any is defined).
      * 
      * @param Doctrine_Record $record
-     * @return void
      */
     public function processSingleInsert(Doctrine_Record $record)
     {

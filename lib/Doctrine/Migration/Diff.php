@@ -62,7 +62,6 @@ class Doctrine_Migration_Diff
      * @param string $from      The from schema information source
      * @param string $to        The to schema information source
      * @param mixed  $migration Instance of Doctrine_Migration or path to migration classes
-     * @return void
      */
     public function __construct($from, $to, $migration)
     {
@@ -82,7 +81,6 @@ class Doctrine_Migration_Diff
      * Set the temporary path to store the generated models for generating diffs
      *
      * @param string $tmpPath
-     * @return void
      */
     public function setTmpPath($tmpPath)
     {
@@ -403,7 +401,6 @@ class Doctrine_Migration_Diff
     /**
      * Cleanup temporary generated models after a diff is performed
      *
-     * @return void
      */
     protected function _cleanup()
     {

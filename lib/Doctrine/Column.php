@@ -92,7 +92,6 @@ class Doctrine_Column extends Doctrine_Access implements IteratorAggregate, Coun
      * set
      *
      * @param string $name
-     * @return void
      */
     public function set($name, $value)
     {

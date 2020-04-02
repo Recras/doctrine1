@@ -507,7 +507,6 @@ class Doctrine_Core
     /**
      * __construct
      *
-     * @return void
      * @throws Doctrine_Exception
      */
     public function __construct()
@@ -529,7 +528,7 @@ class Doctrine_Core
      * Turn on/off the debugging setting
      *
      * @param string $bool
-     * @return void
+     * @return bool
      */
     public static function debug($bool = null)
     {
@@ -544,7 +543,6 @@ class Doctrine_Core
      * Set the path to your core Doctrine libraries
      *
      * @param string $path The path to your Doctrine libraries
-     * @return void
      */
     public static function setPath($path)
     {
@@ -569,7 +567,6 @@ class Doctrine_Core
      * Set the path to autoload extension classes from
      *
      * @param string $extensionsPath 
-     * @return void
      */
     public static function setExtensionsPath($extensionsPath)
     {
@@ -601,7 +598,6 @@ class Doctrine_Core
      * naming convention autoloading.
      *
      * @param string $directory 
-     * @return void
      */
     public static function setModelsDirectory($directory)
     {
@@ -612,7 +608,6 @@ class Doctrine_Core
      * Get the directory where your models are located for PEAR style naming
      * convention autoloading
      *
-     * @return void
      * @author Jonathan Wage
      */
     public static function getModelsDirectory()
@@ -850,7 +845,6 @@ class Doctrine_Core
      * @param string $yamlPath Path to write oyur yaml schema file to
      * @param array $connections Array of connection names to generate yaml for
      * @param array  $options Array of options
-     * @return void
      */
     public static function generateYamlFromDb($yamlPath, array $connections = array(), array $options = array())
     {
@@ -878,7 +872,6 @@ class Doctrine_Core
      * @param string $yamlPath Path to your yaml schema files
      * @param string $directory Directory to generate your models in
      * @param array  $options Array of options to pass to the schema importer
-     * @return void
      */
     public static function generateModelsFromYaml($yamlPath, $directory, $options = array())
     {
@@ -892,7 +885,6 @@ class Doctrine_Core
      * Creates database tables for the models in the specified directory
      *
      * @param string $directory Directory containing your models
-     * @return void
      */
     public static function createTablesFromModels($directory = null)
     {
@@ -903,7 +895,6 @@ class Doctrine_Core
      * Creates database tables for the models in the supplied array
      *
      * @param array $array An array of models to be exported
-     * @return void
      */
     public static function createTablesFromArray($array)
     {
@@ -946,7 +937,6 @@ class Doctrine_Core
      *
      * @param string $yamlPath Path to your yaml schema files
      * @param string $directory Directory to generate your models in
-     * @return void
      */
     public static function generateYamlFromModels($yamlPath, $directory)
     {
@@ -959,7 +949,6 @@ class Doctrine_Core
      * Creates databases for connections
      *
      * @param string $specifiedConnections Array of connections you wish to create the database for
-     * @return void
      */
     public static function createDatabases($specifiedConnections = array())
     {
@@ -970,7 +959,6 @@ class Doctrine_Core
      * Drops databases for connections
      *
      * @param string $specifiedConnections Array of connections you wish to drop the database for
-     * @return void
      */
     public static function dropDatabases($specifiedConnections = array())
     {
@@ -982,7 +970,6 @@ class Doctrine_Core
      *
      * @param string $yamlPath Path to write the yaml data fixtures to
      * @param string $individualFiles Whether or not to dump data to individual fixtures files
-     * @return void
      */
     public static function dumpData($yamlPath, $individualFiles = false)
     {
@@ -997,7 +984,6 @@ class Doctrine_Core
      *
      * @param string $yamlPath Path to your yaml data fixtures
      * @param string $append Whether or not to append the data
-     * @return void
      */
     public static function loadData($yamlPath, $append = false)
     {
@@ -1038,7 +1024,6 @@ class Doctrine_Core
      * Generate a set of migration classes from an existing database
      *
      * @param string $migrationsPath
-     * @return void
      * @throws new Doctrine_Migration_Exception
      */
     public static function generateMigrationsFromDb($migrationsPath)
@@ -1054,7 +1039,6 @@ class Doctrine_Core
      * @param string  $migrationsPath Path to your Doctrine migration classes
      * @param string  $modelsPath     Path to your Doctrine model classes
      * @param integer $modelLoading   Style of model loading to use for loading the models in order to generate migrations
-     * @return void
      */
     public static function generateMigrationsFromModels($migrationsPath, $modelsPath = null, $modelLoading = null)
     {
@@ -1098,7 +1082,6 @@ class Doctrine_Core
      * @param string $target
      * @param array  $includedDrivers
      * @throws Doctrine_Exception
-     * @return void
      */
     public static function compile($target = null, $includedDrivers = array())
     {
@@ -1196,7 +1179,6 @@ class Doctrine_Core
      * @param mixed $var        a variable of any type
      * @param boolean $output   whether to output the content
      * @param string $indent    indention string
-     * @return void|string
      */
     public static function dump($var, $output = true, $indent = "")
     {

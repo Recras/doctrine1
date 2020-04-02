@@ -51,7 +51,6 @@ class Doctrine_Template_Geographical extends Doctrine_Template
     /**
      * Set table definition for Geographical behavior
      *
-     * @return void
      */
     public function setTableDefinition()
     {

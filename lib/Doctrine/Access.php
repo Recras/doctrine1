@@ -53,7 +53,6 @@ abstract class Doctrine_Access extends Doctrine_Locator_Injectable implements Ar
      * @see     set, offsetSet
      * @param   $name
      * @param   $value
-     * @return  void
      */
     public function __set($name, $value)
     {
@@ -87,7 +86,6 @@ abstract class Doctrine_Access extends Doctrine_Locator_Injectable implements Ar
      * Remove key from data
      *
      * @param   string $name
-     * @return  void
      */
     public function __unset($name)
     {
@@ -129,7 +127,6 @@ abstract class Doctrine_Access extends Doctrine_Locator_Injectable implements Ar
      * @see     set, __set
      * @param   mixed $offset
      * @param   mixed $value
-     * @return  void
      */
     public function offsetSet($offset, $value)
     {
@@ -200,7 +197,6 @@ abstract class Doctrine_Access extends Doctrine_Locator_Injectable implements Ar
      * Add the value  
      * 
      * @param mixed $value The value to add 
-     * @return void
      */
     public function add($value)
     {

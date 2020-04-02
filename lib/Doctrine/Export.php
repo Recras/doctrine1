@@ -52,7 +52,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      * (this method is implemented by the drivers)
      *
      * @param string $name name of the database that should be dropped
-     * @return void
      */
     public function dropDatabase($database)
     {
@@ -66,7 +65,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      * (this method is implemented by the drivers)
      *
      * @param string $name name of the database that should be dropped
-     * @return void
      */
     public function dropDatabaseSql($database)
     {
@@ -90,7 +88,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      * drop an existing table
      *
      * @param string $table           name of table that should be dropped from the database
-     * @return void
      */
     public function dropTable($table)
     {
@@ -102,7 +99,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      *
      * @param string    $table        name of table that should be used in method
      * @param string    $name         name of the index to be dropped
-     * @return void
      */
     public function dropIndex($table, $name)
     {
@@ -129,7 +125,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      * @param string    $table        name of table that should be used in method
      * @param string    $name         name of the constraint to be dropped
      * @param string    $primary      hint if the constraint is primary
-     * @return void
      */
     public function dropConstraint($table, $name, $primary = false)
     {
@@ -144,7 +139,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      *
      * @param string    $table        name of table that should be used in method
      * @param string    $name         name of the foreign key to be dropped
-     * @return void
      */
     public function dropForeignKey($table, $name)
     {
@@ -158,7 +152,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      *
      * @throws Doctrine_Connection_Exception     if something fails at database level
      * @param string $sequenceName      name of the sequence to be dropped
-     * @return void
      */
     public function dropSequence($sequenceName)
     {
@@ -171,7 +164,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      *
      * @throws Doctrine_Connection_Exception     if something fails at database level
      * @param string $sequenceName name of the sequence to be dropped
-     * @return void
      */
     public function dropSequenceSql($sequenceName)
     {
@@ -183,7 +175,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      * (this method is implemented by the drivers)
      *
      * @param string $name name of the database that should be created
-     * @return void
      */
     public function createDatabase($database)
     {
@@ -289,7 +280,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      * @param array $options  An associative array of table options:
      * @see Doctrine_Export::createTableSql()
      *
-     * @return void
      */
     public function createTable($name, array $fields, array $options = array())
     {
@@ -325,7 +315,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      *                              'charset' => 'utf8',
      *                              'collate' => 'utf8_unicode_ci',
      *                          );
-     * @return void
      */
     public function createSequence($seqName, $start = 1, array $options = array())
     {
@@ -371,7 +360,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      *                                            'last_login' => array()
      *                                        )
      *                                    )
-     * @return void
      */
     public function createConstraint($table, $name, $definition)
     {
@@ -399,7 +387,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      *                                            'last_login' => array()
      *                                        )
      *                                    )
-     * @return void
      */
     public function createConstraintSql($table, $name, $definition)
     {
@@ -451,7 +438,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      *                                            'last_login' => array()
      *                                        )
      *                                    )
-     * @return void
      */
     public function createIndex($table, $name, array $definition)
     {
@@ -611,7 +597,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      * @param boolean $check     indicates whether the function should just check if the DBMS driver
      *                             can perform the requested table alterations if the value is true or
      *                             actually perform them otherwise.
-     * @return void
      */
     public function alterTable($name, array $changes, $check = false)
     {
@@ -1087,7 +1072,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      * @throws Doctrine_Connection_Exception    if some error other than Doctrine_Core::ERR_ALREADY_EXISTS
      *                                          occurred during the create table operation
      * @param string $directory     optional directory parameter
-     * @return void
      */
     public function exportSchema($directory = null)
     {
@@ -1198,7 +1182,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      * @throws Doctrine_Connection_Exception    if some error other than Doctrine_Core::ERR_ALREADY_EXISTS
      *                                          occurred during the create table operation
      * @param array $classes
-     * @return void
      */
      public function exportClasses(array $classes)
      {
@@ -1232,7 +1215,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      * @throws Doctrine_Connection_Exception    if some error other than Doctrine_Core::ERR_ALREADY_EXISTS
      *                                          occurred during the create table operation
      * @param array $classes
-     * @return void
      */
     public function exportClassesSql(array $classes)
     {
@@ -1351,7 +1333,6 @@ class Doctrine_Export extends Doctrine_Connection_Module
      * @throws Doctrine_Connection_Exception    if some error other than Doctrine_Core::ERR_ALREADY_EXISTS
      *                                          occurred during the create table operation
      * @param string $directory     optional directory parameter
-     * @return void
      */
     public function exportSql($directory = null)
     {

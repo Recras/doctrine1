@@ -591,7 +591,6 @@ class Doctrine_Expression_Driver extends Doctrine_Connection_Module
      * sin
      *
      * @param string $value 
-     * @return void
      */
     public function sin($value)
     {
@@ -601,7 +600,6 @@ class Doctrine_Expression_Driver extends Doctrine_Connection_Module
     /**
      * pi
      *
-     * @return void
      */
     public function pi()
     {
@@ -612,7 +610,6 @@ class Doctrine_Expression_Driver extends Doctrine_Connection_Module
      * cos
      *
      * @param string $value 
-     * @return void
      */
     public function cos($value)
     {

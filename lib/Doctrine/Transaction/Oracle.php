@@ -37,7 +37,6 @@ class Doctrine_Transaction_Oracle extends Doctrine_Transaction
      * creates a new savepoint
      *
      * @param string $savepoint     name of a savepoint to set
-     * @return void
      */
     protected function createSavePoint($savepoint)
     {
@@ -51,7 +50,6 @@ class Doctrine_Transaction_Oracle extends Doctrine_Transaction
      * releases given savepoint
      *
      * @param string $savepoint     name of a savepoint to release
-     * @return void
      */
     protected function releaseSavePoint($savepoint)
     {
@@ -64,7 +62,6 @@ class Doctrine_Transaction_Oracle extends Doctrine_Transaction
      * releases given savepoint
      *
      * @param string $savepoint     name of a savepoint to rollback to
-     * @return void
      */
     protected function rollbackSavePoint($savepoint)
     {
@@ -83,7 +80,6 @@ class Doctrine_Transaction_Oracle extends Doctrine_Transaction
      *                  SERIALIZABLE (prevents phantom reads)
      * @throws PDOException                         if something fails at the PDO level
      * @throws Doctrine_Transaction_Exception       if using unknown isolation level
-     * @return void
      */
     public function setIsolation($isolation)
     {

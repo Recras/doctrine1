@@ -65,7 +65,6 @@ class Doctrine_Search_File extends Doctrine_Search
      * indexes given directory
      *
      * @param string $dir   the name of the directory to index
-     * @return void
      */
     public function indexDirectory($dir)
     {
