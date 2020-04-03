@@ -370,7 +370,6 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
      * creates a new savepoint
      *
      * @param string $savepoint     name of a savepoint to create
-     * @return void
      */
     protected function createSavePoint($savepoint)
     {
@@ -382,7 +381,6 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
      * releases given savepoint
      *
      * @param string $savepoint     name of a savepoint to release
-     * @return void
      */
     protected function releaseSavePoint($savepoint)
     {
@@ -394,7 +392,6 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
      * releases given savepoint
      *
      * @param string $savepoint     name of a savepoint to rollback to
-     * @return void
      */
     protected function rollbackSavePoint($savepoint)
     {
@@ -475,7 +472,6 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
      *
      * @throws Doctrine_Transaction_Exception           if the feature is not supported by the driver
      * @throws PDOException                             if something fails at the PDO level
-     * @return void
      */
     public function setIsolation($isolation)
     {

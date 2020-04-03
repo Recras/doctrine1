@@ -55,7 +55,6 @@ class Doctrine_Search extends Doctrine_Record_Generator
      * __construct 
      * 
      * @param array $options 
-     * @return void
      */
     public function __construct(array $options)
     {
@@ -119,7 +118,6 @@ class Doctrine_Search extends Doctrine_Record_Generator
      * 
      * @param string $text 
      * @param string $encoding
-     * @return void
      */
     public function analyze($text, $encoding = null)
     {
@@ -217,7 +215,6 @@ class Doctrine_Search extends Doctrine_Record_Generator
      * 
      * @param mixed $limit 
      * @param mixed $offset 
-     * @return void
      */
     public function batchUpdateIndex($limit = null, $offset = null, $encoding = null)
     {
@@ -300,7 +297,6 @@ class Doctrine_Search extends Doctrine_Record_Generator
     /**
      * buildDefinition 
      * 
-     * @return void
      */
     public function setTableDefinition()
     {

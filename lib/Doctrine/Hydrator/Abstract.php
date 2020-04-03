@@ -49,7 +49,6 @@ abstract class Doctrine_Hydrator_Abstract extends Doctrine_Locator_Injectable
      * Set the query components (structure and query instructions)
      *
      * @param array $queryComponents
-     * @return void
      */
     public function setQueryComponents($queryComponents)
     {
@@ -60,7 +59,6 @@ abstract class Doctrine_Hydrator_Abstract extends Doctrine_Locator_Injectable
      * Set the table aliases for this query
      *
      * @param array $tableAliases
-     * @return void
      */
     public function setTableAliases($tableAliases)
     {
@@ -73,7 +71,6 @@ abstract class Doctrine_Hydrator_Abstract extends Doctrine_Locator_Injectable
      * @param mixed $hydrationMode  One of the Doctrine_Core::HYDRATE_* constants or
      *                              a string representing the name of the hydration mode or
      *                              or an instance of the hydration class
-     * @return void
      */
     public function setHydrationMode($hydrationMode)
     {

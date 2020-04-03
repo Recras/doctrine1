@@ -68,7 +68,6 @@ class Doctrine_Migration_Builder extends Doctrine_Builder
      * $builder = new Doctrine_Migration_Builder('/path/to/migrations');
      * </code>
      *
-     * @return void
      */
     public function __construct($migrationsPath = null)
     {
@@ -87,7 +86,6 @@ class Doctrine_Migration_Builder extends Doctrine_Builder
      * Set the path to write the generated migration classes
      *
      * @param string path   the path where migration classes are stored and being generated
-     * @return void
      */
     public function setMigrationsPath($path)
     {
@@ -109,7 +107,6 @@ class Doctrine_Migration_Builder extends Doctrine_Builder
     /**
      * Loads the class template used for generating classes
      *
-     * @return void
      */
     protected function loadTemplate()
     {
@@ -265,7 +262,6 @@ END;
     /**
      * Generate a set of migration classes from the existing databases
      *
-     * @return void
      */
     public function generateMigrationsFromDb()
     {
@@ -407,7 +403,7 @@ END;
      *
      * @param string $tableName
      * @param string $columnName
-     * @param string $column
+     * @param array $column
      * @return string $code
      */
     public function buildAddColumn($tableName, $columnName, $column)
@@ -436,7 +432,7 @@ END;
      *
      * @param string $tableName
      * @param string $columnName
-     * @param string $column
+     * @param array $column
      * @return string $code
      */
     public function buildChangeColumn($tableName, $columnName, $column)

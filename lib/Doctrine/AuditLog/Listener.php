@@ -43,7 +43,6 @@ class Doctrine_AuditLog_Listener extends Doctrine_Record_Listener
      * Instantiate AuditLog listener and set the Doctrine_AuditLog instance to the class
      *
      * @param   Doctrine_AuditLog $auditLog 
-     * @return  void
      */
     public function __construct(Doctrine_AuditLog $auditLog) 
     {
@@ -54,7 +53,6 @@ class Doctrine_AuditLog_Listener extends Doctrine_Record_Listener
      * Pre save event hook for incrementing version number
      *
      * @param   Doctrine_Event $event
-     * @return  void
      */
     public function preSave(Doctrine_Event $event)
     {
@@ -70,7 +68,6 @@ class Doctrine_AuditLog_Listener extends Doctrine_Record_Listener
      * This will only insert a version record if the auditLog is enabled
      *
      * @param   Doctrine_Event $event 
-     * @return  void
      */
     private function _postSave(Doctrine_Event $event)
     {
@@ -99,7 +96,6 @@ class Doctrine_AuditLog_Listener extends Doctrine_Record_Listener
      * This will only delete version records if the auditLog is enabled
      *
      * @param   Doctrine_Event $event
-     * @return  void
      */
     public function preDelete(Doctrine_Event $event)
     {

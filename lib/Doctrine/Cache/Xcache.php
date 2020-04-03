@@ -120,7 +120,6 @@ class Doctrine_Cache_Xcache extends Doctrine_Cache_Driver
      * Checks that xcache.admin.enable_auth is Off
      *
      * @throws Doctrine_Cache_Exception When xcache.admin.enable_auth is On
-     * @return void
      */
     protected function checkAuth()
     {

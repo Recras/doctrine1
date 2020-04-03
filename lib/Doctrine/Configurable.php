@@ -68,7 +68,6 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
      * @param mixed $value                  the value of the attribute
      * @see Doctrine_Core::ATTR_* constants
      * @throws Doctrine_Exception           if the value is invalid
-     * @return void
      */
     public function setAttribute($attribute, $value)
     {
@@ -209,7 +208,6 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
 
     /**
      * @param Doctrine_EventListener $listener
-     * @return void
      */
     public function setEventListener($listener)
     {
@@ -342,7 +340,6 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
      * Unset an attribute from this levels attributes
      *
      * @param integer $attribute
-     * @return void
      */
     public function unsetAttribute($attribute)
     {
@@ -407,7 +404,6 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
      * the parent must be configurable component itself
      *
      * @param Doctrine_Configurable $component
-     * @return void
      */
     public function setParent(Doctrine_Configurable $component)
     {

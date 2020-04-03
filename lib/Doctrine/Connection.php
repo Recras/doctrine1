@@ -236,7 +236,6 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * Get array of all options
      *
-     * @return void
      */
     public function getOptions()
     {
@@ -249,7 +248,6 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * Retrieves option
      *
      * @param string $option
-     * @return void
      */
     public function getOption($option)
     {
@@ -264,7 +262,6 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * Set option value
      *
      * @param string $option
-     * @return void
      */
     public function setOption($option, $value)
     {
@@ -364,7 +361,6 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * Sets the name of the connection
      *
      * @param string $name
-     * @return void
      */
     public function setName($name)
     {
@@ -376,7 +372,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * Gets the name of the instance driver
      *
-     * @return void
+     * @return string
      */
     public function getDriverName()
     {
@@ -757,7 +753,6 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * This method takes care of that conversion
      *
      * @param array $item
-     * @return void
      */
     public function convertBooleans($item)
     {
@@ -782,7 +777,6 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * @param string    time format
      *
-     * @return void
      */
     public function setDateFormat($format = null)
     {
@@ -1213,7 +1207,6 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * this operation is isolated using a transaction
      *
      * @throws PDOException         if something went wrong at database level
-     * @return void
      */
     public function flush()
     {
@@ -1231,7 +1224,6 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * clear
      * clears all repositories
      *
-     * @return void
      */
     public function clear()
     {
@@ -1245,7 +1237,6 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * evictTables
      * evicts all tables
      *
-     * @return void
      */
     public function evictTables()
     {
@@ -1257,7 +1248,6 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * close
      * closes the connection
      *
-     * @return void
      */
     public function close()
     {
@@ -1491,7 +1481,6 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * This value is set in the Doctrine_Export_{DRIVER} classes if required
      *
      * @param string $info
-     * @return void
      */
     public function getTmpConnection($info)
     {
@@ -1571,7 +1560,6 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      * Unserialize. Recreate connection from serialized content
      *
      * @param string $serialized
-     * @return void
      */
     public function unserialize($serialized)
     {

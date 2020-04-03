@@ -41,7 +41,6 @@ class Doctrine_Query_Filter_Chain
      * add
      *
      * @param Doctrine_Query_Filter $filter
-     * @return void
      */
     public function add(Doctrine_Query_Filter $filter)
     {
@@ -68,7 +67,6 @@ class Doctrine_Query_Filter_Chain
      *
      * @param mixed $key
      * @param Doctrine_Query_Filter $listener
-     * @return void
      */
     public function set($key, Doctrine_Query_Filter $listener)
     {
@@ -82,7 +80,6 @@ class Doctrine_Query_Filter_Chain
      * hooking into the query building procedure, doing any custom / specialized
      * query building procedures that are neccessary.
      *
-     * @return void
      */
     public function preQuery(Doctrine_Query $query)
     {
@@ -98,7 +95,6 @@ class Doctrine_Query_Filter_Chain
      * to hook into the query building procedure, doing any custom / specialized
      * post query procedures (for example logging) that are neccessary.
      *
-     * @return void
      */
     public function postQuery(Doctrine_Query $query)
     {

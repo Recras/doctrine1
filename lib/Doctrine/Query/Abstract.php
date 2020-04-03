@@ -298,7 +298,6 @@ abstract class Doctrine_Query_Abstract
      * Set the connection this query object should use
      *
      * @param Doctrine_Connection $connection
-     * @return void
      */
     public function setConnection(Doctrine_Connection $connection)
     {
@@ -504,7 +503,6 @@ abstract class Doctrine_Query_Abstract
      * Used internally and used to pass flat array of params to the database.
      *
      * @param array $params
-     * @return void
      */
     public function getFlattenedParams($params = array())
     {
@@ -584,7 +582,6 @@ abstract class Doctrine_Query_Abstract
      * this method should only be called internally by doctrine
      *
      * @param Doctrine_View $view       database view
-     * @return void
      */
     public function setView(Doctrine_View $view)
     {
@@ -1096,7 +1093,6 @@ abstract class Doctrine_Query_Abstract
      * Pre query method which invokes the pre*Query() methods on the model instance or any attached
      * record listeners
      *
-     * @return void
      */
     protected function _preQuery($params = array())
     {
@@ -1158,7 +1154,6 @@ abstract class Doctrine_Query_Abstract
     /**
      * Blank hook methods which can be implemented in Doctrine_Query child classes
      *
-     * @return void
      */
     public function preQuery()
     {
@@ -1782,7 +1777,6 @@ abstract class Doctrine_Query_Abstract
     /**
      * Resets all the sql parts.
      *
-     * @return void
      */
     protected function clear()
     {
@@ -1872,7 +1866,6 @@ abstract class Doctrine_Query_Abstract
      * Set the result cache hash to be used for storing the results in the cache driver
      *
      * @param string $resultCacheHash
-     * @return void
      */
     public function setResultCacheHash($resultCacheHash)
     {
@@ -1884,7 +1877,6 @@ abstract class Doctrine_Query_Abstract
     /**
      * Clear the result cache entry for this query
      *
-     * @return void
      */
     public function clearResultCache()
     {

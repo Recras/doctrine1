@@ -102,7 +102,6 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Initializes the null object for this collection
      *
-     * @return void
      */
     public static function initNullObject(Doctrine_Null $null)
     {
@@ -166,7 +165,6 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * This method is automatically called everytime a Doctrine_Collection object is unserialized
      *
-     * @return void
      */
     public function unserialize($serialized)
     {
@@ -267,7 +265,6 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Sets a reference pointer
      *
-     * @return void
      */
     public function setReference(Doctrine_Record $record, Doctrine_Relation $relation)
     {
@@ -331,7 +328,6 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * Search a Doctrine_Record instance
      *
      * @param string $Doctrine_Record 
-     * @return void
      */
     public function search(Doctrine_Record $record)
     {
@@ -430,7 +426,6 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      *
      * @param integer $key
      * @param Doctrine_Record $record
-     * @return void
      */
     public function set($key, $record)
     {
@@ -576,7 +571,6 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      *
      * @param string $name
      * @param Doctrine_Collection $coll
-     * @return void
      */
     public function populateRelated($name, Doctrine_Collection $coll)
     {
@@ -775,7 +769,6 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * Populate a Doctrine_Collection from an array of data
      *
      * @param string $array 
-     * @return void
      */
     public function fromArray($array, $deep = true)
     {
@@ -821,7 +814,6 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      *
      * @param string $type 
      * @param string $deep 
-     * @return void
      */
     public function exportTo($type, $deep = true)
     {
@@ -837,14 +829,13 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      *
      * @param string $type 
      * @param string $data 
-     * @return void
      */
     public function importFrom($type, $data)
     {
         if ($type == 'array') {
-            return $this->fromArray($data);
+            $this->fromArray($data);
         } else {
-            return $this->fromArray(Doctrine_Parser::load($data, $type));
+            $this->fromArray(Doctrine_Parser::load($data, $type));
         }
     }
 
@@ -989,7 +980,6 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
     /**
      * Clears the collection.
      *
-     * @return void
      */
     public function clear()
     {
@@ -1001,7 +991,6 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * WARNING: After invoking free() the collection is no longer considered to
      * be in a useable state. Subsequent usage may result in unexpected behavior.
      *
-     * @return void
      */
     public function free($deep = false)
     {

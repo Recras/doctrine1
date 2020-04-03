@@ -211,7 +211,6 @@ class Doctrine_Hook
      * set the hook limit 
      * 
      * @param integer $limit 
-     * @return void
      */
     public function hookLimit($limit)
     {

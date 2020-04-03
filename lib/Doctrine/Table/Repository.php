@@ -154,7 +154,6 @@ class Doctrine_Table_Repository implements Countable, IteratorAggregate
 
     /**
      * loadAll
-     * @return void
      */
     public function loadAll()
     {

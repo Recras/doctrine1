@@ -98,7 +98,6 @@ class Doctrine_Node_NestedSet_PreOrderIterator implements Iterator
     /**
      * rewinds the iterator
      *
-     * @return void
      */
     public function rewind()
     {
@@ -131,7 +130,6 @@ class Doctrine_Node_NestedSet_PreOrderIterator implements Iterator
     /**
      * advances the internal pointer
      *
-     * @return void
      */
     public function next()
     {

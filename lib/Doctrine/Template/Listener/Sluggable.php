@@ -43,7 +43,6 @@ class Doctrine_Template_Listener_Sluggable extends Doctrine_Record_Listener
      * __construct
      *
      * @param string $array
-     * @return void
      */
     public function __construct(array $options)
     {
@@ -54,7 +53,6 @@ class Doctrine_Template_Listener_Sluggable extends Doctrine_Record_Listener
      * Set the slug value automatically when a record is inserted
      *
      * @param Doctrine_Event $event
-     * @return void
      */
     public function preInsert(Doctrine_Event $event)
     {
@@ -71,7 +69,6 @@ class Doctrine_Template_Listener_Sluggable extends Doctrine_Record_Listener
      * to allow it
      *
      * @param Doctrine_Event $event
-     * @return void
      */
     public function preUpdate(Doctrine_Event $event)
     {

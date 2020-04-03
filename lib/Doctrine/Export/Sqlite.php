@@ -41,7 +41,6 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
      * @param string $databaseFile          Path of the database that should be dropped
      * @throws Doctrine_Export_Exception    if the database file does not exist
      * @throws Doctrine_Export_Exception    if something failed during the removal of the database file
-     * @return void
      */
     public function dropDatabase($databaseFile)
     {
@@ -62,7 +61,6 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
      * Create sqlite database file
      *
      * @param string $databaseFile  Path of the database that should be dropped
-     * @return void
      */
     public function createDatabase($databaseFile)
     {
@@ -98,7 +96,6 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
      *                                        )
      *                                    )
      * @throws PDOException
-     * @return void
      */
     public function createIndexSql($table, $name, array $definition)
     {
@@ -184,7 +181,6 @@ class Doctrine_Export_Sqlite extends Doctrine_Export
      *                          );
      * @param array $options  An associative array of table options:
      *
-     * @return void
      */
     public function createTableSql($name, array $fields, array $options = array())
     {

@@ -92,7 +92,6 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
      *
      * @param object $listener
      * @param string $name
-     * @return void
      */
     public function add($listener, $name = null)
     {

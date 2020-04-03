@@ -168,7 +168,6 @@ class Doctrine_Cache_Db extends Doctrine_Cache_Driver
     /**
      * Create the cache table
      *
-     * @return void
      */
     public function createTable()
     {

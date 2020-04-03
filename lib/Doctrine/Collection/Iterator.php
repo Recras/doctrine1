@@ -72,7 +72,6 @@ abstract class Doctrine_Collection_Iterator implements Iterator
     /**
      * rewinds the iterator
      *
-     * @return void
      */
     public function rewind()
     {
@@ -106,7 +105,6 @@ abstract class Doctrine_Collection_Iterator implements Iterator
     /**
      * advances the internal pointer
      *
-     * @return void
      */
     public function next()
     {

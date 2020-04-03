@@ -129,7 +129,6 @@ class Doctrine_Locator_Injectable
      * initializes the null object
      *
      * @param Doctrine_Null $null
-     * @return void
      */
     public static function initNullObject(Doctrine_Null $null)
     {

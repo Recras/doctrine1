@@ -114,7 +114,6 @@ class Doctrine_Validator_ErrorStack extends Doctrine_Access implements Countable
      *
      * @param string $fieldName
      * @param string $errorCode
-     * @return void
      */
     public function set($fieldName, $errorCode)
     {
@@ -135,7 +134,6 @@ class Doctrine_Validator_ErrorStack extends Doctrine_Access implements Countable
     /**
      * Removes all errors from the stack.
      *
-     * @return void
      */
     public function clear()
     {

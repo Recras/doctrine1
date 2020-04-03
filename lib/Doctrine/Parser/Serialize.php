@@ -40,7 +40,6 @@ class Doctrine_Parser_Serialize extends Doctrine_Parser
      * @param string $array 
      * @param string $path 
      * @param string $charset The charset of the data being dumped
-     * @return void
      */
     public function dumpData($array, $path = null, $charset = null)
     {
@@ -55,7 +54,6 @@ class Doctrine_Parser_Serialize extends Doctrine_Parser
      * Load and unserialize data from a file or from passed data
      * 
      * @param string $path 
-     * @return void
      */
     public function loadData($path)
     {

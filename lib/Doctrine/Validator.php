@@ -64,7 +64,6 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
      * Validates a given record and saves possible errors in Doctrine_Validator::$stack
      *
      * @param  Doctrine_Record $record
-     * @return void
      */
     public function validateRecord(Doctrine_Record $record)
     {

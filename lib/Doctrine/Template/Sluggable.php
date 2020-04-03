@@ -58,7 +58,6 @@ class Doctrine_Template_Sluggable extends Doctrine_Template
     /**
      * Set table definition for Sluggable behavior
      *
-     * @return void
      */
     public function setTableDefinition()
     {

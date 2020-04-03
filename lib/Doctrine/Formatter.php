@@ -69,7 +69,6 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
      * This method takes care of that conversion
      *
      * @param array $item
-     * @return void
      */
     public function convertBooleans($item)
     {

@@ -42,7 +42,6 @@ class Doctrine_Hook_Integer extends Doctrine_Hook_Parser_Complex
      * @param string $alias     component alias
      * @param string $field     the field name
      * @param mixed $value      the value of the field
-     * @return void
      */
     public function parseSingle($alias, $field, $value)
     {

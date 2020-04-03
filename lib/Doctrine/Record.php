@@ -299,7 +299,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * this method is used for setting up relations and attributes
      * it should be implemented by child classes
      *
-     * @return void
      */
     public function setUp()
     { }
@@ -308,7 +307,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * Empty template method to provide concrete Record classes with the possibility
      * to hook into the constructor procedure
      *
-     * @return void
      */
     public function construct()
     { }
@@ -641,7 +639,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * assigns the ErrorStack or returns it if called without parameters
      *
      * @param Doctrine_Validator_ErrorStack          errorStack to be assigned for this record
-     * @return void|Doctrine_Validator_ErrorStack    returns the errorStack associated with this record
      */
     public function errorStack($stack = null)
     {
@@ -658,7 +655,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * Assign the inheritance column values
      *
-     * @return void
      */
     public function assignInheritanceValues()
     {
@@ -734,7 +730,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      *
      * @param array $data
      * @param boolean $overwriteLocalChanges  whether to overwrite the unsaved (dirty) data
-     * @return void
      */
     public function hydrate(array $data, $overwriteLocalChanges = true)
     {
@@ -758,7 +753,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * prepares identifiers for later use
      *
      * @param boolean $exists               whether or not this record exists in persistent data store
-     * @return void
      */
     private function prepareIdentifiers($exists = true)
     {
@@ -852,7 +846,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      *
      * @param string $serialized                Doctrine_Record as serialized string
      * @throws Doctrine_Record_Exception        if the cleanData operation fails somehow
-     * @return void
      */
     public function unserialize($serialized)
     {
@@ -1055,7 +1048,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * Clear a related reference or all references
      *
      * @param string $name The relationship reference to clear
-     * @return void
      */
     public function clearRelated($name = null)
     {
@@ -1224,7 +1216,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * clears the accessor for a field name
      *
      * @param string $fieldName 
-     * @return void
      */
     public function clearAccessor($fieldName)
     {
@@ -1293,7 +1284,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * clears the custom mutator for a field name
      *
      * @param string $fieldName 
-     * @return void
      */
     public function clearMutator($fieldName)
     {
@@ -1410,7 +1400,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      *
      * @param string $name                  the name of the mapped value
      * @param mixed $value                  mixed value to be mapped
-     * @return void
      */
     public function mapValue($name, $value = null)
     {
@@ -1652,7 +1641,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * deletes a column or a related component.
      * @param string $name
-     * @return void
      */
     public function __unset($name)
     {
@@ -1692,7 +1680,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * resets pending record unlinks
      *
-     * @return void
      */
     public function resetPendingUnlinks()
     {
@@ -1708,7 +1695,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      *
      * @param Doctrine_Connection $conn     optional connection parameter
      * @throws Exception                    if record is not valid and validation is active
-     * @return void
      */
     public function save(Doctrine_Connection $conn = null)
     {
@@ -1946,7 +1932,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * @link http://www.doctrine-project.org/documentation/manual/1_1/en/working-with-models
      * @param string $array  array of data to merge, see link for documentation
      * @param bool   $deep   whether or not to merge relations
-     * @return void
      */
     public function merge($data, $deep = true)
     {
@@ -1956,7 +1941,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
             $array = $data;
         }
 
-        return $this->fromArray($array, $deep);
+        $this->fromArray($array, $deep);
     }
 
     /**
@@ -1965,7 +1950,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * @link http://www.doctrine-project.org/documentation/manual/1_1/en/working-with-models
      * @param string $array  array of data, see link for documentation
      * @param bool   $deep   whether or not to act on relations
-     * @return void
      */
     public function fromArray(array $array, $deep = true)
     {
@@ -2084,7 +2068,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      *
      * @param string $type  Format type: xml, yml, json
      * @param string $data  Data to be parsed and imported
-     * @return void
      */
     public function importFrom($type, $data, $deep = true)
     {
@@ -2226,7 +2209,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * assigns an identifier to the instance, for database storage
      *
      * @param mixed $id     a key value or an array of keys
-     * @return void
      */
     public function assignIdentifier($id = false)
     {
@@ -2357,7 +2339,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      *
      * @throws Doctrine_Table_Exception             if trying to load an unknown related component
      * @param string $name                          alias of the relation
-     * @return void
      */
     public function loadReference($name)
     {
@@ -2630,7 +2611,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * can be accessed by users after saving a record, since the modified array 
      * is reset after the object is saved.
      *
-     * @return void
      */
     protected function _resetModified()
     {

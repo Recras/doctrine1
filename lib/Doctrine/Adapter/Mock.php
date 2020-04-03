@@ -68,7 +68,6 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
      * </code>
      *
      * @param string $name 
-     * @return void
      */
     public function __construct($name = null)
     {
@@ -101,7 +100,6 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
      * @param string $name     Name of exception
      * @param string $message  Message for the exception
      * @param integer $code    Code of the exception
-     * @return void
      */
     public function forceException($name, $message = '', $code = 0)
     {
@@ -126,7 +124,6 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
      * Add query to the stack of executed queries
      *
      * @param string $query 
-     * @return void
      */
     public function addQuery($query)
     {
@@ -184,7 +181,6 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
      * Execute a raw sql statement
      *
      * @param string $statement 
-     * @return void
      */
     public function exec($statement)
     {
@@ -207,7 +203,6 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
      * Force last insert to be failed
      *
      * @param boolean $fail
-     * @return void
      */
     public function forceLastInsertIdFail($fail = true)
     {
@@ -246,7 +241,6 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
     /**
      * Begin a transaction
      *
-     * @return void
      */
     public function beginTransaction()
     {
@@ -256,7 +250,6 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
     /**
      * Commit a transaction
      *
-     * @return void
      */
     public function commit()
     {
@@ -266,7 +259,6 @@ class Doctrine_Adapter_Mock implements Doctrine_Adapter_Interface, Countable
     /**
      * Rollback a transaction
      *
-     * @return void
      */
     public function rollBack()
     {

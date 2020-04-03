@@ -52,7 +52,6 @@ class Doctrine_Migration
      *
      * @param string $directory The path to your migrations directory
      * @param mixed $connection The connection name or instance to use for this migration
-     * @return void
      */
     public function __construct($directory = null, $connection = null)
     {
@@ -112,7 +111,6 @@ class Doctrine_Migration
      * Set the table name for storing the version number for this migration instance
      *
      * @param string $tableName
-     * @return void
      */
     public function setTableName($tableName)
     {
@@ -125,7 +123,6 @@ class Doctrine_Migration
      * extension will be passed to the loadMigrationClass()
      *
      * @param string $directory  Directory to load migration classes from
-     * @return void
      */
     public function loadMigrationClassesFromDirectory($directory = null)
     {
@@ -172,7 +169,6 @@ class Doctrine_Migration
      * to be loaded.
      *
      * @param string $name
-     * @return void
      */
     public function loadMigrationClass($name, $path = null)
     {
@@ -221,7 +217,6 @@ class Doctrine_Migration
      * Set the current version of the database
      *
      * @param integer $number
-     * @return void
      */
     public function setCurrentVersion($number)
     {
@@ -390,7 +385,6 @@ class Doctrine_Migration
     /**
      * Clears the error exceptions
      *
-     * @return void
      */
     public function clearErrors()
     {
@@ -401,7 +395,6 @@ class Doctrine_Migration
      * Add an error to the stack. Excepts some type of Exception
      *
      * @param Exception $e
-     * @return void
      */
     public function addError(Exception $e)
     {
@@ -437,7 +430,6 @@ class Doctrine_Migration
     /**
      * Throw an exception with all the errors trigged during the migration
      *
-     * @return void
      * @throws Doctrine_Migration_Exception $e
      */
     protected function _throwErrorsException()
@@ -493,7 +485,6 @@ class Doctrine_Migration
      *
      * @param string $direction Direction to go, 'up' or 'down'
      * @param integer $num
-     * @return void
      */
     protected function _doMigrateStep($direction, $num)
     {

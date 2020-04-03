@@ -123,7 +123,6 @@ class Doctrine_View
      * creates this view
      *
      * @throws Doctrine_View_Exception
-     * @return void
      */
     public function create()
     {
@@ -139,7 +138,6 @@ class Doctrine_View
      * drops this view from the database
      *
      * @throws Doctrine_View_Exception
-     * @return void
      */
     public function drop()
     {

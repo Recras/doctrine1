@@ -166,7 +166,6 @@ class Doctrine_Import_Schema
      * getOption
      *
      * @param string $name 
-     * @return void
      */
     public function getOption($name)
     {
@@ -178,7 +177,6 @@ class Doctrine_Import_Schema
     /**
      * getOptions
      *
-     * @return void
      */
     public function getOptions()
     {
@@ -190,7 +188,6 @@ class Doctrine_Import_Schema
      *
      * @param string $name 
      * @param string $value 
-     * @return void
      */
     public function setOption($name, $value)
     {
@@ -203,7 +200,6 @@ class Doctrine_Import_Schema
      * setOptions
      *
      * @param string $options 
-     * @return void
      */
     public function setOptions($options)
     {
@@ -262,7 +258,6 @@ class Doctrine_Import_Schema
      * @param  string $directory    The directory where the Doctrine_Record class will be written
      * @param  array  $models       Optional array of models to import
      *
-     * @return void
      */
     public function importSchema($schema, $format = 'yml', $directory = null, $models = array())
     {
@@ -452,8 +447,7 @@ class Doctrine_Import_Schema
      * Perform some processing on inheritance.
      * Sets the default type and sets some default values for certain types
      *
-     * @param string $array 
-     * @return void
+     * @param iterable $array 
      */
     protected function _processInheritance($array)
     {
@@ -558,8 +552,7 @@ class Doctrine_Import_Schema
      * Will attempt to auto complete relationships and simplify the amount of information required 
      * for defining a relationship
      *
-     * @param  string $array 
-     * @return void
+     * @param  iterable $array 
      */
     protected function _buildRelationships($array)
     {
@@ -654,7 +647,6 @@ class Doctrine_Import_Schema
      * Loop through all relationships building the opposite ends of each relationship
      * and make sure no duplicate relations exist
      *
-     * @return void
      */
     protected function _autoCompleteOppositeRelations()
     {
@@ -701,7 +693,6 @@ class Doctrine_Import_Schema
      * Ensure the relations for each class are unique and that no duplicated relations exist from the auto generated relations
      * and the user explicitely defining the opposite end
      *
-     * @return void
      */
     protected function _fixDuplicateRelations()
     {
@@ -732,7 +723,6 @@ class Doctrine_Import_Schema
      * Md5 hash of all the relationship parameters
      *
      * @param string $relation 
-     * @return void
      */
     protected function _buildUniqueRelationKey($relation)
     {
@@ -744,7 +734,6 @@ class Doctrine_Import_Schema
      *
      * @param string $name 
      * @param string $value 
-     * @return void
      */
     protected function _validateSchemaElement($name, $element, $path)
     {

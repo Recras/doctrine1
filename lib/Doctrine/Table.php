@@ -282,7 +282,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * to hook into the constructor procedure. It is called after the
      * Doctrine_Table construction process is finished.
      *
-     * @return void
      */
     public function construct()
     { }
@@ -407,7 +406,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * copying in the schema the list of the fields which constitutes
      * the primary key.
      *
-     * @return void
      */
     public function initIdentifier()
     {
@@ -602,7 +600,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * getMethodOwner
      *
      * @param string $method
-     * @return void
      */
     public function getMethodOwner($method)
     {
@@ -812,7 +809,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * It has no effect on other options.
      *
      * @param array $options    keys are option names
-     * @return void
      */
     public function setOptions($options)
     {
@@ -828,7 +824,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * It does not add the key to the physical table in the db; @see export().
      *
      * @param array $definition     definition of the foreign key
-     * @return void
      */
     public function addForeignKey(array $definition)
     {
@@ -845,7 +840,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @param $definition
      * @param mixed $name   if string used as name for the constraint.
      *                      Otherwise it is indexed numerically.
-     * @return void
      */
     public function addCheckConstraint($definition, $name)
     {
@@ -866,7 +860,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * @param string $index         index name
      * @param array $definition     keys are type, fields
-     * @return void
      */
     public function addIndex($index, array $definition)
     {
@@ -914,7 +907,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @param array $fields     values are fieldnames
      * @param array $options    array of options for unique validator
      * @param bool $createUniqueIndex  Whether or not to create a unique index in the database
-     * @return void
      */
     public function unique($fields, $options = array(), $createdUniqueIndex = true)
     {
@@ -937,7 +929,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *                          second value is array, options for the relation.
      *                          @see Doctrine_Relation::_$definition
      * @param integer $type     Doctrine_Relation::ONE or Doctrine_Relation::MANY
-     * @return void
      * @todo Name proposal: addRelation
      */
     public function bind($args, $type)
@@ -1213,7 +1204,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * @param string $columnName
      * @param array $validators
-     * @return void
      */
     public function setColumnOptions($columnName, array $options)
     {
@@ -1234,7 +1224,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @param string $columnName
      * @param string $option
      * @param string $value
-     * @return void
      */
     public function setColumnOption($columnName, $option, $value)
     {
@@ -1259,7 +1248,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * Set multiple column definitions at once
      *
      * @param array $definitions
-     * @return void
      */
     public function setColumns(array $definitions)
     {
@@ -1281,7 +1269,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @param boolean $prepend  Whether to prepend or append the new column to the column list.
      *                          By default the column gets appended.
      * @throws Doctrine_Table_Exception     if trying use wrongly typed parameter
-     * @return void
      */
     public function setColumn($name, $type = null, $length = null, $options = array(), $prepend = false)
     {
@@ -1534,7 +1521,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @see createNamedQuery()
      * @param $queryKey                       query key name to use for storage
      * @param string|Doctrine_Query $query    DQL string or object
-     * @return void
      */
     public function addNamedQuery($queryKey, $query)
     {
@@ -1752,7 +1738,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * This method ensures that records are reloaded from the db.
      *
-     * @return void
      * @todo what about a more descriptive name? clearIdentityMap?
      */
     public function clear()
@@ -2271,7 +2256,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * @access private
      * @param array $data               internal data
-     * @return void
      */
     public function setData(array $data)
     {
@@ -2408,7 +2392,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * sets the table name in the schema definition.
      *
      * @param string $tableName
-     * @return void
      */
     public function setTableName($tableName)
     {
@@ -2511,7 +2494,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * Checks if a generator name exists.
      *
      * @param string $generator
-     * @return void
      */
     public function hasGenerator($generator)
     {
@@ -2539,7 +2521,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * Set the generator responsible for creating this table
      *
      * @param Doctrine_Record_Generator $generator
-     * @return void
      */
     public function setGenerator(Doctrine_Record_Generator $generator)
     {

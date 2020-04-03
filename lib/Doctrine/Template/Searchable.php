@@ -36,7 +36,6 @@ class Doctrine_Template_Searchable extends Doctrine_Template
      * __construct
      *
      * @param array $options 
-     * @return void
      */
     public function __construct(array $options = array())
     {
@@ -47,7 +46,6 @@ class Doctrine_Template_Searchable extends Doctrine_Template
     /**
      * Setup the Searchable template behavior
      *
-     * @return void
      */
     public function setUp()
     {
@@ -62,7 +60,6 @@ class Doctrine_Template_Searchable extends Doctrine_Template
      *
      * @param integer $limit 
      * @param integer $offset 
-     * @return void
      */
     public function batchUpdateIndex($limit = null, $offset = null, $encoding = null)
     {
@@ -74,7 +71,6 @@ class Doctrine_Template_Searchable extends Doctrine_Template
      *
      * @param integer $limit 
      * @param integer $offset 
-     * @return void
      */
     public function batchUpdateIndexTableProxy($limit = null, $offset = null, $encoding = null)
     {

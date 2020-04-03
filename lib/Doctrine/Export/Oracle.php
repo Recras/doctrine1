@@ -167,7 +167,6 @@ END;';
      * drop an existing autoincrement sequence + trigger
      *
      * @param string $table name of the table
-     * @return void
      */
     public function dropAutoincrement($table)
     {
@@ -263,7 +262,6 @@ END;';
      *                        );
      * @param array $options  An associative array of table options:
      *
-     * @return void
      */
     public function createTable($name, array $fields, array $options = array())
     {
@@ -305,7 +303,6 @@ END;';
      *                        );
      * @param array $options  An associative array of table options:
      *
-     * @return void
      */
     public function createTableSql($name, array $fields, array $options = array())
     {
@@ -374,7 +371,6 @@ END;';
      * drop an existing table
      *
      * @param string $name name of the table that should be dropped
-     * @return void
      */
     public function dropTable($name)
     {
@@ -471,7 +467,6 @@ END;';
      * @param boolean $check     indicates whether the function should just check if the DBMS driver
      *                             can perform the requested table alterations if the value is true or
      *                             actually perform them otherwise.
-     * @return void
      */
     public function alterTable($name, array $changes, $check = false)
     {

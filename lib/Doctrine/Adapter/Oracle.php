@@ -83,7 +83,6 @@ class Doctrine_Adapter_Oracle implements Doctrine_Adapter_Interface
      * </code>
      *
      * @param string $name
-     * @return void
      */
     public function __construct($config = array(), $username = null, $password = null)
     {
@@ -177,7 +176,6 @@ class Doctrine_Adapter_Oracle implements Doctrine_Adapter_Interface
      * Execute a raw sql statement
      *
      * @param string $statement
-     * @return void
      */
     public function exec($statement)
     {
@@ -212,7 +210,6 @@ class Doctrine_Adapter_Oracle implements Doctrine_Adapter_Interface
     /**
      * Commit a transaction
      *
-     * @return void
      */
     public function commit()
     {

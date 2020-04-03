@@ -52,7 +52,6 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
      * __construct
      *
      * @param string $array 
-     * @return void
      */
     public function __construct(array $options = array())
     {
@@ -116,7 +115,6 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
     /**
      * Get plugin instance 
      * 
-     * @return void
      */
     public function getPlugin()
     {
@@ -164,7 +162,6 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
      * get 
      * 
      * @param mixed $name 
-     * @return void
      */
     public function get($name) 
     {
@@ -176,7 +173,6 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
      * 
      * @param mixed $name 
      * @param mixed $value 
-     * @return void
      */
     public function set($name, $value)
     {
@@ -186,7 +182,6 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
     /**
      * Blank method for template setup 
      * 
-     * @return void
      */
     public function setUp()
     {
@@ -196,7 +191,6 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
     /**
      * Blank method for template table definition
      * 
-     * @return void
      */
     public function setTableDefinition()
     {

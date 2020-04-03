@@ -38,7 +38,6 @@ class Doctrine_Export_Mssql extends Doctrine_Export
      * create a new database
      *
      * @param string $name name of the database that should be created
-     * @return void
      */
     public function createDatabase($name)
     {
@@ -57,7 +56,6 @@ class Doctrine_Export_Mssql extends Doctrine_Export
      * drop an existing database
      *
      * @param string $name name of the database that should be dropped
-     * @return void
      */
     public function dropDatabase($name)
     {
@@ -170,7 +168,6 @@ class Doctrine_Export_Mssql extends Doctrine_Export
      * @param boolean $check     indicates whether the function should just check if the DBMS driver
      *                             can perform the requested table alterations if the value is true or
      *                             actually perform them otherwise.
-     * @return void
      */
     public function alterTable($name, array $changes, $check = false)
     {
@@ -368,7 +365,6 @@ class Doctrine_Export_Mssql extends Doctrine_Export
      * This function drops an existing sequence
      *
      * @param string $seqName      name of the sequence to be dropped
-     * @return void
      */
     public function dropSequenceSql($seqName)
     {

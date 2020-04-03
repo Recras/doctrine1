@@ -123,7 +123,6 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
      * @param array $fields     values are fieldnames
      * @param array $options    array of options for unique validator
      * @param bool $createUniqueIndex  Whether or not to create a unique index in the database
-     * @return void
      */
     public function unique($fields, $options = array(), $createUniqueIndex = true)
     {
@@ -255,7 +254,6 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
      * @param string $type
      * @param integer $length
      * @param mixed $options
-     * @return void
      */
     public function hasColumn($name, $type = null, $length = null, $options = array())
     {
@@ -266,7 +264,6 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
      * Set multiple column definitions at once
      *
      * @param array $definitions 
-     * @return void
      */
     public function hasColumns(array $definitions)
     {
@@ -292,7 +289,6 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
      *
      * @param string $columnName 
      * @param array $validators 
-     * @return void
      */
     public function setColumnOptions($name, array $options)
     {
@@ -305,7 +301,6 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
      * @param string $columnName 
      * @param string $option 
      * @param string $value 
-     * @return void
      */
     public function setColumnOption($columnName, $option, $value)
     {

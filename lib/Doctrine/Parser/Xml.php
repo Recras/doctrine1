@@ -41,7 +41,6 @@ class Doctrine_Parser_Xml extends Doctrine_Parser
      * @param  string $path  Path to write xml data to
      * @param string $charset The charset of the data being dumped
      * @return string $xml
-     * @return void
      */
     public function dumpData($array, $path = null, $charset = null)
     {

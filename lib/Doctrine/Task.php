@@ -47,7 +47,6 @@ abstract class Doctrine_Task
      * Since this is an abstract classes that extend this must follow a patter of Doctrine_Task_{TASK_NAME}
      * This is what determines the task name for executing it.
      *
-     * @return void
      */
     public function __construct($dispatcher = null)
     {
@@ -95,7 +94,6 @@ abstract class Doctrine_Task
      * notify
      *
      * @param string $notification 
-     * @return void
      */
     public function notify($notification = null)
     {
@@ -113,7 +111,6 @@ abstract class Doctrine_Task
     /**
      * ask
      *
-     * @return void
      */
     public function ask()
     {
@@ -131,7 +128,6 @@ abstract class Doctrine_Task
      *
      * Override with each task class
      *
-     * @return void
      * @abstract
      */
     abstract function execute();
@@ -161,7 +157,6 @@ abstract class Doctrine_Task
      *
      * @param string $name 
      * @param string $value 
-     * @return void
      */
     public function addArgument($name, $value)
     {
@@ -198,7 +193,6 @@ abstract class Doctrine_Task
      * setArguments
      *
      * @param array $args 
-     * @return void
      */
     public function setArguments(array $args)
     {

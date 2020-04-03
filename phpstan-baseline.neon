@@ -1,0 +1,272 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Instantiated class Zikula_JdbcBridge not found\\.$#"
+			count: 1
+			path: lib/Doctrine/Adapter/Jdbcbridge.php
+
+		-
+			message: "#^Undefined variable\\: \\$object$#"
+			count: 2
+			path: lib/Doctrine/Adapter/Statement/Jdbcbridge.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Adapter_Statement_Oracle\\:\\:\\$oci_errors\\.$#"
+			count: 1
+			path: lib/Doctrine/Adapter/Statement/Oracle.php
+
+		-
+			message: "#^Undefined variable\\: \\$object$#"
+			count: 2
+			path: lib/Doctrine/Adapter/Statement/Oracle.php
+
+		-
+			message: "#^Regex pattern is invalid\\: The /e modifier is no longer supported, use preg_replace_callback instead in pattern\\: /\\(\\\\\\?\\)/e$#"
+			count: 1
+			path: lib/Doctrine/Adapter/Statement/Oracle.php
+
+		-
+			message: "#^Call to sprintf contains 1 placeholder, 2 values given\\.$#"
+			count: 1
+			path: lib/Doctrine/Cli/Formatter.php
+
+		-
+			message: "#^Regex pattern is invalid\\: The /e modifier is no longer supported, use preg_replace_callback instead in pattern\\: /\\#\\#\\(\\\\d\\+\\)\\#\\#/e$#"
+			count: 2
+			path: lib/Doctrine/Connection/Mssql.php
+
+		-
+			message: "#^Undefined variable\\: \\$match$#"
+			count: 2
+			path: lib/Doctrine/Connection/Pgsql.php
+
+		-
+			message: "#^Undefined variable\\: \\$db$#"
+			count: 1
+			path: lib/Doctrine/Export/Sqlite.php
+
+		-
+			message: "#^Instantiated class Doctrine_Expression_Pgsql_Exception not found\\.$#"
+			count: 1
+			path: lib/Doctrine/Expression/Pgsql.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Formatter\\:\\:\\$string_quoting\\.$#"
+			count: 1
+			path: lib/Doctrine/Formatter.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Formatter\\:\\:\\$wildcards\\.$#"
+			count: 1
+			path: lib/Doctrine/Formatter.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Hydrator_Graph\\:\\:\\$_rootAlias\\.$#"
+			count: 2
+			path: lib/Doctrine/Hydrator/Graph.php
+
+		-
+			message: "#^Undefined variable\\: \\$db$#"
+			count: 1
+			path: lib/Doctrine/Import/Sqlite.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_IntegrityMapper\\:\\:\\$conn\\.$#"
+			count: 1
+			path: lib/Doctrine/IntegrityMapper.php
+
+		-
+			message: "#^Array has 2 duplicate keys with value 150 \\(\\\\Doctrine_Core\\:\\:ATTR_CACHE, \\\\Doctrine_Core\\:\\:ATTR_RESULT_CACHE\\)\\.$#"
+			count: 1
+			path: lib/Doctrine/Manager.php
+
+		-
+			message: "#^Undefined variable\\: \\$autoincrementColumn$#"
+			count: 1
+			path: lib/Doctrine/Migration/Base.php
+
+		-
+			message: "#^Undefined variable\\: \\$autoincrementLength$#"
+			count: 1
+			path: lib/Doctrine/Migration/Base.php
+
+		-
+			message: "#^Undefined variable\\: \\$autoincrementOptions$#"
+			count: 1
+			path: lib/Doctrine/Migration/Base.php
+
+		-
+			message: "#^Undefined variable\\: \\$autoincrementType$#"
+			count: 1
+			path: lib/Doctrine/Migration/Base.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Node_NestedSet_PreOrderIterator\\:\\:\\$maxLevel\\.$#"
+			count: 2
+			path: lib/Doctrine/Node/NestedSet/PreOrderIterator.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Node_NestedSet_PreOrderIterator\\:\\:\\$options\\.$#"
+			count: 2
+			path: lib/Doctrine/Node/NestedSet/PreOrderIterator.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Node_NestedSet_PreOrderIterator\\:\\:\\$level\\.$#"
+			count: 4
+			path: lib/Doctrine/Node/NestedSet/PreOrderIterator.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Node_NestedSet_PreOrderIterator\\:\\:\\$prevLeft\\.$#"
+			count: 3
+			path: lib/Doctrine/Node/NestedSet/PreOrderIterator.php
+
+		-
+			message: "#^Undefined variable\\: \\$children$#"
+			count: 1
+			path: lib/Doctrine/Parser/Xml.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Query_Abstract\\:\\:\\$_pendingJoinConditions\\.$#"
+			count: 2
+			path: lib/Doctrine/Query/Abstract.php
+
+		-
+			message: "#^Call to an undefined method Doctrine_Query_Abstract\\:\\:isSubquery\\(\\)\\.$#"
+			count: 1
+			path: lib/Doctrine/Query/Abstract.php
+
+		-
+			message: "#^Call to an undefined method Doctrine_Query_Abstract\\:\\:copy\\(\\)\\.$#"
+			count: 1
+			path: lib/Doctrine/Query/Abstract.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Query_Abstract\\:\\:\\$_parsers\\.$#"
+			count: 2
+			path: lib/Doctrine/Query/Abstract.php
+
+		-
+			message: "#^Call to an undefined method Doctrine_Query_Condition\\:\\:load\\(\\)\\.$#"
+			count: 1
+			path: lib/Doctrine/Query/Condition.php
+
+		-
+			message: "#^Call to an undefined method Doctrine_Query_Set\\:\\:parseLiteralValue\\(\\)\\.$#"
+			count: 1
+			path: lib/Doctrine/Query/Set.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_RawSql\\:\\:\\$_preQuery\\.$#"
+			count: 1
+			path: lib/Doctrine/RawSql.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_RawSql\\:\\:\\$_pendingJoinConditions\\.$#"
+			count: 1
+			path: lib/Doctrine/RawSql.php
+
+		-
+			message: "#^Cannot use \\[\\] for reading\\.$#"
+			count: 1
+			path: lib/Doctrine/Search/Indexer.php
+
+		-
+			message: "#^Call to an undefined method Doctrine_Search_Indexer_Dir\\:\\:indexFile\\(\\)\\.$#"
+			count: 1
+			path: lib/Doctrine/Search/Indexer/Dir.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Sequence\\:\\:\\$warnings\\.$#"
+			count: 1
+			path: lib/Doctrine/Sequence.php
+
+		-
+			message: "#^Undefined variable\\: \\$onDemand$#"
+			count: 1
+			path: lib/Doctrine/Sequence/Db2.php
+
+		-
+			message: "#^Call to an undefined method Doctrine_Sequence_Db2\\:\\:quoteIdentifier\\(\\)\\.$#"
+			count: 1
+			path: lib/Doctrine/Sequence/Db2.php
+
+		-
+			message: "#^Call to an undefined method Doctrine_Sequence_Db2\\:\\:query\\(\\)\\.$#"
+			count: 2
+			path: lib/Doctrine/Sequence/Db2.php
+
+		-
+			message: "#^Call to an undefined method Doctrine_Sequence_Db2\\:\\:_connect\\(\\)\\.$#"
+			count: 1
+			path: lib/Doctrine/Sequence/Db2.php
+
+		-
+			message: "#^Call to an undefined method Doctrine_Sequence_Db2\\:\\:lastSequenceId\\(\\)\\.$#"
+			count: 1
+			path: lib/Doctrine/Sequence/Db2.php
+
+		-
+			message: "#^Undefined variable\\: \\$onDemand$#"
+			count: 1
+			path: lib/Doctrine/Sequence/Derby.php
+
+		-
+			message: "#^Undefined variable\\: \\$onDemand$#"
+			count: 1
+			path: lib/Doctrine/Sequence/Jdbcbridge.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Sequence_Mssql\\:\\:\\$warnings\\.$#"
+			count: 1
+			path: lib/Doctrine/Sequence/Mssql.php
+
+		-
+			message: "#^Undefined variable\\: \\$onDemand$#"
+			count: 1
+			path: lib/Doctrine/Sequence/Splice.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Task_BuildAll\\:\\:\\$createDb\\.$#"
+			count: 3
+			path: lib/Doctrine/Task/BuildAll.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Task_BuildAllLoad\\:\\:\\$buildAll\\.$#"
+			count: 3
+			path: lib/Doctrine/Task/BuildAllLoad.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Task_BuildAllLoad\\:\\:\\$loadData\\.$#"
+			count: 3
+			path: lib/Doctrine/Task/BuildAllLoad.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Task_BuildAllReload\\:\\:\\$rebuildDb\\.$#"
+			count: 3
+			path: lib/Doctrine/Task/BuildAllReload.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Task_BuildAllReload\\:\\:\\$loadData\\.$#"
+			count: 3
+			path: lib/Doctrine/Task/BuildAllReload.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Task_RebuildDb\\:\\:\\$dropDb\\.$#"
+			count: 3
+			path: lib/Doctrine/Task/RebuildDb.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Task_RebuildDb\\:\\:\\$createDb\\.$#"
+			count: 3
+			path: lib/Doctrine/Task/RebuildDb.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Task_RebuildDb\\:\\:\\$createTables\\.$#"
+			count: 3
+			path: lib/Doctrine/Task/RebuildDb.php
+
+		-
+			message: "#^Access to an undefined property Doctrine_Validator\\:\\:\\$stack\\.$#"
+			count: 1
+			path: lib/Doctrine/Validator.php
+

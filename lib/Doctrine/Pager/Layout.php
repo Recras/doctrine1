@@ -76,7 +76,6 @@ class Doctrine_Pager_Layout
      * @param Doctrine_Pager $pager     Doctrine_Pager object related to the pager layout
      * @param Doctrine_Pager_Range $pagerRange     Doctrine_Pager_Range object related to the pager layout
      * @param string $urlMask     URL to be assigned for each page
-     * @return void
      */
     public function __construct($pager, $pagerRange, $urlMask)
     {
@@ -107,7 +106,6 @@ class Doctrine_Pager_Layout
      * Defines the Doctrine_Pager object related to the pager layout
      *
      * @param $pager       Doctrine_Pager object related to the pager range
-     * @return void
      */
     protected function _setPager($pager)
     {
@@ -146,7 +144,6 @@ class Doctrine_Pager_Layout
      * Defines the Doctrine_Pager_Range subclass object related to the pager layout
      *
      * @param $pagerRange       Doctrine_Pager_Range subclass object related to the pager range
-     * @return void
      */
     protected function _setPagerRange($pagerRange)
     {
@@ -172,7 +169,6 @@ class Doctrine_Pager_Layout
      * Defines the URL to be assigned for each page
      *
      * @param $urlMask       URL to be assigned for each page
-     * @return void
      */
     protected function _setUrlMask($urlMask)
     {
@@ -199,7 +195,6 @@ class Doctrine_Pager_Layout
      * (also active page if selected template not defined)
      *
      * @param $template       Template to be applied for inactive pages
-     * @return void
      */
     public function setTemplate($template)
     {
@@ -224,7 +219,6 @@ class Doctrine_Pager_Layout
      * Defines the Template to be applied for active page
      *
      * @param $selectedTemplate       Template to be applied for active page
-     * @return void
      */
     public function setSelectedTemplate($selectedTemplate)
     {
@@ -249,7 +243,6 @@ class Doctrine_Pager_Layout
      * Defines the Separator template, applied between each page
      *
      * @param $separatorTemplate       Separator template, applied between each page
-     * @return void
      */ 
     public function setSeparatorTemplate($separatorTemplate)
     {
@@ -267,7 +260,6 @@ class Doctrine_Pager_Layout
      * @param $asValue       Optional value (default false) that if defined as true,
      *                       changes the bahavior of replacement mask to replacement
      *                       value
-     * @return void
      */ 
     public function addMaskReplacement($oldMask, $newMask, $asValue = false)
     {
@@ -285,7 +277,6 @@ class Doctrine_Pager_Layout
      * Remove a mask replacement
      *
      * @param $oldMask       Replacement Mask to be removed
-     * @return void
      */ 
     public function removeMaskReplacement($oldMask)
     {
@@ -301,7 +292,6 @@ class Doctrine_Pager_Layout
      *
      * Remove all mask replacements
      *
-     * @return void
      */ 
     public function cleanMaskReplacements()
     {
@@ -317,7 +307,6 @@ class Doctrine_Pager_Layout
      * @param $options    Optional parameters to be applied in template and url mask
      * @param $return     Optional parameter if you want to capture the output of this method call 
      *                    (Default value is false), instead of printing it
-     * @return void       If you would like to capture the output of Doctrine_Pager_Layout::display(),
      *                    use the $return  parameter. If this parameter is set to TRUE, this method 
      *                    will return its output, instead of printing it (which it does by default)
      */
