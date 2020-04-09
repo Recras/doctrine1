@@ -114,7 +114,7 @@ class Doctrine_Hydrator
      *
      * @param string $mode 
      * @param array $tableAliases 
-     * @return object Doctrine_Hydrator_Abstract
+     * @return Doctrine_Hydrator_Abstract
      */
     public function getHydratorDriver($mode, $tableAliases)
     {
