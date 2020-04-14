@@ -987,6 +987,7 @@ abstract class Doctrine_Query_Abstract
     /**
      * execute
      * executes the query and populates the data set
+     * @deprecated
      *
      * @param array $params
      * @return mixed            the root collection

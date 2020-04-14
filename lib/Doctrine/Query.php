@@ -260,7 +260,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * Convenience method to execute using array fetching as hydration mode.
      *
      * @param string $params
-     * @return array
+     * @return array[]
      */
     public function fetchArray($params = array())
     {
@@ -268,9 +268,28 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     }
 
     /**
+     * @param array $params
+     * @return \Doctrine_Collection
+     */
+    public function fetchRecords($params = array())
+    {
+        return $this->execute($params, \Doctrine_Core::HYDRATE_RECORD);
+    }
+
+    /**
+     * @param array $params
+     * @return \Doctrine_Collection_OnDemand
+     */
+    public function fetchOnDemand($params = array())
+    {
+        return $this->execute($params, \Doctrine_Core::HYDRATE_ON_DEMAND);
+    }
+
+    /**
      * fetchOne
      * Convenience method to execute the query and return the first item
      * of the collection.
+     * @deprecated
      *
      * @param string $params        Query parameters
      * @param int $hydrationMode    Hydration mode: see Doctrine_Core::HYDRATE_* constants
@@ -295,6 +314,32 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
         }
 
         return false;
+    }
+
+    /**
+     * @param array $params query parameters
+     * @return Doctrine_Record|null
+     */
+    public function fetchOneRecord($params = array())
+    {
+        $r = $this->fetchOne($params, \Doctrine_Core::HYDRATE_RECORD);
+        if (!$r) {
+            return null;
+        }
+        return $r;
+    }
+
+    /**
+     * @param array $params
+     * @return null|array
+     */
+    public function fetchOneArray($params = array())
+    {
+        $r = $this->fetchOne($params, \Doctrine_Core::HYDRATE_ARRAY);
+        if (!is_array($r)) {
+            return null;
+        }
+        return $r;
     }
 
     /**
