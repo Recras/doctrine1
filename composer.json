@@ -4,7 +4,7 @@
     "description": "PHP5^H7 Database ORM",
     "keywords": ["orm", "database"],
     "homepage": "http://www.doctrine-project.org",
-    "license": "LGPL",
+    "license": "LGPL-2.1-or-later",
     "authors": [
         {"name": "Recras developers", "email": "devs@recras.nl"},
         {"name": "Konsta Vesterinen", "email": "kvesteri@cc.hut.fi"},
