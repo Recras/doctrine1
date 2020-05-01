@@ -44,14 +44,12 @@ class Doctrine_Ticket_2251_TestCase extends Doctrine_UnitTestCase
             'mysql',
             'sqlite',
             'pgsql',
-            'mssql'
         );
         
         $expected = array(
             'mysql'     => 'CREATE TABLE test_string_length (id BIGINT AUTO_INCREMENT, test_string TEXT, PRIMARY KEY(id)) ENGINE = INNODB',
             'sqlite'    => 'CREATE TABLE test_string_length (id INTEGER PRIMARY KEY AUTOINCREMENT, test_string TEXT)',
             'pgsql'     => 'CREATE TABLE test_string_length (id BIGSERIAL, test_string TEXT, PRIMARY KEY(id))',
-            'mssql'     => 'CREATE TABLE test_string_length (id INT NOT NULL identity, test_string TEXT NULL, PRIMARY KEY([id]))'
         );
 
         foreach ($drivers as $driver)

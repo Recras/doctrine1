@@ -103,10 +103,8 @@ class Doctrine_Formatter extends Doctrine_Connection_Module
      *
      * Delimited identifiers are known to generally work correctly under
      * the following drivers:
-     *   + mssql
      *   + mysql
      *   + mysqli
-     *   + oci8
      *   + pgsql
      *   + sqlite
      *

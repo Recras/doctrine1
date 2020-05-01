@@ -84,9 +84,6 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
         'mysqli'   => 'Doctrine_Connection_Mysql',
         'sqlite'   => 'Doctrine_Connection_Sqlite',
         'pgsql'    => 'Doctrine_Connection_Pgsql',
-        'mssql'    => 'Doctrine_Connection_Mssql',
-        'dblib'    => 'Doctrine_Connection_Mssql',
-        'odbc'     => 'Doctrine_Connection_Mssql', 
         'mock'     => 'Doctrine_Connection_Mock'
     );
 
@@ -285,10 +282,6 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
             }
             $e = explode(':', $adapter[0]);
 
-            if ($e[0] == 'uri') {
-                $e[0] = 'odbc';
-            }
-
             $parts['dsn']    = $adapter[0];
             $parts['scheme'] = $e[0];
             $parts['user']   = (isset($adapter[1])) ? $adapter[1] : null;
@@ -447,29 +440,8 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
 
                 break;
 
-            case 'mssql':
-            case 'dblib':
-                if ( ! isset($parts['path']) || $parts['path'] == '/') {
-                    throw new Doctrine_Manager_Exception('No database available in data source name');
-                }
-                if (isset($parts['path'])) {
-                    $parts['database'] = substr($parts['path'], 1);
-                }
-                if ( ! isset($parts['host'])) {
-                    throw new Doctrine_Manager_Exception('No hostname set in data source name');
-                }
-
-                $parts['dsn'] = $parts['scheme'] . ':host='
-                              . $parts['host'] . (isset($parts['port']) ? ':' . $parts['port']:null) . ';dbname='
-                              . $parts['database'];
-
-                break;
-
             case 'mysql':
-            case 'oci8':
-            case 'oci':
             case 'pgsql':
-            case 'odbc':
             case 'mock':
                 if ( ! isset($parts['path']) || $parts['path'] == '/') {
                     throw new Doctrine_Manager_Exception('No database available in data source name');

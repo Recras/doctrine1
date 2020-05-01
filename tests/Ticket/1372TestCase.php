@@ -37,8 +37,7 @@ class Doctrine_Ticket_1372_TestCase extends Doctrine_UnitTestCase
     {
         $drivers = array('mysql',
                          'sqlite',
-                         'pgsql',
-                         'mssql');
+                         'pgsql');
 
         foreach ($drivers as $driver)
         {
