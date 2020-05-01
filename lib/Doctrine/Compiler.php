@@ -54,7 +54,6 @@ class Doctrine_Compiler
             $drivers = array('db2',
                              'mssql',
                              'mysql',
-                             'oracle',
                              'pgsql',
                              'sqlite');
             

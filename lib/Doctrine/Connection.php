@@ -169,7 +169,6 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
     private static $supportedDrivers    = array(
                                         'Mysql',
                                         'Pgsql',
-                                        'Oracle',
                                         'Mssql',
                                         'Sqlite',
                                         );

@@ -1,21 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Access to an undefined property Doctrine_Adapter_Statement_Oracle\\:\\:\\$oci_errors\\.$#"
-			count: 1
-			path: lib/Doctrine/Adapter/Statement/Oracle.php
-
-		-
-			message: "#^Undefined variable\\: \\$object$#"
-			count: 2
-			path: lib/Doctrine/Adapter/Statement/Oracle.php
-
-		-
-			message: "#^Regex pattern is invalid\\: The /e modifier is no longer supported, use preg_replace_callback instead in pattern\\: /\\(\\\\\\?\\)/e$#"
-			count: 1
-			path: lib/Doctrine/Adapter/Statement/Oracle.php
-
-		-
 			message: "#^Call to sprintf contains 1 placeholder, 2 values given\\.$#"
 			count: 1
 			path: lib/Doctrine/Cli/Formatter.php

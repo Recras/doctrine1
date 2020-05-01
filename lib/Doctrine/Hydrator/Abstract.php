@@ -91,7 +91,6 @@ abstract class Doctrine_Hydrator_Abstract extends Doctrine_Locator_Injectable
     /**
      * Checks whether a name is ignored. Used during result set parsing to skip
      * certain elements in the result set that do not have any meaning for the result.
-     * (I.e. ORACLE limit/offset emulation adds doctrine_rownum to the result set).
      *
      * @param string $name
      * @return boolean

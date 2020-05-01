@@ -35,7 +35,6 @@ $test->addTestCase($tickets);
 // Connection Tests (not yet fully tested)
 $driver = new GroupTest('Driver Tests', 'driver');
 $driver->addTestCase(new Doctrine_Connection_Pgsql_TestCase());
-$driver->addTestCase(new Doctrine_Connection_Oracle_TestCase());
 $driver->addTestCase(new Doctrine_Connection_Sqlite_TestCase());
 $driver->addTestCase(new Doctrine_Connection_Mssql_TestCase());
 $driver->addTestCase(new Doctrine_Connection_Mysql_TestCase());
@@ -48,7 +47,6 @@ $transaction->addTestCase(new Doctrine_Transaction_TestCase());
 $transaction->addTestCase(new Doctrine_Transaction_Mysql_TestCase());
 $transaction->addTestCase(new Doctrine_Transaction_Mssql_TestCase());
 $transaction->addTestCase(new Doctrine_Transaction_Pgsql_TestCase());
-$transaction->addTestCase(new Doctrine_Transaction_Oracle_TestCase());
 $transaction->addTestCase(new Doctrine_Transaction_Sqlite_TestCase());
 $test->addTestCase($transaction);
 
@@ -58,7 +56,6 @@ $data_dict->addTestCase(new Doctrine_DataDict_TestCase());
 $data_dict->addTestCase(new Doctrine_DataDict_Mysql_TestCase());
 $data_dict->addTestCase(new Doctrine_DataDict_Mssql_TestCase());
 $data_dict->addTestCase(new Doctrine_DataDict_Pgsql_TestCase());
-$data_dict->addTestCase(new Doctrine_DataDict_Oracle_TestCase());
 $data_dict->addTestCase(new Doctrine_DataDict_Sqlite_TestCase());
 $test->addTestCase($data_dict);
 
@@ -68,7 +65,6 @@ $sequence->addTestCase(new Doctrine_Sequence_TestCase());
 $sequence->addTestCase(new Doctrine_Sequence_Mysql_TestCase());
 $sequence->addTestCase(new Doctrine_Sequence_Mssql_TestCase());
 $sequence->addTestCase(new Doctrine_Sequence_Pgsql_TestCase());
-$sequence->addTestCase(new Doctrine_Sequence_Oracle_TestCase());
 $sequence->addTestCase(new Doctrine_Sequence_Sqlite_TestCase());
 $test->addTestCase($sequence);
 
@@ -78,7 +74,6 @@ $export->addTestCase(new Doctrine_Export_CheckConstraint_TestCase());
 $export->addTestCase(new Doctrine_Export_TestCase());
 $export->addTestCase(new Doctrine_Export_Mssql_TestCase());
 $export->addTestCase(new Doctrine_Export_Pgsql_TestCase());
-$export->addTestCase(new Doctrine_Export_Oracle_TestCase());
 $export->addTestCase(new Doctrine_Export_Record_TestCase());
 $export->addTestCase(new Doctrine_Export_Mysql_TestCase());
 $export->addTestCase(new Doctrine_Export_Sqlite_TestCase());
@@ -91,7 +86,6 @@ $import->addTestCase(new Doctrine_Import_TestCase());
 $import->addTestCase(new Doctrine_Import_Mysql_TestCase());
 $import->addTestCase(new Doctrine_Import_Mssql_TestCase());
 $import->addTestCase(new Doctrine_Import_Pgsql_TestCase());
-$import->addTestCase(new Doctrine_Import_Oracle_TestCase());
 $import->addTestCase(new Doctrine_Import_Sqlite_TestCase());
 $import->addTestCase(new Doctrine_Import_Builder_TestCase());
 $import->addTestCase(new Doctrine_Import_Schema_TestCase());
@@ -105,7 +99,6 @@ $expression->addTestCase(new Doctrine_Expression_Driver_TestCase());
 $expression->addTestCase(new Doctrine_Expression_Mysql_TestCase());
 $expression->addTestCase(new Doctrine_Expression_Mssql_TestCase());
 $expression->addTestCase(new Doctrine_Expression_Pgsql_TestCase());
-$expression->addTestCase(new Doctrine_Expression_Oracle_TestCase());
 $expression->addTestCase(new Doctrine_Expression_Sqlite_TestCase());
 $test->addTestCase($expression);
 
