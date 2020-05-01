@@ -80,7 +80,6 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
     );
 
     protected $_connectionDrivers = array(
-        'db2'      => 'Doctrine_Connection_Db2',
         'mysql'    => 'Doctrine_Connection_Mysql',
         'mysqli'   => 'Doctrine_Connection_Mysql',
         'sqlite'   => 'Doctrine_Connection_Sqlite',
