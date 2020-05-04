@@ -169,8 +169,6 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
     private static $supportedDrivers    = array(
                                         'Mysql',
                                         'Pgsql',
-                                        'Oracle',
-                                        'Mssql',
                                         'Sqlite',
                                         );
     protected $_count = 0;
@@ -700,10 +698,8 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * Delimited identifiers are known to generally work correctly under
      * the following drivers:
-     *   + mssql
      *   + mysql
      *   + mysqli
-     *   + oci8
      *   + pgsql
      *   + sqlite
      *
