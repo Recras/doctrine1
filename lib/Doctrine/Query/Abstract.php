@@ -30,6 +30,8 @@
  * @version     $Revision: 1393 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  * @todo        See {@link Doctrine_Query}
+ *
+ * @template T of Doctrine_Record
  */
 abstract class Doctrine_Query_Abstract
 {
@@ -85,12 +87,12 @@ abstract class Doctrine_Query_Abstract
     const STATE_LOCKED = 4;
 
     /**
-     * @var array  Table alias map. Keys are SQL aliases and values DQL aliases.
+     * @var array<string,string>  Table alias map. Keys are SQL aliases and values DQL aliases.
      */
     protected $_tableAliasMap = array();
 
     /**
-     * @var Doctrine_View  The view object used by this query, if any.
+     * @var ?Doctrine_View  The view object used by this query, if any.
      */
     protected $_view;
 
@@ -100,7 +102,7 @@ abstract class Doctrine_Query_Abstract
     protected $_state = Doctrine_Query::STATE_CLEAN;
 
     /**
-     * @var array $_params  The parameters of this query.
+     * @var array<string,mixed[]> $_params  The parameters of this query.
      */
     protected $_params = array('exec' => array(),
                                'join' => array(),
@@ -150,7 +152,7 @@ abstract class Doctrine_Query_Abstract
     protected $_passedConn = false;
 
     /**
-     * @var array $_sqlParts  The SQL query string parts. Filled during the DQL parsing process.
+     * @var array<string,mixed> $_sqlParts  The SQL query string parts. Filled during the DQL parsing process.
      */
     protected $_sqlParts = array(
             'select'    => array(),
@@ -168,7 +170,7 @@ abstract class Doctrine_Query_Abstract
             );
 
     /**
-     * @var array $_dqlParts    an array containing all DQL query parts; @see Doctrine_Query::getDqlPart()
+     * @var array<string,mixed> $_dqlParts    an array containing all DQL query parts; @see Doctrine_Query::getDqlPart()
      */
     protected $_dqlParts = array(
                             'from'      => array(),
@@ -186,7 +188,7 @@ abstract class Doctrine_Query_Abstract
 
 
     /**
-     * @var array $_queryComponents   Two dimensional array containing the components of this query,
+     * @var array<string,mixed> $_queryComponents   Two dimensional array containing the components of this query,
      *                                informations about their relations and other related information.
      *                                The components are constructed during query parsing.
      *
@@ -242,7 +244,7 @@ abstract class Doctrine_Query_Abstract
     protected $_tableAliasSeeds = array();
 
     /**
-     * @var array $_options                 an array of options
+     * @var array<string,mixed> $_options                 an array of options
      */
     protected $_options    = array(
         'hydrationMode'      => Doctrine_Core::HYDRATE_RECORD
@@ -310,7 +312,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param string $name      option name
      * @param string $value     option value
-     * @return Doctrine_Query   this object
+     * @return $this
      */
     public function setOption($name, $value)
     {
@@ -318,13 +320,14 @@ abstract class Doctrine_Query_Abstract
             throw new Doctrine_Query_Exception('Unknown option ' . $name);
         }
         $this->_options[$name] = $value;
+        return $this;
     }
 
     /**
      * hasSqlTableAlias
      * whether or not this object has given tableAlias
      *
-     * @param string $tableAlias    the table alias to be checked
+     * @param string $sqlTableAlias    the table alias to be checked
      * @return boolean              true if this object has given alias, otherwise false
      */
     public function hasSqlTableAlias($sqlTableAlias)
@@ -336,7 +339,7 @@ abstract class Doctrine_Query_Abstract
      * getTableAliasMap
      * returns all table aliases
      *
-     * @return array        table aliases as an array
+     * @return array<string,string>        table aliases as an array
      */
     public function getTableAliasMap()
     {
@@ -379,10 +382,9 @@ abstract class Doctrine_Query_Abstract
      * getSqlQueryPart
      * gets an SQL query part from the SQL query part array
      *
-     * @param string $name          the name of the query part to be set
-     * @param string $part          query part string
+     * @param string $part the name of the query part to be set
      * @throws Doctrine_Query_Exception   if trying to set unknown query part
-     * @return mixed     this object
+     * @return mixed
      */
     public function getSqlQueryPart($part)
     {
@@ -397,9 +399,9 @@ abstract class Doctrine_Query_Abstract
      * sets an SQL query part in the SQL query part array
      *
      * @param string $name          the name of the query part to be set
-     * @param string $part          query part string
+     * @param string|string[] $part          query part string
      * @throws Doctrine_Query_Exception   if trying to set unknown query part
-     * @return Doctrine_Query     this object
+     * @return $this
      */
     public function setSqlQueryPart($name, $part)
     {
@@ -425,9 +427,9 @@ abstract class Doctrine_Query_Abstract
      * adds an SQL query part to the SQL query part array
      *
      * @param string $name          the name of the query part to be added
-     * @param string $part          query part string
+     * @param string|string[] $part          query part string
      * @throws Doctrine_Query_Exception   if trying to add unknown query part
-     * @return Doctrine_Query     this object
+     * @return $this
      */
     public function addSqlQueryPart($name, $part)
     {
@@ -448,7 +450,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param string $name          the name of the query part to be removed
      * @throws Doctrine_Query_Exception   if trying to remove unknown query part
-     * @return Doctrine_Query     this object
+     * @return $this
      */
     public function removeSqlQueryPart($name)
     {
@@ -471,7 +473,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param string $name          the name of the query part to be removed
      * @throws Doctrine_Query_Exception   if trying to remove unknown query part
-     * @return Doctrine_Query     this object
+     * @return $this
      */
     public function removeDqlQueryPart($name)
     {
@@ -491,7 +493,7 @@ abstract class Doctrine_Query_Abstract
     /**
      * Get raw array of parameters for query and all parts.
      *
-     * @return array $params
+     * @return array<string,mixed[]> $params
      */
     public function getParams()
     {
@@ -502,7 +504,7 @@ abstract class Doctrine_Query_Abstract
      * Get flattened array of parameters for query.
      * Used internally and used to pass flat array of params to the database.
      *
-     * @param array $params
+     * @param mixed[] $params
      */
     public function getFlattenedParams($params = array())
     {
@@ -592,7 +594,7 @@ abstract class Doctrine_Query_Abstract
      * getView
      * returns the view associated with this query object (if any)
      *
-     * @return Doctrine_View        the view associated with this query object
+     * @return Doctrine_View|null        the view associated with this query object
      */
     public function getView()
     {
@@ -757,9 +759,9 @@ abstract class Doctrine_Query_Abstract
      * this method is needed by DQL subqueries which need the aliases
      * of the parent query
      *
-     * @param Doctrine_Hydrate $query   the query object from which the
-     *                                  aliases are copied from
-     * @return Doctrine_Query         this object
+     * @param Doctrine_Query_Abstract $query   the query object from which the aliases are copied from
+     * @phpstan-param Doctrine_Query_Abstract<T> $query
+     * @return $this
      */
     public function copySubqueryInfo(Doctrine_Query_Abstract $query)
     {
@@ -802,6 +804,7 @@ abstract class Doctrine_Query_Abstract
      * returns the root component for this object
      *
      * @return Doctrine_Table       root components table
+     * @phpstan-return Doctrine_Table<T>
      */
     public function getRoot()
     {
@@ -987,7 +990,7 @@ abstract class Doctrine_Query_Abstract
     /**
      * execute
      * executes the query and populates the data set
-     * @deprecated
+     * @deprecated use ::fetchRecords(), ::fetchArray(), ::fetchOnDemand(), ::fetchOneRecord(), ::fetchOneArray()
      *
      * @param array $params
      * @return mixed            the root collection
@@ -1059,7 +1062,7 @@ abstract class Doctrine_Query_Abstract
     /**
      * Get the dql call back for this query
      *
-     * @return array $callback
+     * @return array{callback:string,const:int}|false $callback
      */
     protected function _getDqlCallback()
     {
@@ -1244,7 +1247,7 @@ abstract class Doctrine_Query_Abstract
      * </code>
      *
      * @param string $select        Query SELECT part
-     * @return Doctrine_Query
+     * @return $this
      */
     public function addSelect($select)
     {
@@ -1256,8 +1259,8 @@ abstract class Doctrine_Query_Abstract
      * adds an SQL table alias and associates it a component alias
      *
      * @param string $componentAlias    the alias for the query component associated with given tableAlias
-     * @param string $tableAlias        the table alias to be added
-     * @return Doctrine_Query_Abstract
+     * @param string $sqlTableAlias        the table alias to be added
+     * @return $this
      */
     public function addSqlTableAlias($sqlTableAlias, $componentAlias)
     {
@@ -1270,7 +1273,7 @@ abstract class Doctrine_Query_Abstract
      * adds fields to the FROM part of the query
      *
      * @param string $from        Query FROM part
-     * @return Doctrine_Query
+     * @return $this
      */
     public function addFrom($from)
     {
@@ -1279,7 +1282,7 @@ abstract class Doctrine_Query_Abstract
 
     /**
      * Alias for @see andWhere().
-     * @return Doctrine_Query   this object
+     * @return $this
      */
     public function addWhere($where, $params = array())
     {
@@ -1294,7 +1297,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param string $where Query WHERE part
      * @param mixed $params An array of parameters or a simple scalar
-     * @return Doctrine_Query
+     * @return $this
      */
     public function andWhere($where, $params = array())
     {
@@ -1319,7 +1322,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param string $where Query WHERE part
      * @param mixed $params An array of parameters or a simple scalar
-     * @return Doctrine_Query
+     * @return $this
      */
     public function orWhere($where, $params = array())
     {
@@ -1342,7 +1345,7 @@ abstract class Doctrine_Query_Abstract
      * @param string $expr          the operand of the IN
      * @param mixed $params         an array of parameters or a simple scalar
      * @param boolean $not          whether or not to use NOT in front of IN
-     * @return Doctrine_Query
+     * @return $this
      */
     public function whereIn($expr, $params = array(), $not = false)
     {
@@ -1358,7 +1361,7 @@ abstract class Doctrine_Query_Abstract
      * @param string $expr      The operand of the IN
      * @param mixed $params     An array of parameters or a simple scalar
      * @param boolean $not      Whether or not to use NOT in front of IN. Defaults to false (simple IN clause)
-     * @return Doctrine_Query   this object.
+     * @return $this
      */
     public function andWhereIn($expr, $params = array(), $not = false)
     {
@@ -1394,7 +1397,7 @@ abstract class Doctrine_Query_Abstract
      * @param string $expr The operand of the IN
      * @param mixed $params An array of parameters or a simple scalar
      * @param boolean $not Whether or not to use NOT in front of IN
-     * @return Doctrine_Query
+     * @return $this
      */
     public function orWhereIn($expr, $params = array(), $not = false)
     {
@@ -1447,7 +1450,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param string $expr          the operand of the NOT IN
      * @param mixed $params         an array of parameters or a simple scalar
-     * @return Doctrine_Query       this object
+     * @return $this
      */
     public function whereNotIn($expr, $params = array())
     {
@@ -1460,7 +1463,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param string $expr The operand of the NOT IN
      * @param mixed $params An array of parameters or a simple scalar
-     * @return Doctrine_Query
+     * @return $this
      */
     public function andWhereNotIn($expr, $params = array())
     {
@@ -1472,7 +1475,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param string $expr The operand of the NOT IN
      * @param mixed $params An array of parameters or a simple scalar
-     * @return Doctrine_Query
+     * @return $this
      */
     public function orWhereNotIn($expr, $params = array())
     {
@@ -1486,7 +1489,7 @@ abstract class Doctrine_Query_Abstract
      * </code>
      *
      * @param string $groupby       Query GROUP BY part
-     * @return Doctrine_Query
+     * @return $this
      */
     public function addGroupBy($groupby)
     {
@@ -1504,7 +1507,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param string $having        Query HAVING part
      * @param mixed $params         an array of parameters or a simple scalar
-     * @return Doctrine_Query
+     * @return $this
      */
     public function addHaving($having, $params = array())
     {
@@ -1521,7 +1524,7 @@ abstract class Doctrine_Query_Abstract
      * adds fields to the ORDER BY part of the query
      *
      * @param string $orderby       Query ORDER BY part
-     * @return Doctrine_Query
+     * @return $this
      */
     public function addOrderBy($orderby)
     {
@@ -1533,7 +1536,7 @@ abstract class Doctrine_Query_Abstract
      * sets the SELECT part of the query
      *
      * @param string $select        Query SELECT part
-     * @return Doctrine_Query
+     * @return $this
      */
     public function select($select = null)
     {
@@ -1553,7 +1556,7 @@ abstract class Doctrine_Query_Abstract
      * </code>
      *
      * @param bool $flag            Whether or not the SELECT is DISTINCT (default true).
-     * @return Doctrine_Query
+     * @return $this
      */
     public function distinct($flag = true)
     {
@@ -1566,7 +1569,7 @@ abstract class Doctrine_Query_Abstract
      * Makes the query SELECT FOR UPDATE.
      *
      * @param bool $flag            Whether or not the SELECT is FOR UPDATE (default true).
-     * @return Doctrine_Query
+     * @return $this
      */
     public function forUpdate($flag = true)
     {
@@ -1578,7 +1581,7 @@ abstract class Doctrine_Query_Abstract
      * delete
      * sets the query type to DELETE
      *
-     * @return Doctrine_Query
+     * @return $this
      */
     public function delete($from = null)
     {
@@ -1594,7 +1597,7 @@ abstract class Doctrine_Query_Abstract
      * sets the UPDATE part of the query
      *
      * @param string $update        Query UPDATE part
-     * @return Doctrine_Query
+     * @return $this
      */
     public function update($from = null)
     {
@@ -1610,7 +1613,7 @@ abstract class Doctrine_Query_Abstract
      * sets the SET part of the query
      *
      * @param string $update        Query UPDATE part
-     * @return Doctrine_Query
+     * @return $this
      */
     public function set($key, $value = null, $params = null)
     {
@@ -1639,8 +1642,9 @@ abstract class Doctrine_Query_Abstract
      * $q->from('User u');
      * </code>
      *
+     * @deprecated use ::fromComponent(string $componentname, string $componentalias)
      * @param string $from          Query FROM part
-     * @return Doctrine_Query
+     * @return $this
      */
     public function from($from)
     {
@@ -1648,11 +1652,23 @@ abstract class Doctrine_Query_Abstract
     }
 
     /**
+     * @template K of T
+     * @param string $componentname The name of the component, subclass of Doctrine_Record
+     * @param string $componentalias The alias to refer to the query component
+     * @phpstan-param class-string<K> $componentname
+     * @phpstan-return static<K>
+     */
+    public function fromComponent(string $componentname, string $componentalias)
+    {
+        return $this->from($componentname . ' ' . $componentalias);
+    }
+
+    /**
      * innerJoin
      * appends an INNER JOIN to the FROM part of the query
      *
      * @param string $join         Query INNER JOIN
-     * @return Doctrine_Query
+     * @return $this
      */
     public function innerJoin($join, $params = array())
     {
@@ -1670,7 +1686,7 @@ abstract class Doctrine_Query_Abstract
      * appends a LEFT JOIN to the FROM part of the query
      *
      * @param string $join         Query LEFT JOIN
-     * @return Doctrine_Query
+     * @return $this
      */
     public function leftJoin($join, $params = array())
     {
@@ -1688,7 +1704,7 @@ abstract class Doctrine_Query_Abstract
      * sets the GROUP BY part of the query
      *
      * @param string $groupby      Query GROUP BY part
-     * @return Doctrine_Query
+     * @return $this
      */
     public function groupBy($groupby)
     {
@@ -1701,7 +1717,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param string $join         Query WHERE part
      * @param mixed $params        an array of parameters or a simple scalar
-     * @return Doctrine_Query
+     * @return $this
      */
     public function where($where, $params = array())
     {
@@ -1722,7 +1738,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param string $having       Query HAVING part
      * @param mixed $params        an array of parameters or a simple scalar
-     * @return Doctrine_Query
+     * @return $this
      */
     public function having($having, $params = array())
     {
@@ -1744,7 +1760,7 @@ abstract class Doctrine_Query_Abstract
      * </code>
      *
      * @param string $orderby      Query ORDER BY part
-     * @return Doctrine_Query
+     * @return $this
      */
     public function orderBy($orderby)
     {
@@ -1756,7 +1772,7 @@ abstract class Doctrine_Query_Abstract
      * sets the Query query limit
      *
      * @param integer $limit        limit to be used for limiting the query results
-     * @return Doctrine_Query
+     * @return $this
      */
     public function limit($limit)
     {
@@ -1768,7 +1784,7 @@ abstract class Doctrine_Query_Abstract
      * sets the Query query offset
      *
      * @param integer $offset       offset to be used for paginating the query
-     * @return Doctrine_Query
+     * @return $this
      */
     public function offset($offset)
     {
@@ -1846,7 +1862,7 @@ abstract class Doctrine_Query_Abstract
      * @param Doctrine_Cache_Interface|bool $driver      cache driver
      * @param integer $timeToLive                        how long the cache entry is valid
      * @param string $resultCacheHash                     The key to use for storing the queries result cache entry
-     * @return Doctrine_Query         this object
+     * @return $this         this object
      */
     public function useResultCache($driver = true, $timeToLive = null, $resultCacheHash = null)
     {
@@ -1892,7 +1908,7 @@ abstract class Doctrine_Query_Abstract
      *
      * @param Doctrine_Cache_Interface|bool $driver      cache driver
      * @param integer $timeToLive                        how long the cache entry is valid
-     * @return Doctrine_Query         this object
+     * @return $this         this object
      */
     public function useQueryCache($driver = true, $timeToLive = null)
     {
@@ -1912,7 +1928,7 @@ abstract class Doctrine_Query_Abstract
      * expireCache
      *
      * @param boolean $expire       whether or not to force cache expiration
-     * @return Doctrine_Query     this object
+     * @return $this     this object
      */
     public function expireResultCache($expire = true)
     {
@@ -1924,7 +1940,7 @@ abstract class Doctrine_Query_Abstract
      * expireQueryCache
      *
      * @param boolean $expire       whether or not to force cache expiration
-     * @return Doctrine_Query     this object
+     * @return $this     this object
      */
     public function expireQueryCache($expire = true)
     {
@@ -1936,7 +1952,7 @@ abstract class Doctrine_Query_Abstract
      * setResultCacheLifeSpan
      *
      * @param integer $timeToLive   how long the cache entry is valid (in seconds)
-     * @return Doctrine_Query     this object
+     * @return $this     this object
      */
     public function setResultCacheLifeSpan($timeToLive)
     {
@@ -1962,7 +1978,7 @@ abstract class Doctrine_Query_Abstract
      * setQueryCacheLifeSpan
      *
      * @param integer $timeToLive   how long the cache entry is valid
-     * @return Doctrine_Query     this object
+     * @return $this     this object
      */
     public function setQueryCacheLifeSpan($timeToLive)
     {
@@ -2072,7 +2088,6 @@ abstract class Doctrine_Query_Abstract
      *
      * @param string $queryPartName     the name of the query part
      * @param array $queryParts         an array containing the query part data
-     * @return Doctrine_Query           this object
      * @todo Better description. "parses given query part" ??? Then wheres the difference
      *       between process/parseQueryPart? I suppose this does something different.
      */
@@ -2134,7 +2149,7 @@ abstract class Doctrine_Query_Abstract
      * parses a dql query
      *
      * @param string $query         query to be parsed
-     * @return Doctrine_Query_Abstract  this object
+     * @return $this
      */
     abstract public function parseDqlQuery($query);
 

@@ -55,6 +55,8 @@
  *              connection-driver specific SQL is generated. The generated SQL parts are
  *              stored in {@link $_sqlParts} and the final resulting SQL query is stored in
  *              {@link $_sql}.
+ *
+ * @template T of Doctrine_Record
  */
 class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
 {
@@ -182,6 +184,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * @param Doctrine_Connection $conn  optional connection parameter
      * @param string $class              Query class to instantiate
      * @return Doctrine_Query
+     * @phpstan-return Doctrine_Query<Doctrine_Record>
      */
     public static function create($conn = null, $class = null)
     {
@@ -223,7 +226,8 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * createSubquery
      * creates a subquery
      *
-     * @return Doctrine_Hydrate
+     * @return Doctrine_Query
+     * @phpstan-return Doctrine_Query<T>
      */
     public function createSubquery()
     {
@@ -244,7 +248,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      *
      * @param string $componentAlias    component alias
      * @param string $joinCondition     dql join condition
-     * @return Doctrine_Query           this object
+     * @return $this           this object
      */
     public function addPendingJoinCondition($componentAlias, $joinCondition)
     {
@@ -253,6 +257,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
         }
 
         $this->_pendingJoinConditions[$componentAlias][] = $joinCondition;
+        return $this;
     }
 
     /**
@@ -260,7 +265,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * Convenience method to execute using array fetching as hydration mode.
      *
      * @param string $params
-     * @return array[]
+     * @return array<array<string,mixed>>
      */
     public function fetchArray($params = array())
     {
@@ -268,8 +273,9 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     }
 
     /**
-     * @param array $params
+     * @param mixed[] $params
      * @return \Doctrine_Collection
+     * @phpstan-return \Doctrine_Collection<T>
      */
     public function fetchRecords($params = array())
     {
@@ -277,8 +283,9 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     }
 
     /**
-     * @param array $params
+     * @param mixed[] $params
      * @return \Doctrine_Collection_OnDemand
+     * @phpstan-return \Doctrine_Collection_OnDemand<T>
      */
     public function fetchOnDemand($params = array())
     {
@@ -291,7 +298,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * of the collection.
      * @deprecated
      *
-     * @param string $params        Query parameters
+     * @param mixed[] $params        Query parameters
      * @param int $hydrationMode    Hydration mode: see Doctrine_Core::HYDRATE_* constants
      * @return mixed                Array or Doctrine_Collection, depending on hydration mode. False if no result.
      */
@@ -317,8 +324,9 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     }
 
     /**
-     * @param array $params query parameters
+     * @param mixed[] $params query parameters
      * @return Doctrine_Record|null
+     * @phpstan-return T|null
      */
     public function fetchOneRecord($params = array())
     {
@@ -330,8 +338,8 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     }
 
     /**
-     * @param array $params
-     * @return null|array
+     * @param mixed[] $params
+     * @return null|array<string,mixed>
      */
     public function fetchOneArray($params = array())
     {
@@ -353,7 +361,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * value of Doctrine_Query::$isSubquery.
      *
      * @param boolean $bool     whether or not this query acts as a subquery
-     * @return Doctrine_Query|bool
+     * @return $this|bool
      */
     public function isSubquery($bool = null)
     {
@@ -1163,7 +1171,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * handling.
      *
      * @param string $alias Component Alias
-     * @return Processed pending conditions
+     * @return string Processed pending conditions
      */
     protected function _processPendingJoinConditions($alias)
     {
@@ -1187,7 +1195,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * builds the sql query from the given parameters and applies things such as
      * column aggregation inheritance and limit subqueries if needed
      *
-     * @param array $params             an array of prepared statement params (needed only in mysql driver
+     * @param mixed[] $params             an array of prepared statement params (needed only in mysql driver
      *                                  when limit subquery algorithm is used)
      * @param bool $limitSubquery Whether or not to try and apply the limit subquery algorithm
      * @return string                   the built sql query
@@ -1213,7 +1221,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * Build the SQL query from the DQL
      *
      * @param bool $limitSubquery Whether or not to try and apply the limit subquery algorithm
-     * @return string $sql The generated SQL string
+     * @return string|false $sql The generated SQL string
      */
     public function buildSqlQuery($limitSubquery = true)
     {
@@ -1635,7 +1643,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * @param string $query                 DQL query
      * @param boolean $clear                whether or not to clear the aliases
      * @throws Doctrine_Query_Exception     if some generic parsing error occurs
-     * @return Doctrine_Query
+     * @return $this
      */
     public function parseDqlQuery($query, $clear = true)
     {
@@ -1962,7 +1970,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      *
      * @param string $name
      * @param string $componentAlias
-     * @return Doctrine_Table
+     * @return Doctrine_Table<T>
      * @todo DESCRIBE ME!
      * @todo this method is called only in Doctrine_Query class. Shouldn't be private or protected?
      */
@@ -2140,7 +2148,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      *          LEFT JOIN u.Phonenumber p
      *          WHERE p.phonenumber = '123 123'
      *
-     * @param array $params        an array of prepared statement parameters
+     * @param mixed[] $params        an array of prepared statement parameters
      * @return integer             the count of this query
      */
     public function count($params = array())
@@ -2186,7 +2194,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * This methods parses a Dql query and builds the query parts.
      *
      * @param string $query      Dql query
-     * @param array $params      prepared statement parameters
+     * @param mixed[] $params      prepared statement parameters
      * @param int $hydrationMode Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
      * @see Doctrine_Core::FETCH_* constants
      * @return mixed
@@ -2201,6 +2209,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * Copies a Doctrine_Query object.
      *
      * @return Doctrine_Query  Copy of the Doctrine_Query instance.
+     * @phpstan-return Doctrine_Query<T>
      */
     public function copy(Doctrine_Query $query = null)
     {
@@ -2254,6 +2263,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * a lot of query objects during a request.
      *
      * @return Doctrine_Query   this object
+     * @phpstan-return Doctrine_Query<Doctrine_Record>
      */
     public function free()
     {
