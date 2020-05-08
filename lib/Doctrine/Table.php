@@ -1035,7 +1035,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * </code>
      *
      * @param string $alias     name for component aliasing
-     * @return Doctrine_Query
+     * @return Doctrine_Query<T>
      */
     public function createQuery($alias = '')
     {
@@ -1046,7 +1046,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
         $class = $this->getAttribute(Doctrine_Core::ATTR_QUERY_CLASS);
 
         return Doctrine_Query::create(null, $class)
-            ->from($this->getComponentName() . $alias);
+            ->fromComponent($this->getComponentName(), $alias);
     }
 
     /**
@@ -1548,6 +1548,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @see createNamedQuery()
      * @param string $queryKey                       query key name to use for storage
      * @param string|Doctrine_Query $query    DQL string or object
+     * @phpstan-param string|Doctrine_Query<T> $query
      * @return void
      */
     public function addNamedQuery($queryKey, $query)
@@ -1564,6 +1565,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @see addNamedQuery()
      * @param string $queryKey  query key name
      * @return Doctrine_Query
+     * @phpstan-return Doctrine_Query<T>
      */
     public function createNamedQuery($queryKey)
     {
@@ -1705,8 +1707,8 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @param string $fieldName            field for the WHERE clause
      * @param string $value             prepared statement parameter
      * @param int $hydrationMode        Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
-     * @return Doctrine_Collection|array<string,mixed>[]
-     * @phpstan-return Doctrine_Collection<T>|array<string,mixed>[]
+     * @return Doctrine_Collection|Doctrine_Collection_OnDemand|array<string,mixed>[]
+     * @phpstan-return Doctrine_Collection<T>|Doctrine_Collection_OnDemand<T>|array<string,mixed>[]
      */
     public function findBy($fieldName, $value, $hydrationMode = null)
     {
@@ -1719,10 +1721,10 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * Finds the first record that satisfy the clause.
      *
      * @param string $fieldName            field for the WHERE clause
-     * @param string $value             prepared statement parameter
+     * @param scalar $value             prepared statement parameter
      * @param int $hydrationMode        Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
-     * @return Doctrine_Record|false
-     * @phpstan-return T|false
+     * @return Doctrine_Record|array<string,mixed>|false
+     * @phpstan-return T|array<string,mixed>|false
      */
     public function findOneBy($fieldName, $value, $hydrationMode = null)
     {
@@ -1742,8 +1744,8 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @param mixed[] $params         prepared statement params (if any)
      * @param int $hydrationMode    Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
      * @throws Doctrine_Query_Registry_Exception if no query for given queryKey is found
-     * @return Doctrine_Collection<T>|array<string,mixed>
-     * @psalm-return \Doctrine_Collection<T>|array<string,mixed>
+     * @return Doctrine_Collection<T>|array<string,mixed>[]
+     * @psalm-return \Doctrine_Collection<T>|array<string,mixed>[]
      */
     public function execute($queryKey, $params = array(), $hydrationMode = Doctrine_Core::HYDRATE_RECORD)
     {
@@ -1983,7 +1985,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
     }
 
     /**
-     * @return Doctrine_Query  a Doctrine_Query object
+     * @return Doctrine_Query<T>  a Doctrine_Query object
      */
     public function getQueryObject()
     {

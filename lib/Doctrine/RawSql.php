@@ -35,6 +35,8 @@
  * @since       1.0
  * @version     $Revision: 7490 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
+ *
+ * @template T of Doctrine_Record
  */
 class Doctrine_RawSql extends Doctrine_Query_Abstract
 {
@@ -46,8 +48,8 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
     /**
      * Constructor.
      *
-     * @param Doctrine_Connection  The connection object the query will use.
-     * @param Doctrine_Hydrator_Abstract  The hydrator that will be used for generating result sets.
+     * @param Doctrine_Connection $connection The connection object the query will use.
+     * @param Doctrine_Hydrator_Abstract $hydrator The hydrator that will be used for generating result sets.
      */
     function __construct(Doctrine_Connection $connection = null, Doctrine_Hydrator_Abstract $hydrator = null) {
         parent::__construct($connection, $hydrator);
@@ -76,7 +78,7 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
      * @param boolean $append           whether or not to append the query part to its stack
      *                                  if false is given, this method will overwrite
      *                                  the given query part stack with $queryPart
-     * @return Doctrine_Query           this object
+     * @return $this
      */
  	public function parseDqlQueryPart($queryPartName, $queryPart, $append = false)
     {
@@ -125,7 +127,7 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
      * as SQL parts right away.
      *
      * @param string $query     query to be parsed
-     * @return Doctrine_RawSql  this object
+     * @return $this
      */
     public function parseDqlQuery($query)
     {
@@ -378,7 +380,7 @@ class Doctrine_RawSql extends Doctrine_Query_Abstract
      *
      * @param string $tableAlias
      * @param string $componentName
-     * @return Doctrine_RawSql
+     * @return $this
      */
     public function addComponent($tableAlias, $path)
     {
