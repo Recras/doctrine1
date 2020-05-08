@@ -264,7 +264,7 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
      * fetchArray
      * Convenience method to execute using array fetching as hydration mode.
      *
-     * @param string $params
+     * @param mixed[] $params
      * @return array<array<string,mixed>>
      */
     public function fetchArray($params = array())
@@ -2270,5 +2270,17 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
         $this->reset();
         $this->_parsers = array();
         $this->_dqlParts = array();
+    }
+
+    /**
+     * @template K of T
+     * @param string $componentname The name of the component, subclass of Doctrine_Record
+     * @param string $componentalias The alias to refer to the query component
+     * @phpstan-param class-string<K> $componentname
+     * @phpstan-return static<K>
+     */
+    public function fromComponent(string $componentname, string $componentalias)
+    {
+        return $this->from($componentname . ' ' . $componentalias);
     }
 }

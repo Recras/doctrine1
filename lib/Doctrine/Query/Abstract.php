@@ -1652,18 +1652,6 @@ abstract class Doctrine_Query_Abstract
     }
 
     /**
-     * @template K of T
-     * @param string $componentname The name of the component, subclass of Doctrine_Record
-     * @param string $componentalias The alias to refer to the query component
-     * @phpstan-param class-string<K> $componentname
-     * @phpstan-return static<K>
-     */
-    public function fromComponent(string $componentname, string $componentalias)
-    {
-        return $this->from($componentname . ' ' . $componentalias);
-    }
-
-    /**
      * innerJoin
      * appends an INNER JOIN to the FROM part of the query
      *
