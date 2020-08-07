@@ -1620,9 +1620,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     public function contains($fieldName)
     {
         if (array_key_exists($fieldName, $this->_data)) {
-            // this also returns true if the field is a Doctrine_Null.
-            // imho this is not correct behavior.
-            return true;
+            return isset($this->_data[$fieldName]) && !$this->_data[$fieldName] instanceof \Doctrine_Null;
         }
         if (isset($this->_id[$fieldName])) {
             return true;
