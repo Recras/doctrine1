@@ -119,6 +119,15 @@ class Doctrine_Record_TestCase extends Doctrine_UnitTestCase
         $this->assertTrue($user->contains('id'));
     }
 
+    public function testIssetNullData()
+    {
+        $user = new User();
+        $user->name = null;
+        $this->assertFalse(isset($user->name));
+        $user->name = new \Doctrine_Null();
+        $this->assertFalse(isset($user->name));
+    }
+
     public function testNotNullConstraint()
     {
         $null = new NotNullTest();
