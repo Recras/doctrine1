@@ -55,11 +55,6 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
     protected $_currIndex     = 0;
 
     /**
-     * @var Doctrine_Query_Registry     the query registry
-     */
-    protected $_queryRegistry;
-
-    /**
      * @var array                       Array of registered validators
      */
     protected $_validators = array();
@@ -203,7 +198,6 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
             $conn->close();
         }
         $this->_connections = array();
-        $this->_queryRegistry = null;
         $this->_extensions = array();
         $this->_bound = array();
         $this->_validators = array();
@@ -211,31 +205,6 @@ class Doctrine_Manager extends Doctrine_Configurable implements Countable, Itera
         $this->_index = 0;
         $this->_currIndex = 0;
         $this->_initialized = false;
-    }
-
-    /**
-     * Lazy-initializes the query registry object and returns it
-     *
-     * @return Doctrine_Query_Registry
-     */
-    public function getQueryRegistry()
-    {
-      	if ( ! isset($this->_queryRegistry)) {
-      	   $this->_queryRegistry = new Doctrine_Query_Registry();
-      	}
-        return $this->_queryRegistry;
-    }
-
-    /**
-     * Sets the query registry
-     *
-     * @return Doctrine_Manager     this object
-     */
-    public function setQueryRegistry(Doctrine_Query_Registry $registry)
-    {
-        $this->_queryRegistry = $registry;
-        
-        return $this;
     }
 
     /**

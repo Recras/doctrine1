@@ -267,9 +267,6 @@ requiring needless code duplication.</description>
        <file name="Chain.php" role="php" />
        <file name="Interface.php" role="php" />
       </dir> <!-- /lib/Doctrine/Query/Filter -->
-      <dir name="Registry">
-       <file name="Exception.php" role="php" />
-      </dir> <!-- /lib/Doctrine/Query/Registry -->
       <dir name="Tokenizer">
        <file name="Exception.php" role="php" />
       </dir> <!-- /lib/Doctrine/Query/Tokenizer -->
@@ -288,7 +285,6 @@ requiring needless code duplication.</description>
       <file name="Orderby.php" role="php" />
       <file name="Parser.php" role="php" />
       <file name="Part.php" role="php" />
-      <file name="Registry.php" role="php" />
       <file name="Select.php" role="php" />
       <file name="Set.php" role="php" />
       <file name="Tokenizer.php" role="php" />
@@ -890,7 +886,6 @@ requiring needless code duplication.</description>
      <file name="OrderbyTestCase.php" role="test" />
      <file name="PgsqlSubqueryTestCase.php" role="test" />
      <file name="ReferenceModelTestCase.php" role="test" />
-     <file name="RegistryTestCase.php" role="test" />
      <file name="RemoveQueryPartTestCase.php" role="test" />
      <file name="SelectExpressionTestCase.php" role="test" />
      <file name="SelectTestCase.php" role="test" />
@@ -943,7 +938,6 @@ requiring needless code duplication.</description>
      <file name="SqliteTestCase.php" role="test" />
     </dir> <!-- /tests/Sequence -->
     <dir name="Table">
-     <file name="NamedQueryTestCase.php" role="test" />
      <file name="RemoveColumnTestCase.php" role="test" />
     </dir> <!-- /tests/Table -->
     <dir name="TaskTestCase">
