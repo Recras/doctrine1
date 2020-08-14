@@ -1542,97 +1542,24 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
     }
 
     /**
-     * Adds a named query in the query registry.
-     *
-     * This methods register a query object with a name to use in the future.
-     * @see createNamedQuery()
-     * @param string $queryKey                       query key name to use for storage
-     * @param string|Doctrine_Query $query    DQL string or object
-     * @phpstan-param string|Doctrine_Query<T> $query
-     * @return void
-     */
-    public function addNamedQuery($queryKey, $query)
-    {
-        $registry = Doctrine_Manager::getInstance()->getQueryRegistry();
-        $registry->add($this->getComponentName() . '/' . $queryKey, $query);
-    }
-
-    /**
-     * Creates a named query from one in the query registry.
-     *
-     * This method clones a new query object from a previously registered one.
-     *
-     * @see addNamedQuery()
-     * @param string $queryKey  query key name
-     * @return Doctrine_Query
-     * @phpstan-return Doctrine_Query<T>
-     */
-    public function createNamedQuery($queryKey)
-    {
-        $queryRegistry = Doctrine_Manager::getInstance()->getQueryRegistry();
-
-        if (strpos($queryKey, '/') !== false) {
-            $e = explode('/', $queryKey);
-
-            return $queryRegistry->get($e[1], $e[0]);
-        }
-
-        return $queryRegistry->get($queryKey, $this->getComponentName());
-    }
-
-    /**
      * Finds a record by its identifier.
      *
      * <code>
      * $table->find(11);
      * $table->find(11, Doctrine_Core::HYDRATE_RECORD);
-     * $table->find('namedQueryForYearArchive', array(2009), Doctrine_Core::HYDRATE_ARRAY);
      * </code>
      *
-     * @param mixed $name         Database Row ID or Query Name defined previously as a NamedQuery
-     * @param mixed $params       This argument is the hydration mode (Doctrine_Core::HYDRATE_ARRAY or
+     * @param mixed $name         Database Row ID
+     * @param int $hydrationMode  This argument is the hydration mode (Doctrine_Core::HYDRATE_ARRAY or
      *                            Doctrine_Core::HYDRATE_RECORD) if first param is a Database Row ID.
-     *                            Otherwise this argument expect an array of query params.
-     * @param int $hydrationMode  Optional Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD if
-     *                            first argument is a NamedQuery
      * @return mixed              Doctrine_Collection, array, Doctrine_Record or false if no result
      */
-    public function find()
+    public function find($name, $hydrationMode = null)
     {
-        $num_args = func_num_args();
-
-        // Named Query or IDs
-        $name = func_get_arg(0);
-
         if (is_null($name)) {
             return false;
         }
 
-        $ns = $this->getComponentName();
-        $m = $name;
-
-        // Check for possible cross-access
-        if ( ! is_array($name) && strpos($name, '/') !== false) {
-            list($ns, $m) = explode('/', $name);
-        }
-
-        // Define query to be used
-        if (
-            ! is_array($name) &&
-            Doctrine_Manager::getInstance()->getQueryRegistry()->has($m, $ns)
-        ) {
-            // We're dealing with a named query
-            $q = $this->createNamedQuery($name);
-
-            // Parameters construction
-            $params = ($num_args >= 2) ? func_get_arg(1) : array();
-
-            // Hydration mode
-            $hydrationMode = ($num_args == 3) ? func_get_arg(2) : null;
-
-            // Executing query
-            $res = $q->execute($params, $hydrationMode);
-        } else {
             // We're passing a single ID or an array of IDs
             $q = $this->createQuery('dctrn_find')
                 ->where('dctrn_find.' . implode(' = ? AND dctrn_find.', (array) $this->getIdentifier()) . ' = ?')
@@ -1641,12 +1568,8 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
             // Parameters construction
             $params = is_array($name) ? array_values($name) : array($name);
 
-            // Hydration mode
-            $hydrationMode = ($num_args == 2) ? func_get_arg(1) : null;
-
             // Executing query
             $res = $q->fetchOne($params, $hydrationMode);
-        }
 
         $q->free();
 
@@ -1823,42 +1746,6 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
             ->where($this->buildFindByWhere($fieldName), (array) $value)
             ->limit(1)
             ->fetchOneRecord([]);
-    }
-
-    /**
-     * Finds result of a named query.
-     *
-     * This method fetches data using the provided $queryKey to choose a named
-     * query in the query registry.
-     *
-     * @param string $queryKey      the query key
-     * @param mixed[] $params         prepared statement params (if any)
-     * @param int $hydrationMode    Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
-     * @throws Doctrine_Query_Registry_Exception if no query for given queryKey is found
-     * @return Doctrine_Collection<T>|array<string,mixed>[]
-     * @psalm-return \Doctrine_Collection<T>|array<string,mixed>[]
-     */
-    public function execute($queryKey, $params = array(), $hydrationMode = Doctrine_Core::HYDRATE_RECORD)
-    {
-        return $this->createNamedQuery($queryKey)->execute($params, $hydrationMode);
-    }
-
-    /**
-     * Fetches one record with a named query.
-     *
-     * This method uses the provided $queryKey to clone and execute
-     * the associated named query in the query registry.
-     *
-     * @param string $queryKey      the query key
-     * @param mixed[] $params         prepared statement params (if any)
-     * @param int $hydrationMode    Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
-     * @throws Doctrine_Query_Registry_Exception if no query for given queryKey is found
-     * @return Doctrine_Record|array<string,mixed>
-     * @phpstan-return T|array<string,mixed>
-     */
-    public function executeOne($queryKey, $params = array(), $hydrationMode = Doctrine_Core::HYDRATE_RECORD)
-    {
-        return $this->createNamedQuery($queryKey)->fetchOne($params, $hydrationMode);
     }
 
     /**
