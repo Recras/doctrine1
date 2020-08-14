@@ -1656,7 +1656,9 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
     /**
      * Retrieves all the records stored in this table.
      *
-     * @param int $hydrationMode        Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
+     * @deprecated Use ::findAllArrays(), or ::findAllRecords()
+     *
+     * @param Doctrine_Core::HYDRATE_ARRAY|Doctrine_Core::HYDRATE_RECORD $hydrationMode        Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
      * @return Doctrine_Collection|array<string,mixed>[]
      * @phpstan-return Doctrine_Collection<T>|array<string,mixed>[]
      */
@@ -1664,6 +1666,22 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
     {
         return $this->createQuery('dctrn_find')
             ->execute(array(), $hydrationMode);
+    }
+
+    /**
+     * @return array<string, mixed>[]
+     */
+    public function findAllArrays()
+    {
+        return $this->createQuery('dctrn_find')->fetchArray();
+    }
+    /**
+     * @return Doctrine_Collection
+     * @phpstan-return \Doctrine_Collection<T>
+     */
+    public function findAllRecords()
+    {
+        return $this->createQuery('dctrn_find')->fetchRecords();
     }
 
     /**
@@ -1689,7 +1707,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * @param string $dql               DQL WHERE clause
      * @param mixed[] $params             preparated statement parameters
-     * @param int $hydrationMode        Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
+     * @param Doctrine_Core::HYDRATE_ARRAY|Doctrine_Core::HYDRATE_RECORD|Doctrine_Core::HYDRATE_ON_DEMAND $hydrationMode        Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
      * @return Doctrine_Collection|array<string,mixed>[]
      * @phpstan-return Doctrine_Collection<T>|array<string,mixed>[]
      */
@@ -1704,9 +1722,11 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
     /**
      * Find records basing on a field.
      *
+     * @deprecated Use ::findArraysBy(), ::findOnDemandBy(), or ::findRecordsBy()
+     *
      * @param string $fieldName            field for the WHERE clause
      * @param string $value             prepared statement parameter
-     * @param int $hydrationMode        Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
+     * @param Doctrine_Core::HYDRATE_ARRAY|Doctrine_Core::HYDRATE_RECORD|Doctrine_Core::HYDRATE_ON_DEMAND $hydrationMode        Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
      * @return Doctrine_Collection|Doctrine_Collection_OnDemand|array<string,mixed>[]
      * @phpstan-return Doctrine_Collection<T>|Doctrine_Collection_OnDemand<T>|array<string,mixed>[]
      */
@@ -1718,11 +1738,51 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
     }
 
     /**
+     * @param string $fieldName
+     * @param mixed $value
+     * @return array<string, mixed>[]
+     */
+    public function findArraysBy(string $fieldName, $value)
+    {
+        return $this->createQuery('dctrn_find')
+            ->where($this->buildFindByWhere($fieldName), (array) $value)
+            ->fetchArray([]);
+    }
+
+    /**
+     * @param string $fieldName
+     * @param mixed $value
+     * @return Doctrine_Collection_OnDemand
+     * @phpstan-return Doctrine_Collection_OnDemand<T>
+     */
+    public function findOnDemandBy(string $fieldName, $value)
+    {
+        return $this->createQuery('dctrn_find')
+            ->where($this->buildFindByWhere($fieldName), (array) $value)
+            ->fetchOnDemand([]);
+    }
+
+    /**
+     * @param string $fieldName
+     * @param mixed $value
+     * @return Doctrine_Collection
+     * @phpstan-return Doctrine_Collection<T>
+     */
+    public function findRecordsBy(string $fieldName, $value)
+    {
+        return $this->createQuery('dctrn_find')
+            ->where($this->buildFindByWhere($fieldName), (array) $value)
+            ->fetchRecords([]);
+    }
+
+    /**
      * Finds the first record that satisfy the clause.
+     *
+     * @deprecated Use ::findOneRecordBy($fieldName, $value) instead
      *
      * @param string $fieldName            field for the WHERE clause
      * @param scalar $value             prepared statement parameter
-     * @param int $hydrationMode        Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
+     * @param Doctrine_Core::HYDRATE_ARRAY|Doctrine_Core::HYDRATE_RECORD $hydrationMode        Doctrine_Core::HYDRATE_ARRAY or Doctrine_Core::HYDRATE_RECORD
      * @return Doctrine_Record|array<string,mixed>|false
      * @phpstan-return T|array<string,mixed>|false
      */
@@ -1732,6 +1792,37 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
             ->where($this->buildFindByWhere($fieldName), (array) $value)
             ->limit(1)
             ->fetchOne(array(), $hydrationMode);
+    }
+
+    /**
+     * Find an array-hydrated record matching $fieldName
+     *
+     * @param string $fieldName
+     * @param scalar $value
+     * @return null|array<string, mixed>
+     */
+    public function findOneArrayBy(string $fieldName, $value)
+    {
+        return $this->createQuery('dctrn_find')
+            ->where($this->buildFindByWhere($fieldName), (array) $value)
+            ->limit(1)
+            ->fetchOneArray([]);
+    }
+
+    /**
+     * Find a record matching the $fieldName
+     *
+     * @param string $fieldName
+     * @param scalar $value
+     * @return Doctrine_Record|null
+     * @phpstan-return T|null
+     */
+    public function findOneRecordBy(string $fieldName, $value)
+    {
+        return $this->createQuery('dctrn_find')
+            ->where($this->buildFindByWhere($fieldName), (array) $value)
+            ->limit(1)
+            ->fetchOneRecord([]);
     }
 
     /**
