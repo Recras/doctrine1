@@ -1005,6 +1005,25 @@ class Doctrine_Import_Builder extends Doctrine_Builder
     }
 
     /**
+     * @return string Source text for improved Sentry-output
+     */
+    public function buildToSentry()
+    {
+        return <<<PHP
+
+
+    public function toSentry(): ?array
+    {
+      \$a = \$this->toArray(false);
+      if (is_array(\$a)) {
+        return \$a;
+      }
+      return null;
+    }
+PHP;
+    }
+
+    /**
      * buildToString
      *
      * @param array $definition
@@ -1054,6 +1073,11 @@ class Doctrine_Import_Builder extends Doctrine_Builder
 
         $setUpCode.= $this->buildToString($definition);
         
+        if (interface_exists('Sentry\Serializer\SerializableInterface')) {
+            $extends .= ' implements \Sentry\Serializer\SerializableInterface';
+            $setUpCode .= $this->buildToSentry();
+        }
+
         $docs = PHP_EOL . $this->buildPhpDocs($definition);
 
         $content = sprintf(self::$_tpl, $docs, $abstract,
