@@ -261,6 +261,18 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     }
 
     /**
+     * @param mixed[] $params
+     * @return mixed
+     */
+    public function executeUpdateDelete($params = array())
+    {
+        if ($this->_type !== self::UPDATE && $this->_type !== self::DELETE) {
+            throw new \Doctrine_Query_Exception('Not an UPDATE or DELETE query');
+        }
+        return $this->execute($params);
+    }
+
+    /**
      * fetchArray
      * Convenience method to execute using array fetching as hydration mode.
      *
@@ -290,6 +302,40 @@ class Doctrine_Query extends Doctrine_Query_Abstract implements Countable
     public function fetchOnDemand($params = array())
     {
         return $this->execute($params, \Doctrine_Core::HYDRATE_ON_DEMAND);
+    }
+
+    /**
+     * @param mixed[] $params
+     * @return array<int,array<string,scalar|null>>
+     */
+    public function fetchScalar($params = array())
+    {
+        return $this->execute($params, \Doctrine_Core::HYDRATE_SCALAR);
+    }
+
+    /**
+     * @param mixed[] $params
+     * @return scalar|null
+     */
+    public function fetchSingleScalar($params = array())
+    {
+        $result = $this->fetchSingleScalarArray($params);
+        if (count($result) === 0) {
+            return null;
+        }
+        return $result[0];
+    }
+
+    /**
+     * @param mixed[] $params
+     * @return array<int,scalar>
+     */
+    public function fetchSingleScalarArray($params = array())
+    {
+        if (count($this->_dqlParts['select']) !== 1) {
+            throw new \Doctrine_Query_Exception('Can only select 1 column');
+        }
+        return (array) $this->execute($params, \Doctrine_Core::HYDRATE_SINGLE_SCALAR);
     }
 
     /**
