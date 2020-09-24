@@ -990,7 +990,7 @@ abstract class Doctrine_Query_Abstract
     /**
      * execute
      * executes the query and populates the data set
-     * @deprecated use ::fetchRecords(), ::fetchArray(), ::fetchOnDemand(), ::fetchOneRecord(), ::fetchOneArray()
+     * @deprecated use ::executeUpdateDelete(), ::fetchRecords(), ::fetchArray(), ::fetchOnDemand(), ::fetchOneRecord(), ::fetchOneArray(), ::fetchScalar(), ::fetchSingleScalar(), ::fetchSingleScalarArray()
      *
      * @param array $params
      * @return mixed            the root collection
