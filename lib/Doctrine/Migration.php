@@ -234,8 +234,6 @@ class Doctrine_Migration
      */
     public function getCurrentVersion()
     {
-        $this->_createMigrationTable();
-
         $result = $this->_connection->fetchColumn("SELECT version FROM " . $this->_migrationTableName);
 
         return isset($result[0]) ? $result[0]:0;
@@ -248,8 +246,6 @@ class Doctrine_Migration
      */
     public function hasMigrated()
     {
-        $this->_createMigrationTable();
-
         $result = $this->_connection->fetchColumn("SELECT version FROM " . $this->_migrationTableName);
 
         return isset($result[0]) ? true:false;
@@ -308,8 +304,6 @@ class Doctrine_Migration
     public function migrate($to = null, $dryRun = false)
     {
         $this->clearErrors();
-
-        $this->_createMigrationTable();
 
         $this->_connection->beginTransaction();
 
@@ -524,30 +518,6 @@ class Doctrine_Migration
             $migration->$method();
         } catch (Exception $e) {
             $this->addError($e);
-        }
-    }
-
-    /**
-     * Create the migration table and return true. If it already exists it will
-     * silence the exception and return false
-     *
-     * @return boolean $created Whether or not the table was created. Exceptions
-     *                          are silenced when table already exists
-     */
-    protected function _createMigrationTable()
-    {
-        if ($this->_migrationTableCreated) {
-            return true;
-        }
-
-        $this->_migrationTableCreated = true;
-
-        try {
-            $this->_connection->export->createTable($this->_migrationTableName, array('version' => array('type' => 'integer', 'size' => 11)));
-
-            return true;
-        } catch(Exception $e) {
-            return false;
         }
     }
 }
