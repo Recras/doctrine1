@@ -884,6 +884,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
         if (isset($definition['fields'])) {
             foreach ((array) $definition['fields'] as $key => $field) {
                 if (is_numeric($key)) {
+                    $definition['fields'] = (array) $definition['fields'];
                     $definition['fields'][$key] = $this->getColumnName($field);
                 } else {
                     $columnName = $this->getColumnName($key);
