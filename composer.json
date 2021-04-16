@@ -12,7 +12,8 @@
     ],
     "require": {
         "php": ">=7",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "symfony/yaml": "^5.2"
     },
     "conflict": {
         "drak/doctrine1": "*"
@@ -20,7 +21,6 @@
     "autoload": {
         "psr-0": { "Doctrine_": "lib/" },
         "classmap": [
-            "lib/Doctrine/Parser/sfYaml/",
             "lib/"
         ]
     },
