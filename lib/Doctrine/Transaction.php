@@ -403,7 +403,9 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
      */
     protected function _doRollback()
     {
-        $this->conn->getDbh()->rollback();
+        if($this->conn->getDbh()->inTransaction()) {
+            $this->conn->getDbh()->rollback();
+        }
     }
     
     /**
@@ -411,7 +413,9 @@ class Doctrine_Transaction extends Doctrine_Connection_Module
      */
     protected function _doCommit()
     {
-        $this->conn->getDbh()->commit();
+        if($this->conn->getDbh()->inTransaction()) {
+            $this->conn->getDbh()->commit();
+        }
     }
     
     /**
