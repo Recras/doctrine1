@@ -34,7 +34,7 @@
  * @phpstan-template T of \Doctrine_Record
  * @phpstan-implements \IteratorAggregate<T>
  */
-class Doctrine_Collection extends Doctrine_Access implements Countable, IteratorAggregate, Serializable
+class Doctrine_Collection extends Doctrine_Access implements Countable, IteratorAggregate
 {
     /**
      * @var \Doctrine_Record[] $data                     an array containing the records of this collection
@@ -169,7 +169,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      *
      * @return string
      */
-    public function serialize()
+    public function __serialize()
     {
         $vars = get_object_vars($this);
 
@@ -191,7 +191,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * @param string $serialized
      * @return void
      */
-    public function unserialize($serialized)
+    public function __unserialize($serialized)
     {
         $manager    = Doctrine_Manager::getInstance();
         $connection    = $manager->getCurrentConnection();

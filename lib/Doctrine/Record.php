@@ -31,7 +31,7 @@
  * @since       1.0
  * @version     $Revision: 7673 $
  */
-abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Countable, IteratorAggregate, Serializable
+abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Countable, IteratorAggregate
 {
     /**
      * STATE CONSTANTS
@@ -790,7 +790,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      *
      * @return string
      */
-    public function serialize()
+    public function __serialize()
     {
         $event = new Doctrine_Event($this, Doctrine_Event::RECORD_SERIALIZE);
 
@@ -847,7 +847,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * @param string $serialized                Doctrine_Record as serialized string
      * @throws Doctrine_Record_Exception        if the cleanData operation fails somehow
      */
-    public function unserialize($serialized)
+    public function __unserialize($serialized)
     {
         $event = new Doctrine_Event($this, Doctrine_Event::RECORD_UNSERIALIZE);
         

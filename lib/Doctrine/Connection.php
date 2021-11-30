@@ -53,7 +53,7 @@
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  * @author      Lukas Smith <smith@pooteeweet.org> (MDB2 library)
  */
-abstract class Doctrine_Connection extends Doctrine_Configurable implements Countable, IteratorAggregate, Serializable
+abstract class Doctrine_Connection extends Doctrine_Configurable implements Countable, IteratorAggregate
 {
     /**
      * @var $dbh                                the database handler
@@ -1544,7 +1544,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * @return string $serialized
      */
-    public function serialize()
+    public function __serialize()
     {
         $vars = get_object_vars($this);
         $vars['dbh'] = null;
@@ -1557,7 +1557,7 @@ abstract class Doctrine_Connection extends Doctrine_Configurable implements Coun
      *
      * @param string $serialized
      */
-    public function unserialize($serialized)
+    public function __unserialize($serialized)
     {
         $array = unserialize($serialized);
 
