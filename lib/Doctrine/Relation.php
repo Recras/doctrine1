@@ -174,7 +174,7 @@ abstract class Doctrine_Relation implements ArrayAccess
         return isset($this->definition[$offset]);
     }
 
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         if (isset($this->definition[$offset])) {
             return $this->definition[$offset];
@@ -183,7 +183,7 @@ abstract class Doctrine_Relation implements ArrayAccess
         return null;
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (isset($this->definition[$offset])) {
             $this->definition[$offset] = $value;
