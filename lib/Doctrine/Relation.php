@@ -190,7 +190,7 @@ abstract class Doctrine_Relation implements ArrayAccess
         }
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): mixed
     {
         $this->definition[$offset] = false;
     }

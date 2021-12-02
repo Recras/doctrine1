@@ -1850,7 +1850,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      *
      * @return integer          the number of columns in this record
      */
-    public function count()
+    public function count(): int
     {
         return count($this->_data);
     }

@@ -144,7 +144,7 @@ class Doctrine_Connection_Profiler implements Doctrine_Overloadable, IteratorAgg
      * 
      * @return integer
      */
-    public function count() 
+    public function count(): int
     {
         return count($this->events);
     }

@@ -450,7 +450,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      *
      * @return integer
      */
-    public function count()
+    public function count(): int
     {
         return count($this->data);
     }

@@ -143,7 +143,7 @@ abstract class Doctrine_Access extends Doctrine_Locator_Injectable implements Ar
      * @see   set, offsetSet, __set
      * @param mixed $offset
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): mixed
     {
         return $this->remove($offset);
     }

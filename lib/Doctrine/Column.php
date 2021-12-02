@@ -145,7 +145,7 @@ class Doctrine_Column extends Doctrine_Access implements IteratorAggregate, Coun
      *
      * @return integer
      */
-    public function count()
+    public function count(): int
     {
         return count($this->_definition);
     }
