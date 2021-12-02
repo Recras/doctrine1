@@ -1084,6 +1084,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * @return \ArrayIterator<mixed,\Doctrine_Record>
      * @phpstan-return \ArrayIterator<mixed,T>
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         $data = $this->data;

@@ -110,7 +110,7 @@ abstract class Doctrine_Access extends Doctrine_Locator_Injectable implements Ar
      * @param   mixed $offset
      * @return  mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         // array notation with no index was causing 'undefined variable: $offset' notices in php7,
         // for example:
@@ -143,9 +143,9 @@ abstract class Doctrine_Access extends Doctrine_Locator_Injectable implements Ar
      * @see   set, offsetSet, __set
      * @param mixed $offset
      */
-    public function offsetUnset($offset): mixed
+    public function offsetUnset($offset): void
     {
-        return $this->remove($offset);
+        $this->remove($offset);
     }
 
     /**
