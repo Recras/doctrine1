@@ -138,6 +138,7 @@ class Doctrine_Table_Repository implements Countable, IteratorAggregate
      * getIterator
      * @return ArrayIterator
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new ArrayIterator($this->registry);
