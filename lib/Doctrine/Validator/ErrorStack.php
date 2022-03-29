@@ -161,7 +161,7 @@ class Doctrine_Validator_ErrorStack extends Doctrine_Access implements Countable
      *
      * @return integer
      */
-    public function count()
+    public function count(): int
     {
         return count($this->_errors);
     }

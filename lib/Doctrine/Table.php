@@ -1136,7 +1136,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
         }
 
         if ( ! is_array($orderBy)) {
-            $e1 = explode(',', $orderBy);
+            $e1 = explode(',', $orderBy ?? '');
         } else {
             $e1 = $orderBy;
         }
@@ -1958,7 +1958,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      *
      * @return integer number of records in the table
      */
-    public function count()
+    public function count(): int
     {
         return $this->createQuery()->count();
     }
