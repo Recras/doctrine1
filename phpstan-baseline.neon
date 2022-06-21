@@ -21,29 +21,9 @@ parameters:
 			path: lib/Doctrine/Expression/Pgsql.php
 
 		-
-			message: "#^Access to an undefined property Doctrine_Formatter\\:\\:\\$string_quoting\\.$#"
-			count: 1
-			path: lib/Doctrine/Formatter.php
-
-		-
-			message: "#^Access to an undefined property Doctrine_Formatter\\:\\:\\$wildcards\\.$#"
-			count: 1
-			path: lib/Doctrine/Formatter.php
-
-		-
-			message: "#^Access to an undefined property Doctrine_Hydrator_Graph\\:\\:\\$_rootAlias\\.$#"
-			count: 2
-			path: lib/Doctrine/Hydrator/Graph.php
-
-		-
 			message: "#^Undefined variable\\: \\$db$#"
 			count: 1
 			path: lib/Doctrine/Import/Sqlite.php
-
-		-
-			message: "#^Access to an undefined property Doctrine_IntegrityMapper\\:\\:\\$conn\\.$#"
-			count: 1
-			path: lib/Doctrine/IntegrityMapper.php
 
 		-
 			message: "#^Array has 2 duplicate keys with value 150 \\(\\\\Doctrine_Core\\:\\:ATTR_CACHE, \\\\Doctrine_Core\\:\\:ATTR_RESULT_CACHE\\)\\.$#"
@@ -71,34 +51,9 @@ parameters:
 			path: lib/Doctrine/Migration/Base.php
 
 		-
-			message: "#^Access to an undefined property Doctrine_Node_NestedSet_PreOrderIterator\\:\\:\\$maxLevel\\.$#"
-			count: 2
-			path: lib/Doctrine/Node/NestedSet/PreOrderIterator.php
-
-		-
-			message: "#^Access to an undefined property Doctrine_Node_NestedSet_PreOrderIterator\\:\\:\\$options\\.$#"
-			count: 2
-			path: lib/Doctrine/Node/NestedSet/PreOrderIterator.php
-
-		-
-			message: "#^Access to an undefined property Doctrine_Node_NestedSet_PreOrderIterator\\:\\:\\$level\\.$#"
-			count: 4
-			path: lib/Doctrine/Node/NestedSet/PreOrderIterator.php
-
-		-
-			message: "#^Access to an undefined property Doctrine_Node_NestedSet_PreOrderIterator\\:\\:\\$prevLeft\\.$#"
-			count: 3
-			path: lib/Doctrine/Node/NestedSet/PreOrderIterator.php
-
-		-
 			message: "#^Undefined variable\\: \\$children$#"
 			count: 1
 			path: lib/Doctrine/Parser/Xml.php
-
-		-
-			message: "#^Access to an undefined property Doctrine_Query_Abstract\\<T of Doctrine_Record\\>\\:\\:\\$_pendingJoinConditions\\.$#"
-			count: 2
-			path: lib/Doctrine/Query/Abstract.php
 
 		-
 			message: "#^Call to an undefined method Doctrine_Query_Abstract\\<T of Doctrine_Record\\>\\:\\:isSubquery\\(\\)\\.$#"
@@ -108,11 +63,6 @@ parameters:
 		-
 			message: "#^Call to an undefined method Doctrine_Query_Abstract\\<T of Doctrine_Record\\>\\:\\:copy\\(\\)\\.$#"
 			count: 1
-			path: lib/Doctrine/Query/Abstract.php
-
-		-
-			message: "#^Access to an undefined property Doctrine_Query_Abstract\\<T of Doctrine_Record\\>\\:\\:\\$_parsers\\.$#"
-			count: 2
 			path: lib/Doctrine/Query/Abstract.php
 
 		-
@@ -126,16 +76,6 @@ parameters:
 			path: lib/Doctrine/Query/Set.php
 
 		-
-			message: "#^Access to an undefined property Doctrine_RawSql\\<T of Doctrine_Record\\>\\:\\:\\$_preQuery\\.$#"
-			count: 1
-			path: lib/Doctrine/RawSql.php
-
-		-
-			message: "#^Access to an undefined property Doctrine_RawSql\\<T of Doctrine_Record\\>\\:\\:\\$_pendingJoinConditions\\.$#"
-			count: 1
-			path: lib/Doctrine/RawSql.php
-
-		-
 			message: "#^Cannot use \\[\\] for reading\\.$#"
 			count: 1
 			path: lib/Doctrine/Search/Indexer.php
@@ -144,11 +84,6 @@ parameters:
 			message: "#^Call to an undefined method Doctrine_Search_Indexer_Dir\\:\\:indexFile\\(\\)\\.$#"
 			count: 1
 			path: lib/Doctrine/Search/Indexer/Dir.php
-
-		-
-			message: "#^Access to an undefined property Doctrine_Sequence\\:\\:\\$warnings\\.$#"
-			count: 1
-			path: lib/Doctrine/Sequence.php
 
 		-
 			message: "#^Undefined variable\\: \\$onDemand$#"
@@ -199,9 +134,3 @@ parameters:
 			message: "#^Access to an undefined property Doctrine_Task_RebuildDb\\:\\:\\$createTables\\.$#"
 			count: 3
 			path: lib/Doctrine/Task/RebuildDb.php
-
-		-
-			message: "#^Access to an undefined property Doctrine_Validator\\:\\:\\$stack\\.$#"
-			count: 1
-			path: lib/Doctrine/Validator.php
-

@@ -38,6 +38,8 @@ class Doctrine_Validator extends Doctrine_Locator_Injectable
      */
     private static $validators = array();
 
+    private array $stack = [];
+
     /**
      * Get a validator instance for the passed $name
      *
