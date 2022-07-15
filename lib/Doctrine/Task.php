@@ -35,7 +35,7 @@
 abstract class Doctrine_Task
 {
     public $dispatcher           =   null,
-           $taskName             =   null,  /*Treat as protected*/
+           $taskName             =   '',  /*Treat as protected*/
            $description          =   null,
            $arguments            =   array(),
            $requiredArguments    =   array(),
