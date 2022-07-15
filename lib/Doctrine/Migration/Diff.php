@@ -306,8 +306,8 @@ class Doctrine_Migration_Diff
     /**
      * Clean the produced model information of any potential prefix text
      *
-     * @param  mixed $info  Either array or string to clean of prefixes
-     * @return mixed $info  Cleaned value which is either an array or string
+     * @param  array|string $info  Either array or string to clean of prefixes
+     * @return array|string $info  Cleaned value which is either an array or string
      */
     protected function _cleanModelInformation($info)
     {
@@ -315,20 +315,20 @@ class Doctrine_Migration_Diff
             foreach ($info as $key => $value) {
                 unset($info[$key]);
                 $key = $this->_cleanModelInformation($key);
-                $info[$key] = $this->_cleanModelInformation($value);
+                $info[$key] = $this->_cleanModelInformation($value ?? '');
             }
             return $info;
-        } else {
-            $find = array(
-                self::$_toPrefix,
-                self::$_fromPrefix,
-                Doctrine_Inflector::tableize(self::$_toPrefix) . '_',
-                Doctrine_Inflector::tableize(self::$_fromPrefix) . '_',
-                Doctrine_Inflector::tableize(self::$_toPrefix),
-                Doctrine_Inflector::tableize(self::$_fromPrefix)
-            );
-            return str_replace($find, null, $info);
         }
+
+        $find = array(
+            self::$_toPrefix,
+            self::$_fromPrefix,
+            Doctrine_Inflector::tableize(self::$_toPrefix) . '_',
+            Doctrine_Inflector::tableize(self::$_fromPrefix) . '_',
+            Doctrine_Inflector::tableize(self::$_toPrefix),
+            Doctrine_Inflector::tableize(self::$_fromPrefix)
+        );
+        return str_replace($find, '', $info);
     }
 
     /**
