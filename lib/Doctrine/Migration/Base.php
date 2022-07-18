@@ -356,7 +356,7 @@ abstract class Doctrine_Migration_Base
      * @param string $tableName     Name of the table
      * @param string $columnName    Name of the column
      * @param string $type          Type of the column
-     * @param string $length        Length of the column
+     * @param int    $length        Length of the column
      * @param array  $options       Array of options for the column
      */
     public function column($upDown, $tableName, $columnName, $type = null, $length = null, array $options = array())
@@ -377,7 +377,7 @@ abstract class Doctrine_Migration_Base
      * @param string $tableName     Name of the table
      * @param string $columnName    Name of the column
      * @param string $type          Type of the column
-     * @param string $length        Length of the column
+     * @param int    $length        Length of the column
      * @param array  $options       Array of options for the column
      */
     public function addColumn($tableName, $columnName, $type, $length = null, array $options = array())
@@ -416,7 +416,7 @@ abstract class Doctrine_Migration_Base
      * @param string $tableName     Name of the table to change the column on
      * @param string $columnName    Name of the column to change
      * @param string $type          New type of column
-     * @param string $length        The length of the column
+     * @param int    $length        The length of the column
      * @param array  $options       New options for the column
      */
     public function changeColumn($tableName, $columnName, $type = null, $length = null, array $options = array())
