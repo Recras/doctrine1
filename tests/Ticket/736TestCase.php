@@ -71,7 +71,7 @@ class T736_ModuleDelegate extends Doctrine_Record
     }
     
     
-    public function preUpdate($event)
+    public function preUpdate(Doctrine_Event $event)
     {
         $this->parent->lastchange = date('Y-m-d H:i:s', time());
         $this->parent->save();

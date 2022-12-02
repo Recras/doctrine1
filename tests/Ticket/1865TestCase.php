@@ -96,7 +96,7 @@ class Ticket_1865_User extends Doctrine_Record
         $this->hasColumn('loginname', 'string',20, array('unique'));
         $this->hasColumn('password', 'string',16);
     }
-    public function preInsert($event)
+    public function preInsert(Doctrine_Event $event)
     {
         $this->Profile;
         $this->Profile->icq = '';

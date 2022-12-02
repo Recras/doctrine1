@@ -81,42 +81,42 @@ class Ticket_1843_User extends Doctrine_Record
         $this->hasColumn('password', 'string', 255);
     }
 
-    public function preSave($event)
+    public function preSave(Doctrine_Event $event)
     {
         $num = isset($this->hooks[__FUNCTION__]) ? $this->hooks[__FUNCTION__]:0;
         $this->hooks[__FUNCTION__] = $num + 1;
     }
-    public function postSave($event)
+    public function postSave(Doctrine_Event $event)
     {
         $num = isset($this->hooks[__FUNCTION__]) ? $this->hooks[__FUNCTION__]:0;
         $this->hooks[__FUNCTION__] = $num + 1;
     }
-    public function preInsert($event)
+    public function preInsert(Doctrine_Event $event)
     {
         $num = isset($this->hooks[__FUNCTION__]) ? $this->hooks[__FUNCTION__]:0;
         $this->hooks[__FUNCTION__] = $num + 1;
     }
-    public function postInsert($event)
+    public function postInsert(Doctrine_Event $event)
     {
         $num = isset($this->hooks[__FUNCTION__]) ? $this->hooks[__FUNCTION__]:0;
         $this->hooks[__FUNCTION__] = $num + 1;
     }
-    public function preUpdate($event)
+    public function preUpdate(Doctrine_Event $event)
     {
         $num = isset($this->hooks[__FUNCTION__]) ? $this->hooks[__FUNCTION__]:0;
         $this->hooks[__FUNCTION__] = $num + 1;
     }
-    public function postUpdate($event)
+    public function postUpdate(Doctrine_Event $event)
     {
         $num = isset($this->hooks[__FUNCTION__]) ? $this->hooks[__FUNCTION__]:0;
         $this->hooks[__FUNCTION__] = $num + 1;
     }
-    public function preDelete($event)
+    public function preDelete(Doctrine_Event $event)
     {
         $num = isset($this->hooks[__FUNCTION__]) ? $this->hooks[__FUNCTION__]:0;
         $this->hooks[__FUNCTION__] = $num + 1;
     }
-    public function postDelete($event)
+    public function postDelete(Doctrine_Event $event)
     {
         $num = isset($this->hooks[__FUNCTION__]) ? $this->hooks[__FUNCTION__]:0;
         $this->hooks[__FUNCTION__] = $num + 1;
