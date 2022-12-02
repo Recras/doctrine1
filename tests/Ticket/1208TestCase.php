@@ -65,14 +65,14 @@ class Ticket_1208_User extends Doctrine_Record
         $this->hasColumn('password', 'string', 255);
     }
 
-    public function preHydrate($event)
+    public function preHydrate(Doctrine_Event $event)
     {
         $data = $event->data;
         $data['pre_hydrate'] = 'pre hydrate value';
         $event->data = $data;
     }
 
-    public function postHydrate($event)
+    public function postHydrate(Doctrine_Event $event)
     {
         $data = $event->data;
         $data['post_hydrate'] = 'post hydrate value';
