@@ -38,6 +38,8 @@ class Doctrine_Task_BuildAll extends Doctrine_Task
     
     protected $models,
               $tables;
+
+    private $createDb;
     
     public function __construct($dispatcher = null)
     {
