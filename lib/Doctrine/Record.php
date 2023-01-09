@@ -1870,13 +1870,11 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      *
      * @link http://www.doctrine-project.org/documentation/manual/1_1/en/working-with-models
      * @param boolean $deep         whether to include relations
-     * @param boolean $prefixKey    not used
-     * @return array
      */
-    public function toArray($deep = true, $prefixKey = false)
+    public function toArray(bool $deep = true): ?array
     {
         if ($this->_state == self::STATE_LOCKED || $this->_state == self::STATE_TLOCKED) {
-            return false;
+            return null;
         }
         
         $stateBeforeLock = $this->_state;
@@ -1906,7 +1904,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
         if ($deep) {
             foreach ($this->_references as $key => $relation) {
                 if ( ! $relation instanceof Doctrine_Null) {
-                    $a[$key] = $relation->toArray($deep, $prefixKey);
+                    $a[$key] = $relation->toArray($deep);
                 }
             }
         }
@@ -1914,7 +1912,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
         // [FIX] Prevent mapped Doctrine_Records from being displayed fully
         foreach ($this->_values as $key => $value) {
             $a[$key] = ($value instanceof Doctrine_Record || $value instanceof Doctrine_Collection)
-                ? $value->toArray($deep, $prefixKey) : $value;
+                ? $value->toArray($deep) : $value;
         }
 
         $this->_state = $stateBeforeLock;
@@ -2042,22 +2040,6 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
 
         if ($refresh) {
             $this->refresh();
-        }
-    }
-
-    /**
-     * exports instance to a chosen format
-     *
-     * @param string $type  format type: array, xml, yml, json
-     * @param string $deep  whether or not to export all relationships
-     * @return string       representation as $type format. Array is $type is array
-     */
-    public function exportTo($type, $deep = true)
-    {
-        if ($type == 'array') {
-            return $this->toArray($deep);
-        } else {
-            return Doctrine_Parser::dump($this->toArray($deep, true), $type);
         }
     }
 
