@@ -1014,11 +1014,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
 
     public function toSentry(): ?array
     {
-      \$a = \$this->toArray(false);
-      if (is_array(\$a)) {
-        return \$a;
-      }
-      return null;
+      return \$this->toArray(false);
     }
 PHP;
     }
