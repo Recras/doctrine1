@@ -32,7 +32,7 @@
  */
 class Doctrine_Search_Record extends Doctrine_Template
 {
-    public function setTableDefinition()
+    public function setTableDefinition(): void
     {
         $this->hasColumn('keyword', 'string', 250, array('notnull' => true));
         $this->hasColumn('field', 'string', 50, array('notnull' => true));
@@ -41,7 +41,7 @@ class Doctrine_Search_Record extends Doctrine_Template
         // has also one to many foreign key columns
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->hasOne('[Component]', array('onDelete' => 'CASCADE'));
     }

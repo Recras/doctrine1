@@ -54,7 +54,7 @@ class Doctrine_Template_SoftDelete extends Doctrine_Template
      * Set table definition for SoftDelete behavior
      *
      */
-    public function setTableDefinition()
+    public function setTableDefinition(): void
     {
         // BC to 1.0.X of SoftDelete behavior
         if ($this->_options['type'] == 'boolean') {

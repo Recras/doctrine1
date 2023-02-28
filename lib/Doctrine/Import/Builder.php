@@ -385,7 +385,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
         $code = implode(PHP_EOL, $ret);
         $code = trim($code);
 
-        return PHP_EOL . "    public function setTableDefinition()" . PHP_EOL . '    {' . PHP_EOL . '        ' . $code . PHP_EOL . '    }';
+        return PHP_EOL . "    public function setTableDefinition(): void" . PHP_EOL . '    {' . PHP_EOL . '        ' . $code . PHP_EOL . '    }';
     }
 
     /**
@@ -494,7 +494,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
 
         // If we have some code for the function then lets define it and return it
         if ($code) {
-            return '    public function setUp()' . PHP_EOL . '    {' . PHP_EOL . '        ' . $code . PHP_EOL . '    }';
+            return '    public function setUp(): void' . PHP_EOL . '    {' . PHP_EOL . '        ' . $code . PHP_EOL . '    }';
         }
     }
 

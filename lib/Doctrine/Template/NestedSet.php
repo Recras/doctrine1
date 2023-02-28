@@ -36,7 +36,7 @@ class Doctrine_Template_NestedSet extends Doctrine_Template
      * Set up NestedSet template
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_table->setOption('treeOptions', $this->_options);
         $this->_table->setOption('treeImpl', 'NestedSet');
@@ -46,7 +46,7 @@ class Doctrine_Template_NestedSet extends Doctrine_Template
      * Call set table definition for the NestedSet behavior
      *
      */
-    public function setTableDefinition()
+    public function setTableDefinition(): void
     {
         $this->_table->getTree()->setTableDefinition();
     }

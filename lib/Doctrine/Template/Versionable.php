@@ -66,7 +66,7 @@ class Doctrine_Template_Versionable extends Doctrine_Template
      * Setup the Versionable behavior for the template
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         if ($this->_plugin->getOption('auditLog')) {
             $this->_plugin->initialize($this->_table);

@@ -74,7 +74,7 @@ class Doctrine_AuditLog extends Doctrine_Record_Generator
      * Set the table definition for the audit log table
      *
      */
-    public function setTableDefinition()
+    public function setTableDefinition(): void
     {
         $name = $this->_options['table']->getComponentName();
 

@@ -37,12 +37,12 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
      */
     protected $_table;
 
-    public function setTableDefinition()
+    public function setTableDefinition(): void
     {
 
     }
 
-    public function setUp()
+    public function setUp(): void
     {
     	
     }	
@@ -279,7 +279,7 @@ abstract class Doctrine_Record_Abstract extends Doctrine_Access
      * argument is an array of options.
      *
      *     [php]
-     *     public function setTableDefinition()
+     *     public function setTableDefinition(): void
      *     {
      *         parent::setTableDefinition();
      *         $this->setColumnOptions('username', array(

@@ -300,7 +300,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * it should be implemented by child classes
      *
      */
-    public function setUp()
+    public function setUp(): void
     { }
     /**
      * construct

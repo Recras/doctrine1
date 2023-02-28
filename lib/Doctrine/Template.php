@@ -183,7 +183,7 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
      * Blank method for template setup 
      * 
      */
-    public function setUp()
+    public function setUp(): void
     {
 
     }
@@ -192,7 +192,7 @@ abstract class Doctrine_Template extends Doctrine_Record_Abstract
      * Blank method for template table definition
      * 
      */
-    public function setTableDefinition()
+    public function setTableDefinition(): void
     {
 
     }

@@ -47,7 +47,7 @@ class Doctrine_Template_Searchable extends Doctrine_Template
      * Setup the Searchable template behavior
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_plugin->initialize($this->_table);
 

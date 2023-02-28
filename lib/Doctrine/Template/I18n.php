@@ -47,7 +47,7 @@ class Doctrine_Template_I18n extends Doctrine_Template
      * Initialize the I18n plugin for the template
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_plugin->initialize($this->_table); 
     }
