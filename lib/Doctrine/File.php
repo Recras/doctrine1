@@ -32,12 +32,12 @@
  */
 class Doctrine_File extends Doctrine_Record
 {
-    public function setTableDefinition()
+    public function setTableDefinition(): void
     {
         $this->hasColumn('url', 'string', 255);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->actAs('Searchable', array('className' => 'Doctrine_File_Index',
                                          'fields' => array('url', 'content')));

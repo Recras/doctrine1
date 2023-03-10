@@ -52,7 +52,7 @@ class Doctrine_Template_Geographical extends Doctrine_Template
      * Set table definition for Geographical behavior
      *
      */
-    public function setTableDefinition()
+    public function setTableDefinition(): void
     {
         $this->hasColumn($this->_options['latitude']['name'], $this->_options['latitude']['type'], $this->_options['latitude']['size'], $this->_options['latitude']['options']);
         $this->hasColumn($this->_options['longitude']['name'], $this->_options['longitude']['type'], $this->_options['longitude']['size'], $this->_options['longitude']['options']);

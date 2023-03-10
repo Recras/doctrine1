@@ -71,7 +71,7 @@ class Doctrine_Tree
      *
      * @throws Doctrine_Tree_Exception          if table attributes have not been defined
      */
-    public function setTableDefinition()
+    public function setTableDefinition(): void
     {
         throw new Doctrine_Tree_Exception('Table attributes have not been defined for this Tree implementation.');
     }
@@ -80,7 +80,7 @@ class Doctrine_Tree
      * this method is used for setting up relations and attributes and should be used by specific implementations
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 

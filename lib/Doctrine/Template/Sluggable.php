@@ -59,7 +59,7 @@ class Doctrine_Template_Sluggable extends Doctrine_Template
      * Set table definition for Sluggable behavior
      *
      */
-    public function setTableDefinition()
+    public function setTableDefinition(): void
     {
         $name = $this->_options['name'];
         if ($this->_options['alias']) {

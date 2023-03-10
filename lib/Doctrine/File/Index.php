@@ -32,7 +32,7 @@
  */
 class Doctrine_File_Index extends Doctrine_Record
 {
-    public function setTableDefinition()
+    public function setTableDefinition(): void
     {
         $this->hasColumn('keyword', 'string', 255, array('notnull' => true,
                                                          'primary' => true));
@@ -47,7 +47,7 @@ class Doctrine_File_Index extends Doctrine_Record
                                                         'primary' => true));
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->hasOne('Doctrine_File', array('local' => 'file_id',
                                              'foreign' => 'id',
