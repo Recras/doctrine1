@@ -157,7 +157,7 @@ class Doctrine_Migration
                 }
             }
         }
-        ksort($classesToLoad, SORT_NUMERIC);
+        ksort($classesToLoad, SORT_NATURAL); // Also sorts numeric, but puts letters after numbers, instead of letters before numbers like SORT_NUMERIC does.
         foreach ($classesToLoad as $class) {
             $this->loadMigrationClass($class['className'], $class['path']);
         }
