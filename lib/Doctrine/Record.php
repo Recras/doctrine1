@@ -1643,7 +1643,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     public function __unset($name)
     {
         if (array_key_exists($name, $this->_data)) {
-            $this->_data[$name] = array();
+            $this->_data[$name] = self::$_null;
         } else if (isset($this->_references[$name])) {
             if ($this->_references[$name] instanceof Doctrine_Record) {
                 $this->_pendingDeletes[] = $this->$name;
