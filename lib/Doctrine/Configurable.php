@@ -239,13 +239,37 @@ abstract class Doctrine_Configurable extends Doctrine_Locator_Injectable
      */
     public function getRecordListener()
     {
-        if ( ! isset($this->attributes[Doctrine_Core::ATTR_RECORD_LISTENER])) {
-            if (isset($this->parent)) {
-                return $this->parent->getRecordListener();
+        //First we check if we have a parent
+        if(!isset($this->parent)) {
+            //Check if we have something ourselves
+            if (isset($this->attributes[Doctrine_Core::ATTR_RECORD_LISTENER])) {
+                return $this->attributes[Doctrine_Core::ATTR_RECORD_LISTENER];
+            } else {
+                return null;
             }
-            return null;
         }
-        return $this->attributes[Doctrine_Core::ATTR_RECORD_LISTENER];
+        // We have a parent
+        $parentListener = $listener = $this->parent->getRecordListener();
+        // Do we also have something ourselves
+        if (isset($this->attributes[Doctrine_Core::ATTR_RECORD_LISTENER])) {
+            $listener = new Doctrine_Record_Listener_Chain();
+            // Merge both
+            if($parentListener instanceof Doctrine_Record_Listener_Chain) {
+                foreach($parentListener->all() as $key => $val) {
+                    $listener->add($val, $key);
+                }
+            } else {
+                $listener->add($parentListener);
+            }
+            if($this->attributes[Doctrine_Core::ATTR_RECORD_LISTENER] instanceof Doctrine_Record_Listener_Chain) {
+                foreach($this->attributes[Doctrine_Core::ATTR_RECORD_LISTENER]->all() as $key => $val) {
+                    $listener->add($val, $key);
+                }
+            } else {
+                $listener->add($this->attributes[Doctrine_Core::ATTR_RECORD_LISTENER]);
+            }
+        }
+        return $listener;
     }
 
     /**

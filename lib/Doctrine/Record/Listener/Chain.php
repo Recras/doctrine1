@@ -123,6 +123,17 @@ class Doctrine_Record_Listener_Chain extends Doctrine_Access implements Doctrine
     }
 
     /**
+     * returns an array with Doctrine_Record_Listener on success
+     * or empty array
+     *
+     * @return array
+     */
+    public function all()
+    {
+        return $this->_listeners;
+    }
+
+    /**
      * set
      *
      * @param mixed $key
