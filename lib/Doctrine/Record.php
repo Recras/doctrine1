@@ -1619,8 +1619,8 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      */
     public function contains($fieldName)
     {
-        if (array_key_exists($fieldName, $this->_data)) {
-            return isset($this->_data[$fieldName]) && !$this->_data[$fieldName] instanceof \Doctrine_Null;
+        if (array_key_exists($fieldName, $this->_data) && !$this->_data[$fieldName] instanceof \Doctrine_Null) {
+            return true;
         }
         if (isset($this->_id[$fieldName])) {
             return true;
