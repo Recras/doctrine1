@@ -34,6 +34,8 @@
  * @template T of \Doctrine_Record
  * @implements \IteratorAggregate<int, T>
  * @implements \ArrayAccess<int, T>
+ * 
+ * @method T offsetGet(int|string $offset)
  */
 class Doctrine_Collection extends Doctrine_Access implements Countable, IteratorAggregate
 {
@@ -444,8 +446,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * Set a Doctrine_Record instance to the collection
      *
      * @param integer $key
-     * @param Doctrine_Record $record
-     * @phpstan-param T $record
+     * @param T $record
      * @return void
      */
     public function set($key, $record)
@@ -756,7 +757,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
         }
 
         // Trees mapped
-        /** @phpstan-var Doctrine_Collection<T> */
+        /** @var Doctrine_Collection<T> $trees */
         $trees = new Doctrine_Collection($table);
         $l = 0;
 

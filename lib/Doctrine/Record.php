@@ -30,6 +30,8 @@
  * @link        www.doctrine-project.org
  * @since       1.0
  * @version     $Revision: 7673 $
+ * 
+ * @implements ArrayAccess
  */
 abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Countable, IteratorAggregate
 {
@@ -94,7 +96,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     protected $_node;
 
     /**
-     * @var integer $_id                    the primary keys of this object
+     * @var integer|array $_id                    the primary keys of this object
      */
     protected $_id           = array();
 
@@ -1950,8 +1952,8 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * imports data from a php array
      *
      * @link http://www.doctrine-project.org/documentation/manual/1_1/en/working-with-models
-     * @param string $array  array of data, see link for documentation
-     * @param bool   $deep   whether or not to act on relations
+     * @param string|array   $array  array of data, see link for documentation
+     * @param bool           $deep   whether or not to act on relations
      */
     public function fromArray(array $array, $deep = true)
     {
@@ -2052,8 +2054,8 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
     /**
      * imports data from a chosen format in the current instance
      *
-     * @param string $type  Format type: xml, yml, json
-     * @param string $data  Data to be parsed and imported
+     * @param string        $type  Format type: xml, yml, json
+     * @param string|array  $data  Data to be parsed and imported
      */
     public function importFrom($type, $data, $deep = true)
     {
