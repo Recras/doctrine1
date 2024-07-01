@@ -1073,6 +1073,7 @@ PHP;
             $extends .= ' implements \Sentry\Serializer\SerializableInterface';
             $setUpCode .= $this->buildToSentry();
         }
+        $setUpCode .= PHP_EOL;
 
         $docs = PHP_EOL . $this->buildPhpDocs($definition);
 
