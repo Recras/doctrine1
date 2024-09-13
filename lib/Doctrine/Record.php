@@ -1361,6 +1361,14 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
             } else {
                 $value = $this->_data[$fieldName];
             }
+
+            // Here we support typecasting, so we always return data in the format of the column
+            $type = $this->_table->getTypeOf($fieldName);
+            switch($type) {
+                case 'json':
+                        $value = json_decode($value);
+                    break;
+            }
             
             return $value;
         }
