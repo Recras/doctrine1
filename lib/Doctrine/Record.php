@@ -1357,19 +1357,41 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
             }
 
             if ($this->_data[$fieldName] === self::$_null) {
-                $value = null;
+                return null; // Quick exit, no need to handle type casting
             } else {
                 $value = $this->_data[$fieldName];
             }
 
+            if (is_null($value)) {
+                return null;
+            }
+
+            if ($value instanceof Doctrine_Record) {
+                $_id = $value->getIncremented();
+                if (!is_null($_id)) {
+                    $value = $_id;
+                } else {
+                    return $value; // Quick exit, type casting breaks relation saving, Doctrine needs it to be the object
+                }
+            }
             // Here we support typecasting, so we always return data in the format of the column
             $type = $this->_table->getTypeOf($fieldName);
-            switch($type) {
+            switch ($type) {
                 case 'json':
-                        $value = json_decode($value);
+                    $value = json_decode($value);
+                    break;
+                case 'decimal':
+                    $value = (string)$value;
+                    break;
+                case 'integer':
+                    $value = (int)$value;
+                    break;
+                case 'float':
+                case 'doable':
+                    $value = floatval($value);
                     break;
             }
-            
+
             return $value;
         }
         
@@ -1467,6 +1489,23 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                 if ($id !== null && $type !== 'object') {
                     $value = $id;
                 }
+            }
+
+            switch($type) {
+                case 'json':
+                    if (!json_validate($value)) {
+                        $value = json_encode($value);
+                    }
+                    break;
+                case 'decimal':
+                    $value = (string)$value;
+                    break;
+                case 'float':
+                    $value = (float)$value;
+                    break;
+                case 'int':
+                    $value = (int)$value;
+                    break;
             }
 
             if ($load) {
