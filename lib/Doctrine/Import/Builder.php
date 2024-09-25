@@ -670,9 +670,8 @@ class Doctrine_Import_Builder extends Doctrine_Builder
             case 'timestamp':
             case 'datetime':
             case 'date':
-                return 'string';
             case 'decimal':
-                return 'float';
+                return 'string';
         }
         return null;
     }
