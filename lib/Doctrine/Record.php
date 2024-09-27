@@ -1384,6 +1384,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                     $value = (string)$value;
                     break;
                 case 'integer':
+                case 'int':
                     $value = (int)$value;
                     break;
                 case 'float':
@@ -1491,21 +1492,29 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                 }
             }
 
-            switch($type) {
-                case 'json':
-                    if (!json_validate($value)) {
-                        $value = json_encode($value);
-                    }
-                    break;
-                case 'decimal':
-                    $value = (string)$value;
-                    break;
-                case 'float':
-                    $value = (float)$value;
-                    break;
-                case 'int':
-                    $value = (int)$value;
-                    break;
+            $cd = $this->_table->getColumnDefinition($fieldName);
+
+            $nullable = !array_key_exists('notnull', $cd) || $cd['notnull'] === false;
+
+            if (!$nullable || !is_null($value)) {
+                switch ($type) {
+                    case 'json':
+                        if (!json_validate($value)) {
+                            $value = json_encode($value);
+                        }
+                        break;
+                    case 'decimal':
+                        $value = (string)$value;
+                        break;
+                    case 'doable':
+                    case 'float':
+                        $value = (float)$value;
+                        break;
+                    case 'integer':
+                    case 'int':
+                        $value = (int)$value;
+                        break;
+                }
             }
 
             if ($load) {
