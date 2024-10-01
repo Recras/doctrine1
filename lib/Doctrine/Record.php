@@ -1494,9 +1494,17 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
 
             $cd = $this->_table->getColumnDefinition($fieldName);
 
+            $isRelation = false;
+            foreach($this->_table->getRelations() as $name => $relation) {
+                if ($relation->getLocalFieldName() === $fieldName) {
+                    $isRelation = true;
+                    break;
+                }
+            }
+
             $nullable = !array_key_exists('notnull', $cd) || $cd['notnull'] === false;
 
-            if (!$nullable || !is_null($value)) {
+            if ($value !== self::$_null && !$isRelation && (!$nullable || !is_null($value))) {
                 switch ($type) {
                     case 'json':
                         if (!json_validate($value)) {
