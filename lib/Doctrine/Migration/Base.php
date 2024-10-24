@@ -230,7 +230,7 @@ abstract class Doctrine_Migration_Base
      *  * Change autoincrement = true field to be autoincrement
      * 
      * @param string $tableName     Name of the table
-     * @param array<string, array<object{type?: string, length?: string, option?: array<mixed>}>> $columnNames   Array of column names and column definitions
+     * @param array<string, array{type?: string, length?: string, option?: array<mixed>}> $columnNames   Array of column names and column definitions
      */
     public function createPrimaryKey($tableName, $columnNames)
     {
@@ -288,7 +288,7 @@ abstract class Doctrine_Migration_Base
      *  * Removing columns (removeColumn())
      *
      * @param string $tableName     Name of the table
-     * @param array<string, array<object{type?: string, length?: string, option?: array<mixed>}>> $columnNames   Array of column names and column definitions
+     * @param array<string, array{type?: string, length?: string, option?: array<mixed>}> $columnNames   Array of column names and column definitions
      */
     public function dropPrimaryKey($tableName, $columnNames)
     {
