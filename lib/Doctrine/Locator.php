@@ -55,7 +55,7 @@ class Doctrine_Locator implements Countable, IteratorAggregate
      *
      * @param array
      */
-    public function __construct(array $defaults = null)
+    public function __construct(?array $defaults = null)
     {
         if (null !== $defaults) {
             foreach ($defaults as $name => $resource) {

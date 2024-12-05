@@ -2043,7 +2043,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @phpstan-param T $record
      * @return Doctrine_Validator_ErrorStack $errorStack
      */
-    public function validateField($fieldName, $value, Doctrine_Record $record = null)
+    public function validateField($fieldName, $value, ?Doctrine_Record $record = null)
     {
         if ($record instanceof Doctrine_Record) {
             $errorStack = $record->getErrorStack();
@@ -2196,7 +2196,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
      * @param string[]|null $fieldNames
      * @return array<int,string> numeric array
      */
-    public function getColumnNames(array $fieldNames = null)
+    public function getColumnNames(?array $fieldNames = null)
     {
         if ($fieldNames === null) {
             return array_keys($this->_columns);

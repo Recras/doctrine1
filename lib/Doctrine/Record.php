@@ -340,7 +340,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * @param Doctrine_Event $event  event raised
      * @return Doctrine_Event        the event generated using the type, if not specified
      */
-    public function invokeSaveHooks(string $when, string $type, Doctrine_Event $event = null)
+    public function invokeSaveHooks(string $when, string $type, ? Doctrine_Event $event = null)
     {
         $func = $when . ucfirst($type);
 
