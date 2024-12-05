@@ -1766,7 +1766,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * @param Doctrine_Connection $conn     optional connection parameter
      * @throws Exception                    if record is not valid and validation is active
      */
-    public function save(Doctrine_Connection $conn = null)
+    public function save(?Doctrine_Connection $conn = null)
     {
         if ($conn === null) {
             $conn = $this->_table->getConnection();
@@ -1783,7 +1783,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * @param Doctrine_Connection $conn                 optional connection parameter
      * @return TRUE if the record was saved sucessfully without errors, FALSE otherwise.
      */
-    public function trySave(Doctrine_Connection $conn = null) {
+    public function trySave(?Doctrine_Connection $conn = null) {
         try {
             $this->save($conn);
             return true;
@@ -1809,7 +1809,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      * @throws Doctrine_Connection_Exception        if something fails at database level
      * @return integer                              number of rows affected
      */
-    public function replace(Doctrine_Connection $conn = null)
+    public function replace(?Doctrine_Connection $conn = null)
     {
         if ($conn === null) {
             $conn = $this->_table->getConnection();
@@ -2210,7 +2210,7 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
      *
      * @return boolean      true if successful
      */
-    public function delete(Doctrine_Connection $conn = null)
+    public function delete(?Doctrine_Connection $conn = null)
     {
         if ($conn == null) {
             $conn = $this->_table->getConnection();
