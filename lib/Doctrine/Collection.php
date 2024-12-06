@@ -85,7 +85,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * @param Doctrine_Table<T>|class-string<T> $table
      * @param string|null $keyColumn
      */
-    public function __construct($table, $keyColumn = null)
+    public function __construct($table, ?string $keyColumn = null)
     {
         if ( ! ($table instanceof Doctrine_Table)) {
             $table = Doctrine_Core::getTable($table);
@@ -125,7 +125,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * @throws Doctrine_Manager_Exception 
      * @throws Doctrine_Connection_Exception 
      */
-    public static function create($table, $keyColumn = null, $class = null)
+    public static function create($table, ?string$keyColumn = null, ?string $class = null)
     {
         if (is_null($class)) {
             if ( ! $table instanceof Doctrine_Table) {
@@ -465,7 +465,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * @param string $key                          optional key for the record
      * @return boolean
      */
-    public function add($record, $key = null)
+    public function add($record, ?string $key = null)
     {
         if (isset($this->referenceField)) {
             $value = $this->reference->get($this->relation->getLocalFieldName());
@@ -542,7 +542,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * @param string|null $name
      * @return Doctrine_Query|void
      */
-    public function loadRelated($name = null)
+    public function loadRelated(?string $name = null)
     {
         $list = array();
         $query = $this->_table->createQuery();
@@ -923,7 +923,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * @param bool $processDiff
      * @return $this
      */
-    public function save(Doctrine_Connection $conn = null, $processDiff = true)
+    public function save(?Doctrine_Connection $conn = null, bool $processDiff = true)
     {
         if ($conn == null) {
             $conn = $this->_table->getConnection();
@@ -959,7 +959,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * @param bool $processDiff
      * @return $this
      */
-    public function replace(Doctrine_Connection $conn = null, $processDiff = true)
+    public function replace(?Doctrine_Connection $conn = null, bool $processDiff = true)
     {
         if ($conn == null) {
             $conn = $this->_table->getConnection();
@@ -994,7 +994,7 @@ class Doctrine_Collection extends Doctrine_Access implements Countable, Iterator
      * @param bool $clearColl
      * @return $this
      */
-    public function delete(Doctrine_Connection $conn = null, $clearColl = true)
+    public function delete(?Doctrine_Connection $conn = null, bool $clearColl = true)
     {
         if ($conn == null) {
             $conn = $this->_table->getConnection();
