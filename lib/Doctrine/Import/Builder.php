@@ -662,7 +662,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
         return $ret;
     }
 
-    private function getPhpType($databaseType)
+    private function getPhpDocType($databaseType)
     {
         switch ($databaseType) {
             case 'enum':
@@ -670,8 +670,9 @@ class Doctrine_Import_Builder extends Doctrine_Builder
             case 'timestamp':
             case 'datetime':
             case 'date':
+                return 'non-empty-string';
             case 'decimal':
-                return 'string';
+                return 'numeric-string';
         }
         return null;
     }
@@ -730,7 +731,7 @@ class Doctrine_Import_Builder extends Doctrine_Builder
                 list($name, $fieldName) = $this->findColumnNames($column, $name);
 
                 $type = $column['type'];
-                $phptype = $this->getPhpType($type);
+                $phptype = $this->getPhpDocType($type);
                 if (!is_null($phptype)) {
                     $type = $phptype;
                 }
