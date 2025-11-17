@@ -2347,7 +2347,7 @@ class Doctrine_Table extends Doctrine_Configurable implements Countable
                 case 'set':
                     return explode(',', $value);
                 case 'boolean':
-                    return (boolean) $value;
+                    return (bool) $value;
                 case 'array':
                 case 'object':
                     if (is_string($value)) {
